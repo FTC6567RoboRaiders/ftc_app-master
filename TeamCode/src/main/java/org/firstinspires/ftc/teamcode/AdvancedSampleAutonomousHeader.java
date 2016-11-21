@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.GyroSensor;
 
 /**
  * Created by Katelin Zichittella on 10/16/2016.
- */
+  */
 
 public abstract class AdvancedSampleAutonomousHeader extends LinearOpMode {
 
