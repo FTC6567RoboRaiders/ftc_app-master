@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Created by Katelin Zichittella on 9/20/2016.
- **/
+ */
 
 public abstract class AutonomousHeader extends LinearOpMode {
 
@@ -26,7 +26,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
     I2cDevice rangeSensorRight;
     I2cDeviceSynch rangeSensorLeftReader;
     I2cDeviceSynch rangeSensorRightReader;
-
+    
     byte[] colorSensorLeftCache;
     byte[] colorSensorRightCache;
     byte[] colorSensorFrontCache;
@@ -65,7 +65,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         colorSensorFrontReader.engage();
         rangeSensorLeftReader.engage();
         rangeSensorRightReader.engage();
-
+        
         motorRight.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.5);
     }
@@ -73,7 +73,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
     public void calibrateGyro () throws InterruptedException {
 
         while (sensorGyro.isCalibrating()) {
-
+ 
             Thread.sleep(50);
 
             telemetry.addData("Calibrated", false);
