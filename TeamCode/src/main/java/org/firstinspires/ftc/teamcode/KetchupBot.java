@@ -48,7 +48,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**                              HI                                                                **/
 /**----------------------------------------------------------------------------------------------**/
 
-public class KetchupBot
+public class KetchupBot {
 
     /* Public OpMode members. */
     public DcMotor                      leftMotor         = null;
