@@ -300,9 +300,9 @@ public abstract class AutonomousHeader1 extends LinearOpMode {
 
         motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        int DIAMETER = 4;
-        int GEAR_RATIO = 1;
-        int PULSES = 1120;
+        int DIAMETER = 2;
+        int GEAR_RATIO = 120;
+        int PULSES = 1680;
         double CIRCUMFERENCE = Math.PI * DIAMETER;
         double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
         double COUNTS = PULSES * ROTATIONS;
