@@ -30,5 +30,7 @@ public class AdvancedSampleAutonomous extends AdvancedSampleAutonomousHeader {
         Thread.sleep(500);
 
         gyroTurnLeft(90, 1.0);
+
+        Thread.sleep(500);
     }
 }
