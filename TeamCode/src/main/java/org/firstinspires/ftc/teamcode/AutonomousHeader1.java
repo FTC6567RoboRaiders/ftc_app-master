@@ -207,7 +207,7 @@ public abstract class AutonomousHeader1 extends LinearOpMode {
 
         int DIAMETER = 4;
         int GEAR_RATIO = 1;
-        int PULSES = 1120;
+        int PULSES = 560;
         double CIRCUMFERENCE = Math.PI * DIAMETER;
         double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
         double COUNTS = PULSES * ROTATIONS;
@@ -233,7 +233,7 @@ public abstract class AutonomousHeader1 extends LinearOpMode {
 
         int DIAMETER = 4;
         int GEAR_RATIO = 1;
-        int PULSES = 1120;
+        int PULSES = 560;
         double CIRCUMFERENCE = Math.PI * DIAMETER;
         double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
         double COUNTS = PULSES * ROTATIONS;
@@ -301,7 +301,7 @@ public abstract class AutonomousHeader1 extends LinearOpMode {
         motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         int DIAMETER = 2;
-        int GEAR_RATIO = 120;
+        double GEAR_RATIO = 1.456;
         int PULSES = 1680;
         double CIRCUMFERENCE = Math.PI * DIAMETER;
         double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
@@ -325,229 +325,5 @@ public abstract class AutonomousHeader1 extends LinearOpMode {
         motorBackRight.setPower(right);
         motorFrontLeft.setPower(left);
         motorFrontRight.setPower(right);
-    }
-
-
-
-    // UNUSED METHODS
-
-
-
-    public void colorSensorTelemetry () {
-
-        while (true) {
-
-            colorSensorLeftReader.write8(3, 0);
-            colorSensorRightReader.write8(3, 0);
-            colorSensorFrontReader.write8(3, 1);
-
-            colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
-            colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
-            colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
-
-            telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
-            telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
-            telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
-            telemetry.update();
-        }
-    }
-
-    public void rangeSensorTelemetryUltraSonic () {
-
-        while (true) {
-
-            rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-            rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-            telemetry.addData("Left", rangeSensorLeftCache[0] & 0xFF);
-            telemetry.addData("Right", rangeSensorRightCache[0] & 0xFF);
-            telemetry.update();
-        }
-    }
-
-    public void rangeSensorTelemetryOptical () {
-
-        while (true) {
-
-            rangeSensorLeftCache = rangeSensorLeftReader.read(0x05, 1);
-            rangeSensorRightCache = rangeSensorRightReader.read(0x05, 1);
-
-            telemetry.addData("Left", rangeSensorLeftCache[0] & 0xFF);
-            telemetry.addData("Right", rangeSensorRightCache[0] & 0xFF);
-            telemetry.update();
-        }
-    }
-
-    public void lineFollowerOneSensor () {
-
-        setMotorPower(0.15, 0.05);
-
-        rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-        rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-        while ((rangeSensorLeftCache[0] & 0xFF) > 10 || (rangeSensorRightCache[0] & 0xFF) > 10) {
-
-            rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-            rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-            telemetry.addData("Left", rangeSensorLeftCache[0] & 0xFF);
-            telemetry.addData("Right", rangeSensorRightCache[0] & 0xFF);
-            telemetry.update();
-
-            colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
-            colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
-
-            telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
-            telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
-            telemetry.update();
-
-            if ((colorSensorLeftCache[0] & 0xFF) > 18) { // white
-
-                setMotorPower(0.05, 0.15);
-            }
-
-            else { // black
-
-                setMotorPower(0.15, 0.05);
-            }
-        }
-
-        setMotorPower(0.0, 0.0);
-    }
-
-    public void moveUntilCorrectDistance (int distance, double power) {
-
-        rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-        rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-        if (power < 0) {
-
-            setMotorPower(power, power);
-
-            while ((rangeSensorLeftCache[0] & 0xFF) < distance || (rangeSensorRightCache[0] & 0xFF) < distance) {
-
-                rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-                rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-                telemetry.addData("Left", rangeSensorLeftCache[0] & 0xFF);
-                telemetry.addData("Right", rangeSensorRightCache[0] & 0xFF);
-                telemetry.update();
-
-                setMotorPower(power, power);
-            }
-
-            setMotorPower(0.0, 0.0);
-        }
-
-        else if (power >= 0) {
-
-            setMotorPower(power, power);
-
-            while ((rangeSensorLeftCache[0] & 0xFF) > distance || (rangeSensorRightCache[0] & 0xFF) > distance) {
-
-                rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-                rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-                telemetry.addData("Left", rangeSensorLeftCache[0] & 0xFF);
-                telemetry.addData("Right", rangeSensorRightCache[0] & 0xFF);
-                telemetry.update();
-
-                setMotorPower(power, power);
-            }
-
-            setMotorPower(0.0, 0.0);
-        }
-    }
-
-    public void turnUntilAlignedLeft (double power) {
-
-        rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-        rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-        while ((rangeSensorRightCache[0] & 0xFF) > (rangeSensorLeftCache[0] & 0xFF)) {
-
-            rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-            rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-            telemetry.addData("Left", rangeSensorLeftCache[0] & 0xFF);
-            telemetry.addData("Right", rangeSensorRightCache[0] & 0xFF);
-            telemetry.update();
-
-            setMotorPower(-power, power);
-        }
-
-        setMotorPower(0.0, 0.0);
-    }
-
-    public void turnUntilAlignedRight (double power) {
-
-        rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-        rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-        while ((rangeSensorLeftCache[0] & 0xFF) > (rangeSensorRightCache[0] & 0xFF)) {
-
-            rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-            rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-            telemetry.addData("Left", rangeSensorLeftCache[0] & 0xFF);
-            telemetry.addData("Right", rangeSensorRightCache[0] & 0xFF);
-            telemetry.update();
-
-            setMotorPower(power, -power);
-        }
-
-        setMotorPower(0.0, 0.0);
-    }
-
-    public void adjustWithEncoders (int distance) throws InterruptedException {
-
-        encodersForward(distance + 5, 0.5);
-        Thread.sleep(1000);
-        encodersBackward(distance, 0.1);
-    }
-
-    public void adjustWithRange (int distance) throws InterruptedException {
-
-        encodersForward((distance / 2) + 5, 0.5);
-        Thread.sleep(1000);
-        moveUntilCorrectDistance(distance, -0.1);
-    }
-
-    public void turnUntilWhiteLineLeft () {
-
-        setMotorPower(-0.1, 0.1);
-
-        colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
-
-        while ((colorSensorRightCache[0] & 0xFF) < 5) { // black
-
-            colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
-
-            telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
-            telemetry.update();
-
-            setMotorPower(-0.1, 0.1);
-        }
-
-        setMotorPower(0.0, 0.0);
-    }
-
-    public void turnUntilWhiteLineRight () {
-
-        setMotorPower(0.1, -0.1);
-
-        colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
-
-        while ((colorSensorLeftCache[0] & 0xFF) < 5) { // black
-
-            colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
-
-            telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
-            telemetry.update();
-
-            setMotorPower(0.1, -0.1);
-        }
-
-        setMotorPower(0.0, 0.0);
     }
 }

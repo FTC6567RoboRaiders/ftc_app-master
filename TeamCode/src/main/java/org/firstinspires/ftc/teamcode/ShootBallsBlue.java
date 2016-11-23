@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
  */
 
 @Autonomous
-public class ShootBallsBlue extends AutonomousHeader {
+public class ShootBallsBlue extends AutonomousHeader1 {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -17,6 +17,12 @@ public class ShootBallsBlue extends AutonomousHeader {
         calibrateGyro();
 
         waitForStart();
+
+        shoot(4, 1.0);
+        Thread.sleep(500);
+
+        shoot(4, 1.0);
+        Thread.sleep(500);
 
         encodersForward(30, 0.5);
         Thread.sleep(200);
