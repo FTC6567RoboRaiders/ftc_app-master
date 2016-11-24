@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
 
-public class BeaconClaimBlue extends AutonomousHeader1 {
+public class BeaconClaimBlue extends AutonomousHeader {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -117,17 +117,5 @@ public class BeaconClaimBlue extends AutonomousHeader1 {
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
-
-        encodersBackward(18, 0.5);
-        Thread.sleep(200);
-
-        gyroTurnLeft(45, 0.5);
-        Thread.sleep(200);
-
-        encodersBackward(65, 0.65);
-        Thread.sleep(500);
-
-        encodersForward(5, 0.5);
-        Thread.sleep(200);
     }
 }
