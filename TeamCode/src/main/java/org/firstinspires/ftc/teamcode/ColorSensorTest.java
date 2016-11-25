@@ -1,17 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-/*
-Modern Robotics Color Sensors Example with color number
-Created 9/29/2016 by Colton Mehlhoff of Modern Robotics using FTC SDK 2.2
-Reuse permitted with credit where credit is due
-
-ModernRoboticsI2cColorSensor class is not being used because it can not access color number.
-ColorSensor class is not being used because it can not access color number.
-
-To change color sensor I2C Addresses, go to http://modernroboticsedu.com/mod/lesson/view.php?id=96
-Support is available by emailing support@modernroboticsinc.com.
-*/
-
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.I2cAddr;
@@ -28,15 +16,14 @@ public class ColorSensorTest extends OpMode {
 
     byte[] colorSensorLeftCache;
     byte[] colorSensorRightCache;
+    byte[] colorSensorFrontCache;
 
     I2cDevice colorSensorLeft;
     I2cDevice colorSensorRight;
+    I2cDevice colorSensorFront;
     I2cDeviceSynch colorSensorLeftReader;
     I2cDeviceSynch colorSensorRightReader;
-
-    /*
-     * Code to run ONCE when the driver hits INIT
-     */
+    I2cDeviceSynch colorSensorFrontReader;
 
     @Override
     public void init() {
@@ -45,57 +32,42 @@ public class ColorSensorTest extends OpMode {
 
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
         colorSensorRight = hardwareMap.i2cDevice.get("colorSensorRight");
+        colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
+        colorSensorFrontReader = new I2cDeviceSynchImpl(colorSensorFront, I2cAddr.create8bit(0x40), false);
 
         colorSensorLeftReader.engage();
         colorSensorRightReader.engage();
+        colorSensorFrontReader.engage();
     }
-
-    /*
-     * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
-     */
-
-    @Override
-    public void init_loop() {
-
-    }
-
-    /*
-     * Code to run ONCE when the driver hits PLAY
-     */
 
     @Override
     public void start() {
 
         runtime.reset();
 
-        colorSensorLeftReader.write8(3, 0); // turns the LEDs on
+        colorSensorLeftReader.write8(3, 0);
         colorSensorRightReader.write8(3, 0);
+        colorSensorFrontReader.write8(3, 1);
     }
-
-    /*
-     * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
-     */
 
     @Override
     public void loop() {
 
-        colorSensorLeftCache = colorSensorLeftReader.read(0x04, 1); // gets color number values
-        colorSensorRightCache = colorSensorRightReader.read(0x04, 1);
+        colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
+        colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
+        colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
 
-        telemetry.addData("Left Color Number", colorSensorLeftCache[0] & 0xFF); // displays color number values
-        telemetry.addData("Right Color Number", colorSensorRightCache[0] & 0xFF);
+        telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
+        telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
+        telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
+        telemetry.update();
     }
-
-    /*
-     * Code to run ONCE after the driver hits STOP
-     */
 
     @Override
     public void stop() {
 
     }
-
 }
