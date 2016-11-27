@@ -80,6 +80,7 @@ public class TeleOp1 extends OpMode {
 
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         // servoLift.setPosition(0.0);
     }
@@ -110,27 +111,32 @@ public class TeleOp1 extends OpMode {
         setMotorPower(left, right);
         setAttachmentPower(sweep /*lift*/);
 
-        if (gamepad2.x) {
+        if (gamepad2.left_bumper) {
 
             servoBeacon.setPosition(1);
         }
 
-        if (gamepad2.y) {
+        if (gamepad2.right_bumper) {
 
             servoBeacon.setPosition(0);
         }
 
         if (gamepad2.a) {
 
-            shoot(4, 1.0);
+            load();
         }
 
-        if (gamepad2.left_bumper) {
+        if(gamepad2.b) {
+
+            shoot();
+        }
+
+        if (gamepad2.x) {
 
             // servoLift.setPosition(0);
         }
 
-        if (gamepad2.right_bumper) {
+        if (gamepad2.y) {
 
             // servoLift.setPosition(1);
         }
@@ -147,7 +153,7 @@ public class TeleOp1 extends OpMode {
 
     }
 
-    public void shoot (int distance, double power) {
+    public void load () {
 
         motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -155,16 +161,39 @@ public class TeleOp1 extends OpMode {
         double GEAR_RATIO = 1.456;
         int PULSES = 1680;
         double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
+        double ROTATIONS = (3 / CIRCUMFERENCE) * GEAR_RATIO;
         double COUNTS = PULSES * ROTATIONS;
 
         COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
 
-        motorShooter.setPower(power);
+        motorShooter.setPower(1.0);
 
         while (motorShooter.getCurrentPosition() < COUNTS) {
 
-            motorShooter.setPower(power);
+            motorShooter.setPower(1.0);
+        }
+
+        motorShooter.setPower(0.0);
+    }
+
+    public void shoot () {
+
+        motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        int DIAMETER = 2;
+        double GEAR_RATIO = 1.456;
+        int PULSES = 1680;
+        double CIRCUMFERENCE = Math.PI * DIAMETER;
+        double ROTATIONS = (6 / CIRCUMFERENCE) * GEAR_RATIO;
+        double COUNTS = PULSES * ROTATIONS;
+
+        COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
+
+        motorShooter.setPower(1.0);
+
+        while (motorShooter.getCurrentPosition() < COUNTS) {
+
+            motorShooter.setPower(1.0);
         }
 
         motorShooter.setPower(0.0);
@@ -191,6 +220,7 @@ public class TeleOp1 extends OpMode {
         motorFrontLeft.setPower(0);
         motorFrontRight.setPower(0);
         motorShooter.setPower(0);
+        motorSweeper.setPower(0);
         // motorLift.setPower(0);
         servoBeacon.setPosition(0);
         // servoLift.setPosition(0);

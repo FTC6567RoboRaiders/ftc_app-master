@@ -77,6 +77,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.5);
         // servoLift.setPosition(0.0);
     }
@@ -300,7 +301,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         setMotorPower(0, 0);
     }
 
-    public void shoot (int distance, double power) {
+    public void load () {
 
         motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -308,16 +309,39 @@ public abstract class AutonomousHeader extends LinearOpMode {
         double GEAR_RATIO = 1.456;
         int PULSES = 1680;
         double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
+        double ROTATIONS = (1 / CIRCUMFERENCE) * GEAR_RATIO;
         double COUNTS = PULSES * ROTATIONS;
 
         COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
 
-        motorShooter.setPower(power);
+        motorShooter.setPower(1.0);
 
         while (motorShooter.getCurrentPosition() < COUNTS) {
 
-            motorShooter.setPower(power);
+            motorShooter.setPower(1.0);
+        }
+
+        motorShooter.setPower(0.0);
+    }
+
+    public void shoot () {
+
+        motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        int DIAMETER = 2;
+        double GEAR_RATIO = 1.456;
+        int PULSES = 1680;
+        double CIRCUMFERENCE = Math.PI * DIAMETER;
+        double ROTATIONS = (1 / CIRCUMFERENCE) * GEAR_RATIO;
+        double COUNTS = PULSES * ROTATIONS;
+
+        COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
+
+        motorShooter.setPower(1.0);
+
+        while (motorShooter.getCurrentPosition() < COUNTS) {
+
+            motorShooter.setPower(1.0);
         }
 
         motorShooter.setPower(0.0);
