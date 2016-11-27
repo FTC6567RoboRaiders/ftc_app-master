@@ -20,8 +20,8 @@ import com.qualcomm.robotcore.util.Range;
 public class TeleOp1 extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
-            motorShooter, motorSweeper, motorLift;
-    Servo servoBeacon, servoLift;
+            motorShooter, motorSweeper; /*motorLift*/
+    Servo servoBeacon; /*servoLift*/
     GyroSensor sensorGyro;
 
     byte[] rangeSensorLeftCache;
@@ -52,7 +52,7 @@ public class TeleOp1 extends OpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
         motorShooter = hardwareMap.dcMotor.get("motorShooter");
         motorSweeper = hardwareMap.dcMotor.get("motorSweeper");
-        motorLift = hardwareMap.dcMotor.get("motorLift");
+        // motorLift = hardwareMap.dcMotor.get("motorLift");
         rangeSensorLeft = hardwareMap.i2cDevice.get("rangeSensorLeft");
         rangeSensorRight = hardwareMap.i2cDevice.get("rangeSensorRight");
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
@@ -60,7 +60,7 @@ public class TeleOp1 extends OpMode {
         colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
         servoBeacon = hardwareMap.servo.get("servoBeacon");
-        servoLift = hardwareMap.servo.get("servoLift");
+        // servoLift = hardwareMap.servo.get("servoLift");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
@@ -80,8 +80,9 @@ public class TeleOp1 extends OpMode {
 
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
-        servoLift.setPosition(0.0);
+        // servoLift.setPosition(0.0);
     }
 
     @Override
@@ -108,31 +109,36 @@ public class TeleOp1 extends OpMode {
         lift = (float) scaleInput(lift);
 
         setMotorPower(left, right);
-        setAttachmentPower(sweep, lift);
+        setAttachmentPower(sweep /*lift*/);
 
-        if (gamepad2.x) {
+        if (gamepad2.left_bumper) {
 
             servoBeacon.setPosition(1);
         }
 
-        if (gamepad2.y) {
+        if (gamepad2.right_bumper) {
 
             servoBeacon.setPosition(0);
         }
 
         if (gamepad2.a) {
 
-            shoot(4, 0.5);
+            load();
         }
 
-        if (gamepad2.left_bumper) {
+        if(gamepad2.b) {
 
-            servoLift.setPosition(0);
+            shoot();
         }
 
-        if (gamepad2.right_bumper) {
+        if (gamepad2.x) {
 
-            servoLift.setPosition(1);
+            // servoLift.setPosition(0);
+        }
+
+        if (gamepad2.y) {
+
+            // servoLift.setPosition(1);
         }
 
         if (gamepad1.start || gamepad2.start) {
@@ -147,27 +153,50 @@ public class TeleOp1 extends OpMode {
 
     }
 
-    public void shoot (int distance, double power) {
+    public void load () {
 
         motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        int DIAMETER = 4;
-        int GEAR_RATIO = 1;
-        int PULSES = 1120;
+        int DIAMETER = 2;
+        double GEAR_RATIO = 1.456;
+        int PULSES = 1680;
         double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
+        double ROTATIONS = (3 / CIRCUMFERENCE) * GEAR_RATIO;
         double COUNTS = PULSES * ROTATIONS;
 
         COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
 
-        setMotorPower(power, power);
+        motorShooter.setPower(1.0);
 
         while (motorShooter.getCurrentPosition() < COUNTS) {
 
-            setMotorPower(power, power);
+            motorShooter.setPower(1.0);
         }
 
-        setMotorPower(0.0, 0.0);
+        motorShooter.setPower(0.0);
+    }
+
+    public void shoot () {
+
+        motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        int DIAMETER = 2;
+        double GEAR_RATIO = 1.456;
+        int PULSES = 1680;
+        double CIRCUMFERENCE = Math.PI * DIAMETER;
+        double ROTATIONS = (6 / CIRCUMFERENCE) * GEAR_RATIO;
+        double COUNTS = PULSES * ROTATIONS;
+
+        COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
+
+        motorShooter.setPower(1.0);
+
+        while (motorShooter.getCurrentPosition() < COUNTS) {
+
+            motorShooter.setPower(1.0);
+        }
+
+        motorShooter.setPower(0.0);
     }
 
     public void setMotorPower (double left, double right) {
@@ -178,10 +207,10 @@ public class TeleOp1 extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweep, double lift) {
+    public void setAttachmentPower (double sweep /*double lift*/) {
 
         motorSweeper.setPower(sweep);
-        motorLift.setPower(lift);
+        // motorLift.setPower(lift);
     }
 
     public void kill() {
@@ -191,7 +220,10 @@ public class TeleOp1 extends OpMode {
         motorFrontLeft.setPower(0);
         motorFrontRight.setPower(0);
         motorShooter.setPower(0);
+        motorSweeper.setPower(0);
+        // motorLift.setPower(0);
         servoBeacon.setPosition(0);
+        // servoLift.setPosition(0);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values
