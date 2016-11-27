@@ -75,8 +75,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         rangeSensorLeftReader.engage();
         rangeSensorRightReader.engage();
 
-        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.5);
         // servoLift.setPosition(0.0);
@@ -98,7 +98,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
     public void lineFollowerTwoSensors (int distance) { // may be the better bet
 
-        setMotorPower(0.2, 0.2);
+        setMotorPower(0.1, 0.1);
 
         rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
         rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
@@ -121,22 +121,22 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             if ((colorSensorLeftCache[0] & 0xFF) < 5 && (colorSensorRightCache[0] & 0xFF) < 5) { // black
 
-                setMotorPower(0.2, 0.2);
+                setMotorPower(0.1, 0.1);
             }
 
-            else if ((colorSensorLeftCache[0] & 0xFF) >= 8) { // white
+            else if ((colorSensorLeftCache[0] & 0xFF) >= 5) { // white
 
-                setMotorPower(0.05, 0.20);
+                setMotorPower(0.025, 0.1);
             }
 
-            else if ((colorSensorRightCache[0] & 0xFF) >= 8) { // white
+            else if ((colorSensorRightCache[0] & 0xFF) >= 5) { // white
 
-                setMotorPower(0.20, 0.05);
+                setMotorPower(0.1, 0.025);
             }
 
             else {
 
-                setMotorPower(0.2, 0.2);
+                setMotorPower(0.1, 0.1);
             }
         }
 
@@ -309,7 +309,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         double GEAR_RATIO = 1.456;
         int PULSES = 1680;
         double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (1 / CIRCUMFERENCE) * GEAR_RATIO;
+        double ROTATIONS = (3 / CIRCUMFERENCE) * GEAR_RATIO;
         double COUNTS = PULSES * ROTATIONS;
 
         COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
@@ -332,7 +332,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         double GEAR_RATIO = 1.456;
         int PULSES = 1680;
         double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (1 / CIRCUMFERENCE) * GEAR_RATIO;
+        double ROTATIONS = (6 / CIRCUMFERENCE) * GEAR_RATIO;
         double COUNTS = PULSES * ROTATIONS;
 
         COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());

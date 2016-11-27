@@ -19,7 +19,7 @@ public class EverythingRed extends AutonomousHeader {
 
         waitForStart();
 
-        load();
+        /*load();
         Thread.sleep(200);
 
         shoot();
@@ -29,21 +29,21 @@ public class EverythingRed extends AutonomousHeader {
         Thread.sleep(200);
 
         shoot();
+        Thread.sleep(200);*/
+
+        encodersForward(25, 0.25);
         Thread.sleep(200);
 
-        encodersForward(25, 0.5);
+        gyroTurnLeft(35, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(35, 0.5);
+        moveUntilWhiteLineLeft(0.20);
         Thread.sleep(200);
 
-        moveUntilWhiteLineLeft(0.35);
+        gyroTurnLeft(35, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(35, 0.5);
-        Thread.sleep(200);
-
-        lineFollowerTwoSensors(10);
+        /*lineFollowerTwoSensors(10);
         Thread.sleep(200);
 
         colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
@@ -52,43 +52,43 @@ public class EverythingRed extends AutonomousHeader {
 
         if ((colorSensorFrontCache[0] & 0xFF) >= 6) { // red
 
-            encodersBackward(2, 0.5);
+            encodersBackward(2, 0.25);
             Thread.sleep(200);
-            servoBeacon.setPosition(0.0);
+            servoBeacon.setPosition(1.0);
             Thread.sleep(500);
-            encodersForward(5, 0.5);
+            encodersForward(2, 0.25);
             Thread.sleep(500);
         }
 
         else {
 
-            encodersBackward(2, 0.5);
+            encodersBackward(2, 0.25);
             Thread.sleep(200);
-            servoBeacon.setPosition(1.0);
+            servoBeacon.setPosition(0.0);
             Thread.sleep(500);
-            encodersForward(5, 0.5);
+            encodersForward(2, 0.25);
             Thread.sleep(500);
         }
 
-        encodersBackward(5, 0.5);
+        encodersBackward(5, 0.25);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        gyroTurnRight(80, 0.5);
+        gyroTurnRight(75, 0.25);
         Thread.sleep(200);
 
-        encodersForward(4, 0.5);
+        encodersForward(4, 0.25);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.30);
+        moveUntilWhiteLineStraight(0.20);
         Thread.sleep(200);
 
-        encodersForward(1, 0.5);
+        encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(80, 0.5);
+        gyroTurnLeft(75, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -100,21 +100,21 @@ public class EverythingRed extends AutonomousHeader {
 
         if ((colorSensorFrontCache[0] & 0xFF) >= 6) { // red
 
-            encodersBackward(2, 0.5);
+            encodersBackward(2, 0.25);
             Thread.sleep(200);
-            servoBeacon.setPosition(0.0);
+            servoBeacon.setPosition(1.0);
             Thread.sleep(500);
-            encodersForward(5, 0.5);
+            encodersForward(2, 0.25);
             Thread.sleep(500);
         }
 
         else {
 
-            encodersBackward(2, 0.5);
+            encodersBackward(2, 0.25);
             Thread.sleep(200);
-            servoBeacon.setPosition(1.0);
+            servoBeacon.setPosition(0.0);
             Thread.sleep(500);
-            encodersForward(5, 0.5);
+            encodersForward(5, 0.25);
             Thread.sleep(500);
         }
 
@@ -134,6 +134,8 @@ public class EverythingRed extends AutonomousHeader {
         Thread.sleep(500);
 
         encodersForward(5, 0.5);
-        Thread.sleep(200);
+        Thread.sleep(200);*/
+
+        stop();
     }
 }
