@@ -12,11 +12,25 @@ public class ShootBallsRed extends AutonomousHeader {
     @Override
     public void runOpMode() throws InterruptedException {
 
+        //test
+
         initialize();
 
         calibrateGyro();
 
         waitForStart();
+
+        load();
+        Thread.sleep(200);
+
+        shoot();
+        Thread.sleep(200);
+
+        load();
+        Thread.sleep(200);
+
+        shoot();
+        Thread.sleep(200);
 
         encodersForward(30, 0.5);
         Thread.sleep(200);
@@ -32,6 +46,8 @@ public class ShootBallsRed extends AutonomousHeader {
 
         encodersForward(30, 0.5);
         Thread.sleep(200);
+
+        stop();
     }
 }
 
