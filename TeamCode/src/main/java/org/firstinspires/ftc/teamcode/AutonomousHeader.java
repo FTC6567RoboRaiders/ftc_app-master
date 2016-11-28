@@ -301,39 +301,13 @@ public abstract class AutonomousHeader extends LinearOpMode {
         setMotorPower(0, 0);
     }
 
-    public void load () {
-
-        motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        int DIAMETER = 2;
-        double GEAR_RATIO = 1.456;
-        int PULSES = 1680;
-        double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (3 / CIRCUMFERENCE) * GEAR_RATIO;
-        double COUNTS = PULSES * ROTATIONS;
-
-        COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
-
-        motorShooter.setPower(1.0);
-
-        while (motorShooter.getCurrentPosition() < COUNTS) {
-
-            motorShooter.setPower(1.0);
-        }
-
-        motorShooter.setPower(0.0);
-    }
-
     public void shoot () {
 
         motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        int DIAMETER = 2;
         double GEAR_RATIO = 1.456;
         int PULSES = 1680;
-        double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (6 / CIRCUMFERENCE) * GEAR_RATIO;
-        double COUNTS = PULSES * ROTATIONS;
+        double COUNTS = PULSES * GEAR_RATIO;
 
         COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
 

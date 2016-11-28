@@ -97,19 +97,22 @@ public class TeleOp1 extends OpMode {
         float right = gamepad1.right_stick_y;
         float sweep = gamepad2.left_stick_y;
         float lift = gamepad2.right_stick_y;
+        float shoot = gamepad2.right_trigger;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
         sweep = Range.clip(sweep, -1, 1);
         lift = Range.clip(lift, -1, 1);
+        shoot = Range.clip(shoot, -1, 1);
 
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
         sweep = (float) scaleInput(sweep);
         lift = (float) scaleInput(lift);
+        shoot = (float) scaleInput(shoot);
 
         setMotorPower(left, right);
-        setAttachmentPower(sweep /*lift*/);
+        setAttachmentPower(sweep, shoot /*lift*/);
 
         if (gamepad2.left_bumper) {
 
@@ -119,16 +122,6 @@ public class TeleOp1 extends OpMode {
         if (gamepad2.right_bumper) {
 
             servoBeacon.setPosition(0);
-        }
-
-        if (gamepad2.a) {
-
-            load();
-        }
-
-        if(gamepad2.b) {
-
-            shoot();
         }
 
         if (gamepad2.x) {
@@ -153,52 +146,6 @@ public class TeleOp1 extends OpMode {
 
     }
 
-    public void load () {
-
-        motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        int DIAMETER = 2;
-        double GEAR_RATIO = 1.456;
-        int PULSES = 1680;
-        double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (3 / CIRCUMFERENCE) * GEAR_RATIO;
-        double COUNTS = PULSES * ROTATIONS;
-
-        COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
-
-        motorShooter.setPower(1.0);
-
-        while (motorShooter.getCurrentPosition() < COUNTS) {
-
-            motorShooter.setPower(1.0);
-        }
-
-        motorShooter.setPower(0.0);
-    }
-
-    public void shoot () {
-
-        motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        int DIAMETER = 2;
-        double GEAR_RATIO = 1.456;
-        int PULSES = 1680;
-        double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (6 / CIRCUMFERENCE) * GEAR_RATIO;
-        double COUNTS = PULSES * ROTATIONS;
-
-        COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
-
-        motorShooter.setPower(1.0);
-
-        while (motorShooter.getCurrentPosition() < COUNTS) {
-
-            motorShooter.setPower(1.0);
-        }
-
-        motorShooter.setPower(0.0);
-    }
-
     public void setMotorPower (double left, double right) {
 
         motorBackLeft.setPower(left);
@@ -207,9 +154,10 @@ public class TeleOp1 extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweep /*double lift*/) {
+    public void setAttachmentPower (double sweep, double shoot /*double lift*/) {
 
         motorSweeper.setPower(sweep);
+        motorShooter.setPower(shoot);
         // motorLift.setPower(lift);
     }
 

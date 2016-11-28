@@ -19,17 +19,11 @@ public class BeaconClaimBlue extends AutonomousHeader {
 
         waitForStart();
 
-        load();
-        Thread.sleep(200);
+        shoot();
+        Thread.sleep(500);
 
         shoot();
-        Thread.sleep(200);
-
-        load();
-        Thread.sleep(200);
-
-        shoot();
-        Thread.sleep(200);
+        Thread.sleep(500);
 
         encodersForward(25, 0.5);
         Thread.sleep(200);

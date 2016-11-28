@@ -19,19 +19,13 @@ public class EverythingRed extends AutonomousHeader {
 
         waitForStart();
 
-        /*load();
-        Thread.sleep(200);
+        shoot();
+        Thread.sleep(1000);
 
         shoot();
         Thread.sleep(200);
 
-        load();
-        Thread.sleep(200);
-
-        shoot();
-        Thread.sleep(200);*/
-
-        encodersForward(25, 0.25);
+        /*encodersForward(25, 0.25);
         Thread.sleep(200);
 
         gyroTurnLeft(35, 0.25);
@@ -43,7 +37,7 @@ public class EverythingRed extends AutonomousHeader {
         gyroTurnLeft(35, 0.25);
         Thread.sleep(200);
 
-        /*lineFollowerTwoSensors(10);
+        lineFollowerTwoSensors(10);
         Thread.sleep(200);
 
         colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
