@@ -22,10 +22,10 @@ public class RunIntoCapBallBlue extends AutonomousHeader {
         encodersForward(3, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(45, 0.25);
+        gyroTurnRight(25, 0.25);
         Thread.sleep(200);
 
-        encodersForward(60, 0.25);
+        encodersForward(50, 0.25);
         Thread.sleep(200);
 
         encodersBackward(10, 0.25);
