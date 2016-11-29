@@ -92,7 +92,7 @@ public class ShooterAdjust extends OpMode {
     @Override
     public void loop() {
 
-        float shoot = gamepad1.left_stick_y;
+        float shoot = gamepad1.right_stick_y;
 
         shoot = Range.clip(shoot, -1, 1);
 

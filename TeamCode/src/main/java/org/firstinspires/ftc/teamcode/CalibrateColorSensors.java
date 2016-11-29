@@ -11,12 +11,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Created by Alex on 11/27/16.
  */
+
 @TeleOp
 //@Disabled
+
 public class CalibrateColorSensors extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
-
 
     byte[] colorSensorLeftcache;
     byte[] colorSensorRightcache;
@@ -33,6 +34,7 @@ public class CalibrateColorSensors extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -77,7 +79,6 @@ public class CalibrateColorSensors extends LinearOpMode {
         }
 
 
-
         while (gamepad1.a) {
             telemetry.addData("Hey!", "Release the A button");
             telemetry.update();
@@ -116,7 +117,7 @@ public class CalibrateColorSensors extends LinearOpMode {
 
         colorSensorFrontreader.write8(3, 1);    //Set the mode of the color sensor to Passive
 
-        telemetry.addData("Heelo", "Point the front color sensor into open space. Then press and hold B");
+        telemetry.addData("Hello", "Point the front color sensor into open space. Then press and hold B");
         telemetry.update();
         while (!gamepad1.b) {
 
@@ -126,9 +127,9 @@ public class CalibrateColorSensors extends LinearOpMode {
         colorSensorFrontreader.write8(3, 66); //Black Level Calibration
         telemetry.addData("Hello", "Please Wait for Black Level Calibration for the front sensor.");
         telemetry.update();
-        colorSensorFrontcache = colorSensorFrontreader.read(0x08, 1);
+        colorSensorFrontcache = colorSensorFrontreader.read(0x04, 1);
         while (colorSensorFrontcache[0] == 66) {
-            colorSensorFrontcache = colorSensorFrontreader.read(0x08, 1);
+            colorSensorFrontcache = colorSensorFrontreader.read(0x04, 1);
         }
 
         while (gamepad1.b) {
@@ -146,22 +147,14 @@ public class CalibrateColorSensors extends LinearOpMode {
         colorSensorFrontreader.write8(3, 67); //White Level Calibration
         telemetry.addData(":)", "Wait for White Balance Calibration for the Front sensor.");
         telemetry.update();
-        colorSensorFrontcache = colorSensorFrontreader.read(0x08, 1);
+        colorSensorFrontcache = colorSensorFrontreader.read(0x04, 1);
         while (colorSensorFrontcache[0] == 67) {
-            colorSensorFrontcache = colorSensorFrontreader.read(0x08, 1);
+            colorSensorFrontcache = colorSensorFrontreader.read(0x04, 1);
         }
-
 
         telemetry.addData(":)", "You're done!");
-
-
-
-
-
-
-            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-        }
     }
-
 }
+
+
 

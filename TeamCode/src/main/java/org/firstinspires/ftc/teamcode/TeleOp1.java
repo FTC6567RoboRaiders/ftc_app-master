@@ -80,7 +80,6 @@ public class TeleOp1 extends OpMode {
 
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-        motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         // servoLift.setPosition(0.0);
     }
@@ -95,9 +94,9 @@ public class TeleOp1 extends OpMode {
 
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
-        float sweep = gamepad2.left_stick_y;
-        float lift = gamepad2.right_stick_y;
-        float shoot = gamepad2.right_trigger;
+        float sweep = gamepad2.right_trigger;
+        float lift = gamepad2.left_stick_y;
+        float shoot = gamepad2.right_stick_y;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);

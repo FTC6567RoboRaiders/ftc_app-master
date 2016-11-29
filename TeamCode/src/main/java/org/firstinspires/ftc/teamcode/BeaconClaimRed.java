@@ -20,10 +20,10 @@ public class BeaconClaimRed extends AutonomousHeader {
         waitForStart();
 
         shoot();
-        Thread.sleep(500);
+        Thread.sleep(1000);
 
         shoot();
-        Thread.sleep(500);
+        Thread.sleep(200);
 
         encodersForward(25, 0.5);
         Thread.sleep(200);
