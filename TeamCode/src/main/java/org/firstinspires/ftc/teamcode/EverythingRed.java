@@ -129,7 +129,5 @@ public class EverythingRed extends AutonomousHeader {
 
         encodersForward(5, 0.5);
         Thread.sleep(200);
-
-        stop();
     }
 }

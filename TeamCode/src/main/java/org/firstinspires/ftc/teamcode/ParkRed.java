@@ -32,8 +32,6 @@ public class ParkRed extends AutonomousHeader {
 
         encodersForward(30, 0.5);
         Thread.sleep(200);
-
-        stop();
     }
 }
 
