@@ -13,24 +13,25 @@ public class RunIntoCapBallRed extends AutonomousHeader {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        initialize();
+        while (opModeIsActive()) {
 
-        calibrateGyro();
+            initialize();
 
-        waitForStart();
+            calibrateGyro();
 
-        encodersForward(3, 0.25);
-        Thread.sleep(200);
+            waitForStart();
 
-        gyroTurnLeft(45, 0.25);
-        Thread.sleep(200);
+            encodersForward(3, 0.25);
+            Thread.sleep(200);
 
-        encodersForward(60, 0.25);
-        Thread.sleep(200);
+            gyroTurnLeft(60, 0.25);
+            Thread.sleep(200);
 
-        encodersBackward(10, 0.25);
-        Thread.sleep(200);
+            encodersForward(50, 0.25);
+            Thread.sleep(200);
 
-        stop();
+            encodersBackward(10, 0.25);
+            Thread.sleep(200);
+        }
     }
 }
