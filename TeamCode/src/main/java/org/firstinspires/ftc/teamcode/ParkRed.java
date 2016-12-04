@@ -12,29 +12,26 @@ public class ParkRed extends AutonomousHeader {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        while (opModeIsActive()) {
+        initialize();
 
-            initialize();
+        calibrateGyro();
 
-            calibrateGyro();
+        waitForStart();
 
-            waitForStart();
+        encodersForward(30, 0.5);
+        Thread.sleep(200);
 
-            encodersForward(30, 0.5);
-            Thread.sleep(200);
+        gyroTurnLeft(45, 0.5);
+        Thread.sleep(200);
 
-            gyroTurnLeft(45, 0.5);
-            Thread.sleep(200);
+        encodersForward(70, 0.5);
+        Thread.sleep(200);
 
-            encodersForward(70, 0.5);
-            Thread.sleep(200);
+        gyroTurnLeft(45, 0.5);
+        Thread.sleep(200);
 
-            gyroTurnLeft(45, 0.5);
-            Thread.sleep(200);
-
-            encodersForward(30, 0.5);
-            Thread.sleep(200);
-        }
+        encodersForward(30, 0.5);
+        Thread.sleep(200);
     }
 }
 

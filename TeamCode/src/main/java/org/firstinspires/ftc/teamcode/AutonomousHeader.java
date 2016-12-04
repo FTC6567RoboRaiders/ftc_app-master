@@ -80,6 +80,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.5);
         // servoLift.setPosition(0.0);
+
     }
 
     public void calibrateGyro () throws InterruptedException {
@@ -98,234 +99,258 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
     public void lineFollowerTwoSensors (int distance) { // may be the better bet
 
-        setMotorPower(0.1, 0.1);
+        if (opModeIsActive()) {
 
-        rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
-        rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
-
-        while ((rangeSensorLeftCache[0] & 0xFF) > distance || (rangeSensorRightCache[0] & 0xFF) > distance) {
+            setMotorPower(0.1, 0.1);
 
             rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
             rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
+
+            while ((rangeSensorLeftCache[0] & 0xFF) > distance || (rangeSensorRightCache[0] & 0xFF) > distance) {
+
+                rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
+                rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
 
             /*telemetry.addData("LeftRange", rangeSensorLeftCache[0] & 0xFF);
             telemetry.addData("RightRange", rangeSensorRightCache[0] & 0xFF);
             telemetry.update();*/
 
-            colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
-            colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
+                colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
+                colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-            telemetry.addData("LeftColor", colorSensorLeftCache[0] & 0xFF);
-            telemetry.addData("RightColor", colorSensorRightCache[0] & 0xFF);
-            telemetry.update();
+                telemetry.addData("LeftColor", colorSensorLeftCache[0] & 0xFF);
+                telemetry.addData("RightColor", colorSensorRightCache[0] & 0xFF);
+                telemetry.update();
 
-            if ((colorSensorLeftCache[0] & 0xFF) < 5 && (colorSensorRightCache[0] & 0xFF) < 5) { // black
+                if ((colorSensorLeftCache[0] & 0xFF) < 5 && (colorSensorRightCache[0] & 0xFF) < 5) { // black
 
-                setMotorPower(0.1, 0.1);
+                    setMotorPower(0.1, 0.1);
+                } else if ((colorSensorLeftCache[0] & 0xFF) >= 5) { // white
+
+                    setMotorPower(0.025, 0.1);
+                } else if ((colorSensorRightCache[0] & 0xFF) >= 5) { // white
+
+                    setMotorPower(0.1, 0.025);
+                } else {
+
+                    setMotorPower(0.1, 0.1);
+                }
             }
 
-            else if ((colorSensorLeftCache[0] & 0xFF) >= 5) { // white
-
-                setMotorPower(0.025, 0.1);
-            }
-
-            else if ((colorSensorRightCache[0] & 0xFF) >= 5) { // white
-
-                setMotorPower(0.1, 0.025);
-            }
-
-            else {
-
-                setMotorPower(0.1, 0.1);
-            }
+            setMotorPower(0.0, 0.0);
         }
-
-        setMotorPower(0.0, 0.0);
     }
 
     public void moveUntilWhiteLineLeft(double power) {
 
-        setMotorPower(power, power);
+        if (opModeIsActive()) {
 
-        colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
-
-        while ((colorSensorLeftCache[0] & 0xFF) < 5) { // black
+            setMotorPower(power, power);
 
             colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
 
-            telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
-            telemetry.update();
+            while ((colorSensorLeftCache[0] & 0xFF) < 5) { // black
 
-            setMotorPower(power, power);
+                colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
+
+                telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
+                telemetry.update();
+
+                setMotorPower(power, power);
+            }
+
+            setMotorPower(0.0, 0.0);
         }
-
-        setMotorPower(0.0, 0.0);
     }
 
     public void moveUntilWhiteLineRight(double power) {
 
-        setMotorPower(power, power);
+        if (opModeIsActive()) {
 
-        colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
-
-        while ((colorSensorRightCache[0] & 0xFF) < 5) { // black
+            setMotorPower(power, power);
 
             colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-            telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
-            telemetry.update();
+            while ((colorSensorRightCache[0] & 0xFF) < 5) { // black
 
-            setMotorPower(power, power);
+                colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
+
+                telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
+                telemetry.update();
+
+                setMotorPower(power, power);
+            }
+
+            setMotorPower(0.0, 0.0);
         }
-
-        setMotorPower(0.0, 0.0);
     }
 
     public void moveUntilWhiteLineStraight(double power) {
 
-        setMotorPower(power, power);
+        if (opModeIsActive()) {
 
-        colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
-        colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
-
-        while ((colorSensorLeftCache[0] & 0xFF) < 5 && (colorSensorRightCache[0] & 0xFF) < 5) { // black
+            setMotorPower(power, power);
 
             colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
             colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-            telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
-            telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
-            telemetry.update();
+            while ((colorSensorLeftCache[0] & 0xFF) < 5 && (colorSensorRightCache[0] & 0xFF) < 5) { // black
 
-            setMotorPower(power, power);
+                colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
+                colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
+
+                telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
+                telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
+                telemetry.update();
+
+                setMotorPower(power, power);
+            }
+
+            setMotorPower(0.0, 0.0);
         }
-
-        setMotorPower(0.0, 0.0);
     }
 
     public void encodersForward (int distance, double power) {
 
-        motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        if (opModeIsActive()) {
 
-        int DIAMETER = 4;
-        int GEAR_RATIO = 1;
-        int PULSES = 560;
-        double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
-        double COUNTS = PULSES * ROTATIONS;
+            motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        COUNTS = COUNTS + Math.abs(motorBackLeft.getCurrentPosition());
+            int DIAMETER = 4;
+            int GEAR_RATIO = 1;
+            int PULSES = 560;
+            double CIRCUMFERENCE = Math.PI * DIAMETER;
+            double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
+            double COUNTS = PULSES * ROTATIONS;
 
-        setMotorPower(power, power);
-
-        while (motorBackLeft.getCurrentPosition() < COUNTS) {
+            COUNTS = COUNTS + Math.abs(motorBackLeft.getCurrentPosition());
 
             setMotorPower(power, power);
-        }
 
-        setMotorPower(0.0, 0.0);
+            while (motorBackLeft.getCurrentPosition() < COUNTS) {
+
+                setMotorPower(power, power);
+            }
+
+            setMotorPower(0.0, 0.0);
+        }
     }
 
     public void encodersBackward (int distance, double power) {
 
-        motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        if (opModeIsActive()) {
 
-        int DIAMETER = 4;
-        int GEAR_RATIO = 1;
-        int PULSES = 560;
-        double CIRCUMFERENCE = Math.PI * DIAMETER;
-        double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
-        double COUNTS = PULSES * ROTATIONS;
+            motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        COUNTS = Math.abs(motorBackLeft.getCurrentPosition()) - COUNTS;
+            int DIAMETER = 4;
+            int GEAR_RATIO = 1;
+            int PULSES = 560;
+            double CIRCUMFERENCE = Math.PI * DIAMETER;
+            double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
+            double COUNTS = PULSES * ROTATIONS;
 
-        setMotorPower(-power, -power);
-
-        while (motorBackLeft.getCurrentPosition() > COUNTS) {
+            COUNTS = Math.abs(motorBackLeft.getCurrentPosition()) - COUNTS;
 
             setMotorPower(-power, -power);
-        }
 
-        setMotorPower(0.0, 0.0);
+            while (motorBackLeft.getCurrentPosition() > COUNTS) {
+
+                setMotorPower(-power, -power);
+            }
+
+            setMotorPower(0.0, 0.0);
+        }
     }
 
     public void gyroTurnRight (int degrees, double power) {
 
-        sensorGyro.resetZAxisIntegrator();
+        if (opModeIsActive()) {
 
-        int heading = sensorGyro.getHeading();
+            sensorGyro.resetZAxisIntegrator();
 
-        setMotorPower(power, -power);
-
-        while (heading < degrees) {
-
-            heading = sensorGyro.getHeading();
+            int heading = sensorGyro.getHeading();
 
             setMotorPower(power, -power);
 
-            if (heading >= 180) {
+            while (heading < degrees) {
 
-                heading = 360 - heading;
+                heading = sensorGyro.getHeading();
+
+                setMotorPower(power, -power);
+
+                if (heading >= 180) {
+
+                    heading = 360 - heading;
+                }
             }
-        }
 
-        setMotorPower(0, 0);
+            setMotorPower(0, 0);
+        }
     }
 
     public void gyroTurnLeft (int degrees, double power) {
 
-        sensorGyro.resetZAxisIntegrator();
+        if (opModeIsActive()) {
 
-        int heading = sensorGyro.getHeading();
+            sensorGyro.resetZAxisIntegrator();
 
-        setMotorPower(-power, power);
-
-        while (heading < degrees) {
-
-            heading = sensorGyro.getHeading();
+            int heading = sensorGyro.getHeading();
 
             setMotorPower(-power, power);
 
-            if (heading >= 180) {
+            while (heading < degrees) {
 
-                heading = 360 - heading;
+                heading = sensorGyro.getHeading();
+
+                setMotorPower(-power, power);
+
+                if (heading >= 180) {
+
+                    heading = 360 - heading;
+                }
             }
-        }
 
-        setMotorPower(0, 0);
+            setMotorPower(0, 0);
+        }
     }
 
     public void shoot () {
 
-        motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        if (opModeIsActive()) {
 
-        double GEAR_RATIO = 1.456;
-        int PULSES = 1680;
-        double COUNTS = PULSES * GEAR_RATIO;
+            motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
+            double GEAR_RATIO = 1.456;
+            int PULSES = 1680;
+            double COUNTS = PULSES * GEAR_RATIO;
 
-        motorShooter.setPower(1.0);
-
-        while (motorShooter.getCurrentPosition() < COUNTS) {
+            COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
 
             motorShooter.setPower(1.0);
-        }
 
-        motorShooter.setPower(0.0);
+            while (motorShooter.getCurrentPosition() < COUNTS) {
+
+                motorShooter.setPower(1.0);
+            }
+
+            motorShooter.setPower(0.0);
+        }
     }
 
     public void setMotorPower (double left, double right) {
 
-        motorBackLeft.setPower(left);
-        motorBackRight.setPower(right);
-        motorFrontLeft.setPower(left);
-        motorFrontRight.setPower(right);
+        if (opModeIsActive()) {
+
+            motorBackLeft.setPower(left);
+            motorBackRight.setPower(right);
+            motorFrontLeft.setPower(left);
+            motorFrontRight.setPower(right);
+        }
     }
 }
