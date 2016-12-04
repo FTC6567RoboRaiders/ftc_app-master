@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
 
-public class RunIntoCapBallBlue extends AutonomousHeaderSMK {
+public class RunIntoCapBallBlue extends AutonomousHeader {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -19,18 +19,25 @@ public class RunIntoCapBallBlue extends AutonomousHeaderSMK {
 
         waitForStart();
 
-        encodersBackward(3, 0.1);
+        encodersForward(3, 0.3);
         Thread.sleep(200);
+        telemetry.addData("Status", "Moved 3 inches");
+        telemetry.update();
 
-        gyroTurnLeft(60, 0.1);
+        gyroTurnRight(45, 0.2);
         Thread.sleep(200);
+        telemetry.addData("Status", "Turning 45 degrees");
+        telemetry.update();
 
-        encodersBackward(50, 0.1);
+        encodersForward(60, 0.3);
         Thread.sleep(200);
+        telemetry.addData("Status", "Moved 60 inches");
+        telemetry.update();
 
-        encodersForward(10, 0.1);
+        encodersBackward(10, 0.3);
         Thread.sleep(200);
+        telemetry.addData("Status", "Moved 10 inches backward");
+        telemetry.update();
 
-        stop();
     }
 }
