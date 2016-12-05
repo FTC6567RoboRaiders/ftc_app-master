@@ -97,7 +97,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         telemetry.update();
     }
 
-    public void lineFollowerTwoSensors (int distance) throws InterruptedException { // may be the better bet
+    public void lineFollowerTwoSensors (int distance) { // may be the better bet
 
         if (opModeIsActive()) {
 
