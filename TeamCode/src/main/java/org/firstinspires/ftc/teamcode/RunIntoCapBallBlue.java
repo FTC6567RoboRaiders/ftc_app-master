@@ -29,7 +29,7 @@ public class RunIntoCapBallBlue extends AutonomousHeader {
         telemetry.addData("Status", "Turning 45 degrees");
         telemetry.update();
 
-        encodersForward(60, 1);
+        encodersForward(60, 0.75);
         Thread.sleep(200);
         telemetry.addData("Status", "Moved 60 inches");
         telemetry.update();
