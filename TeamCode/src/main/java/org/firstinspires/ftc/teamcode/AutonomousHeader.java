@@ -111,16 +111,16 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
                 rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
 
-                /*telemetry.addData("LeftRange", rangeSensorLeftCache[0] & 0xFF);
+                telemetry.addData("LeftRange", rangeSensorLeftCache[0] & 0xFF);
                 telemetry.addData("RightRange", rangeSensorRightCache[0] & 0xFF);
-                telemetry.update();*/
+                telemetry.update();
 
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-                telemetry.addData("LeftColor", colorSensorLeftCache[0] & 0xFF);
+                /*telemetry.addData("LeftColor", colorSensorLeftCache[0] & 0xFF);
                 telemetry.addData("RightColor", colorSensorRightCache[0] & 0xFF);
-                telemetry.update();
+                telemetry.update();*/
 
                 if ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
 
@@ -155,7 +155,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
 
-            while ((colorSensorLeftCache[0] & 0xFF) < 5) { // black
+            while ((colorSensorLeftCache[0] & 0xFF) < 80) { // black
 
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
 
@@ -177,7 +177,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-            while ((colorSensorRightCache[0] & 0xFF) < 5) { // black
+            while ((colorSensorRightCache[0] & 0xFF) < 80) { // black
 
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
@@ -200,7 +200,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
             colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
             colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-            while ((colorSensorLeftCache[0] & 0xFF) < 5 && (colorSensorRightCache[0] & 0xFF) < 5) { // black
+            while ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
 
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
