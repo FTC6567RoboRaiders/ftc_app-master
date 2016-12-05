@@ -97,11 +97,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
         telemetry.update();
     }
 
-    public void lineFollowerTwoSensors (int distance) { // may be the better bet
+    public void lineFollowerTwoSensors (int distance) throws InterruptedException { // may be the better bet
 
         if (opModeIsActive()) {
 
-            setMotorPower(0.1, 0.1);
+            setMotorPower(0.12, 0.12);
 
             rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
             rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
@@ -111,9 +111,9 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
                 rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
 
-            /*telemetry.addData("LeftRange", rangeSensorLeftCache[0] & 0xFF);
-            telemetry.addData("RightRange", rangeSensorRightCache[0] & 0xFF);
-            telemetry.update();*/
+                /*telemetry.addData("LeftRange", rangeSensorLeftCache[0] & 0xFF);
+                telemetry.addData("RightRange", rangeSensorRightCache[0] & 0xFF);
+                telemetry.update();*/
 
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
@@ -122,18 +122,24 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 telemetry.addData("RightColor", colorSensorRightCache[0] & 0xFF);
                 telemetry.update();
 
-                if ((colorSensorLeftCache[0] & 0xFF) < 5 && (colorSensorRightCache[0] & 0xFF) < 5) { // black
+                if ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
 
-                    setMotorPower(0.1, 0.1);
-                } else if ((colorSensorLeftCache[0] & 0xFF) >= 5) { // white
+                    setMotorPower(0.12, 0.12);
+                }
 
-                    setMotorPower(0.025, 0.1);
-                } else if ((colorSensorRightCache[0] & 0xFF) >= 5) { // white
+                else if ((colorSensorLeftCache[0] & 0xFF) >= 80) { // white
 
-                    setMotorPower(0.1, 0.025);
-                } else {
+                    setMotorPower(0, 0.16);
+                }
 
-                    setMotorPower(0.1, 0.1);
+                else if ((colorSensorRightCache[0] & 0xFF) >= 80) { // white
+
+                    setMotorPower(0.16, 0);
+                }
+
+                else {
+
+                    setMotorPower(0.12, 0.12);
                 }
             }
 
