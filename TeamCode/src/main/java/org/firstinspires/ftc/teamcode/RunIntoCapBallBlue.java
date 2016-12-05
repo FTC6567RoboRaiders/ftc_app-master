@@ -24,7 +24,7 @@ public class RunIntoCapBallBlue extends AutonomousHeader {
         telemetry.addData("Status", "Moved 3 inches");
         telemetry.update();
 
-        gyroTurnRight(45, 0.25);
+        gyroTurnRight(25, 0.25);
         Thread.sleep(200);
         telemetry.addData("Status", "Turning 45 degrees");
         telemetry.update();
