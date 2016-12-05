@@ -19,16 +19,17 @@ public class RunIntoCapBallRed extends AutonomousHeader {
 
         waitForStart();
 
-        encodersForward(3, 0.5);
+        encodersForward(3, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(45, 0.5);
+        gyroTurnLeft(45, 0.25);
         Thread.sleep(200);
 
-        encodersForward(60, 0.5);
+        encodersForward(50, 0.25);
         Thread.sleep(200);
 
-        encodersBackward(10, 0.5);
+        encodersBackward(10, 0.25);
         Thread.sleep(200);
+
     }
 }

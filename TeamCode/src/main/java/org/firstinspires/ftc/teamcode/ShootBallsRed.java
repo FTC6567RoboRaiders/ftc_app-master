@@ -18,20 +18,41 @@ public class ShootBallsRed extends AutonomousHeader {
 
         waitForStart();
 
-        encodersForward(30, 0.5);
+        encodersForward(24, 0.1);
         Thread.sleep(200);
 
-        gyroTurnLeft(45, 0.5);
+        gyroTurnLeft(90, 0.1);
         Thread.sleep(200);
 
-        encodersForward(20, 0.5);
+        encodersForward(15, 0.1);
         Thread.sleep(200);
 
-        gyroTurnLeft(45, 0.5);
+        gyroTurnRight(90, 0.1);
         Thread.sleep(200);
 
-        encodersForward(30, 0.5);
+        encodersBackward(11, 0.1);
         Thread.sleep(200);
+
+        /*shoot();
+        Thread.sleep(1000);
+
+        shoot();
+        Thread.sleep(200)
+
+        encodersForward(30, 0.25);
+        Thread.sleep(200);
+
+        gyroTurnLeft(45, 0.25);
+        Thread.sleep(200);
+
+        encodersForward(20, 0.25);
+        Thread.sleep(200);
+
+        gyroTurnLeft(45, 0.25);
+        Thread.sleep(200);
+
+        encodersForward(30, 0.25);
+        Thread.sleep(200);*/
     }
 }
 

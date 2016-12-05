@@ -19,6 +19,12 @@ public class BeaconClaimBlue extends AutonomousHeader {
 
         waitForStart();
 
+        shoot();
+        Thread.sleep(1000);
+
+        shoot();
+        Thread.sleep(200);
+
         encodersForward(25, 0.5);
         Thread.sleep(200);
 
@@ -46,9 +52,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
             Thread.sleep(500);
             encodersForward(5, 0.5);
             Thread.sleep(500);
-        }
-
-        else {
+        } else {
 
             encodersBackward(2, 0.5);
             Thread.sleep(200);
@@ -94,9 +98,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
             Thread.sleep(500);
             encodersForward(5, 0.5);
             Thread.sleep(500);
-        }
-
-        else {
+        } else {
 
             encodersBackward(2, 0.5);
             Thread.sleep(200);
@@ -111,17 +113,5 @@ public class BeaconClaimBlue extends AutonomousHeader {
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
-
-        encodersBackward(18, 0.5);
-        Thread.sleep(200);
-
-        gyroTurnLeft(45, 0.5);
-        Thread.sleep(200);
-
-        encodersBackward(65, 0.65);
-        Thread.sleep(500);
-
-        encodersForward(5, 0.5);
-        Thread.sleep(200);
     }
 }
