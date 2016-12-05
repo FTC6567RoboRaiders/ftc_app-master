@@ -44,7 +44,7 @@ public class EverythingBlue extends AutonomousHeader {
         telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
         telemetry.update();
 
-        if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // red
+        if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
             encodersBackward(2, 0.25);
             Thread.sleep(200);
@@ -91,7 +91,7 @@ public class EverythingBlue extends AutonomousHeader {
         telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
         telemetry.update();
 
-        if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // red
+        if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
             encodersBackward(2, 0.25);
             Thread.sleep(200);
