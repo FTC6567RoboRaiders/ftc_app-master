@@ -13,17 +13,17 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 /**
- * Created by saras on 12/5/2016.
+ * Created by Derin on 12/5/2016.
  */
 
 @TeleOp
 
-public class servoAdjust extends OpMode {
+public class ServoAdjust extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper; /*motorLift*/
     Servo servoBeacon; /*servoLift*/
-    CRServo servoC;
+    CRServo servoContinuous;
     GyroSensor sensorGyro;
 
     byte[] rangeSensorLeftCache;
@@ -61,8 +61,8 @@ public class servoAdjust extends OpMode {
         colorSensorRight = hardwareMap.i2cDevice.get("colorSensorRight");
         colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
-        servoC = hardwareMap.crservo.get("servoC");
         servoBeacon = hardwareMap.servo.get("servoBeacon");
+        servoContinuous = hardwareMap.crservo.get("servoContinuous");
         // servoLift = hardwareMap.servo.get("servoLift");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
@@ -95,13 +95,15 @@ public class servoAdjust extends OpMode {
     @Override
     public void loop() {
 
-        float servo = gamepad1.right_stick_y;
+        /*float servo = gamepad1.right_stick_y;
 
         servo = Range.clip(servo, -1, 1);
 
         servo = (float) scaleInput(servo);
 
-        setServoPower(servo);
+        setServoPower(servo);*/
+
+        setServoPower(1.0);
     }
 
     @Override
@@ -112,7 +114,7 @@ public class servoAdjust extends OpMode {
 
     public void setServoPower (double servo) {
 
-        servoC.setPower(servo);
+        servoContinuous.setPower(servo);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values
@@ -145,27 +147,4 @@ public class servoAdjust extends OpMode {
         // return scaled value.
         return dScale;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
