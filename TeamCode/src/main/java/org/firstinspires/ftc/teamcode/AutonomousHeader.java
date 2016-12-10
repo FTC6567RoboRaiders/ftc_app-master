@@ -13,13 +13,11 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by Katelin Zichittella on 11/20/2016.
  */
 
-// REMEMBER TO FIX WHITE VALUES AFTER CALIBRATING
-
 public abstract class AutonomousHeader extends LinearOpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
-            motorShooter, motorSweeper; /*motorLift*/
-    Servo servoBeacon; /*servoLift*/
+            motorShooter, motorSweeper, motorLift;
+    Servo servoBeacon, servoLift;
     GyroSensor sensorGyro;
 
     byte[] rangeSensorLeftCache;
@@ -49,7 +47,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
         motorShooter = hardwareMap.dcMotor.get("motorShooter");
         motorSweeper = hardwareMap.dcMotor.get("motorSweeper");
-        // motorLift = hardwareMap.dcMotor.get("motorLift");
+        motorLift = hardwareMap.dcMotor.get("motorLift");
         rangeSensorLeft = hardwareMap.i2cDevice.get("rangeSensorLeft");
         rangeSensorRight = hardwareMap.i2cDevice.get("rangeSensorRight");
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
@@ -57,7 +55,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
         servoBeacon = hardwareMap.servo.get("servoBeacon");
-        // servoLift = hardwareMap.servo.get("servoLift");
+        servoLift = hardwareMap.servo.get("servoLift");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
@@ -79,7 +77,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.5);
-        // servoLift.setPosition(0.0);
+        servoLift.setPosition(0.0);
 
     }
 
@@ -111,9 +109,9 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
                 rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
 
-                telemetry.addData("LeftRange", rangeSensorLeftCache[0] & 0xFF);
+                /*telemetry.addData("LeftRange", rangeSensorLeftCache[0] & 0xFF);
                 telemetry.addData("RightRange", rangeSensorRightCache[0] & 0xFF);
-                telemetry.update();
+                telemetry.update();*/
 
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);

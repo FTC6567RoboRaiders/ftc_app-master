@@ -21,23 +21,14 @@ public class RunIntoCapBallBlue extends AutonomousHeader {
 
         encodersForward(3, 0.25);
         Thread.sleep(200);
-        telemetry.addData("Status", "Moved 3 inches");
-        telemetry.update();
 
         gyroTurnRight(20, 0.2);
         Thread.sleep(200);
-        telemetry.addData("Status", "Turning 45 degrees");
-        telemetry.update();
 
-        encodersForward(60, 0.75);
+        encodersForward(60, 0.65);
         Thread.sleep(200);
-        telemetry.addData("Status", "Moved 60 inches");
-        telemetry.update();
 
         encodersBackward(10, 0.25);
         Thread.sleep(200);
-        telemetry.addData("Status", "Moved 10 inches backward");
-        telemetry.update();
-
     }
 }
