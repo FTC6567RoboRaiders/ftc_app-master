@@ -24,6 +24,8 @@ public class TeleOp1 extends OpMode {
     Servo servoBeacon, servoLift;
     GyroSensor sensorGyro;
 
+    double motorFactor = 0.9;
+
     byte[] rangeSensorLeftCache;
     byte[] rangeSensorRightCache;
 
@@ -80,8 +82,10 @@ public class TeleOp1 extends OpMode {
 
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorLift.setDirection(DcMotor.Direction.REVERSE);
+        motorSweeper.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.5);
-        servoLift.setPosition(0.0);
+        servoLift.setPosition(0.4);
     }
 
     @Override
@@ -110,7 +114,17 @@ public class TeleOp1 extends OpMode {
         lift = (float) scaleInput(lift);
         shoot = (float) scaleInput(shoot);
 
-        setMotorPower(left, right);
+        if (gamepad1.x) {
+
+            motorFactor = 0.3;
+        }
+
+        if (gamepad1.y) {
+
+            motorFactor = 0.9;
+        }
+
+        setMotorPower(left * motorFactor, right * motorFactor);
         setAttachmentPower(sweep, shoot, lift);
 
         if (gamepad2.left_bumper) {
@@ -125,12 +139,12 @@ public class TeleOp1 extends OpMode {
 
         if (gamepad2.x) {
 
-            servoLift.setPosition(0);
+            servoLift.setPosition(0.4);
         }
 
         if (gamepad2.y) {
 
-            servoLift.setPosition(1);
+            servoLift.setPosition(0.0);
         }
 
         if (gamepad1.start || gamepad2.start) {
@@ -170,7 +184,7 @@ public class TeleOp1 extends OpMode {
         motorSweeper.setPower(0);
         motorLift.setPower(0);
         servoBeacon.setPosition(0.5);
-        servoLift.setPosition(0);
+        servoLift.setPosition(0.4);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values

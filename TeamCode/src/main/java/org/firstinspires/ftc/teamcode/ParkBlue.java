@@ -18,6 +18,8 @@ public class ParkBlue extends AutonomousHeader {
 
         waitForStart();
 
+        Thread.sleep(5000);
+
         encodersForward(30, 0.5);
         Thread.sleep(200);
 
