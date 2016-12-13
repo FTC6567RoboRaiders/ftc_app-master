@@ -19,13 +19,13 @@ public class EverythingBlue extends AutonomousHeader {
 
         waitForStart();
 
-        /*shoot();
+        shoot();
         Thread.sleep(1000);
 
         shoot();
-        Thread.sleep(200);*/
+        Thread.sleep(200);
 
-        encodersForward(8, 0.25);
+        /*encodersForward(8, 0.3);
         Thread.sleep(200);
 
         gyroTurnRight(30, 0.25);
@@ -35,8 +35,29 @@ public class EverythingBlue extends AutonomousHeader {
         Thread.sleep(200);
 
         gyroTurnRight(16, 0.25);
+        Thread.sleep(200);*/
+
+        encodersForward(35, 0.3);
         Thread.sleep(200);
-/*
+
+        gyroTurnRight(70, 0.25);
+        Thread.sleep(200);
+
+        encodersForward(35, 0.3);
+        Thread.sleep(200);
+
+        gyroTurnLeft(70, 0.25);
+        Thread.sleep(200);
+
+        moveUntilWhiteLineStraight(0.18);
+        Thread.sleep(200);
+
+        encodersForward(1, 0.3);
+        Thread.sleep(200);
+
+        gyroTurnRight(65, 0.25);
+        Thread.sleep(200);
+
         lineFollowerTwoSensors(10);
         Thread.sleep(200);
 
@@ -63,7 +84,7 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(500);
         }
 
-        encodersBackward(8, 0.25);
+        encodersBackward(8, 0.3);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);
@@ -72,7 +93,7 @@ public class EverythingBlue extends AutonomousHeader {
         gyroTurnLeft(68, 0.25);
         Thread.sleep(200);
 
-        encodersForward(4, 0.25);
+        encodersForward(5, 0.3);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.18);
@@ -110,22 +131,22 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(500);
         }
 
-        encodersBackward(5, 0.25);
+        encodersBackward(5, 0.3);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        encodersBackward(28, 0.25);
+        encodersBackward(28, 0.5);
         Thread.sleep(200);
 
         gyroTurnLeft(40, 0.25);
         Thread.sleep(200);
 
-        encodersBackward(65, 0.30);
+        encodersBackward(65, 0.65);
         Thread.sleep(500);
 
-        encodersForward(10, 0.25);
-        Thread.sleep(200);*/
+        encodersForward(10, 0.5);
+        Thread.sleep(200);
     }
 }

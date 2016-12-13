@@ -35,10 +35,10 @@ public class ShootBallsBlue extends AutonomousHeader {
         encodersBackward(18, 0.25);
         Thread.sleep(200);
 
-        shoot();
+        /*shoot();
         Thread.sleep(1000);
 
-        shoot();
+        shoot();*/
         Thread.sleep(200);
 
         encodersForward(20, 0.25);

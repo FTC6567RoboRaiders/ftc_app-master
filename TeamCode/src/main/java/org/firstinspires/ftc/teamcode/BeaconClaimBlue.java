@@ -25,16 +25,37 @@ public class BeaconClaimBlue extends AutonomousHeader {
         shoot();
         Thread.sleep(200);
 
-        encodersForward(25, 0.5);
+        /*encodersForward(8, 0.3);
         Thread.sleep(200);
 
-        gyroTurnRight(35, 0.5);
+        gyroTurnRight(30, 0.25);
         Thread.sleep(200);
 
-        moveUntilWhiteLineRight(0.35);
+        moveUntilWhiteLineRight(0.20);
         Thread.sleep(200);
 
-        gyroTurnRight(35, 0.5);
+        gyroTurnRight(16, 0.25);
+        Thread.sleep(200);*/
+
+        encodersForward(35, 0.3);
+        Thread.sleep(200);
+
+        gyroTurnRight(70, 0.25);
+        Thread.sleep(200);
+
+        encodersForward(35, 0.3);
+        Thread.sleep(200);
+
+        gyroTurnLeft(70, 0.25);
+        Thread.sleep(200);
+
+        moveUntilWhiteLineStraight(0.18);
+        Thread.sleep(200);
+
+        encodersForward(1, 0.3);
+        Thread.sleep(200);
+
+        gyroTurnRight(65, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -46,41 +67,42 @@ public class BeaconClaimBlue extends AutonomousHeader {
 
         if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
-            encodersBackward(2, 0.5);
-            Thread.sleep(200);
-            servoBeacon.setPosition(0.0);
-            Thread.sleep(500);
-            encodersForward(5, 0.5);
-            Thread.sleep(500);
-        } else {
-
-            encodersBackward(2, 0.5);
+            encodersBackward(2, 0.25);
             Thread.sleep(200);
             servoBeacon.setPosition(1.0);
             Thread.sleep(500);
-            encodersForward(5, 0.5);
+            encodersForward(2, 0.25);
+            Thread.sleep(500);
+        }
+        else {
+
+            encodersBackward(2, 0.25);
+            Thread.sleep(200);
+            servoBeacon.setPosition(0.0);
+            Thread.sleep(500);
+            encodersForward(2, 0.25);
             Thread.sleep(500);
         }
 
-        encodersBackward(5, 0.5);
+        encodersBackward(8, 0.3);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        gyroTurnLeft(80, 0.5);
+        gyroTurnLeft(68, 0.25);
         Thread.sleep(200);
 
-        encodersForward(4, 0.5);
+        encodersForward(5, 0.3);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.30);
+        moveUntilWhiteLineStraight(0.18);
         Thread.sleep(200);
 
-        encodersForward(1, 0.5);
+        encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(80, 0.5);
+        gyroTurnRight(65, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -92,23 +114,24 @@ public class BeaconClaimBlue extends AutonomousHeader {
 
         if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
-            encodersBackward(2, 0.5);
-            Thread.sleep(200);
-            servoBeacon.setPosition(0.0);
-            Thread.sleep(500);
-            encodersForward(5, 0.5);
-            Thread.sleep(500);
-        } else {
-
-            encodersBackward(2, 0.5);
+            encodersBackward(2, 0.25);
             Thread.sleep(200);
             servoBeacon.setPosition(1.0);
             Thread.sleep(500);
-            encodersForward(5, 0.5);
+            encodersForward(2, 0.25);
+            Thread.sleep(500);
+        }
+        else {
+
+            encodersBackward(2, 0.25);
+            Thread.sleep(200);
+            servoBeacon.setPosition(0.0);
+            Thread.sleep(500);
+            encodersForward(2, 0.25);
             Thread.sleep(500);
         }
 
-        encodersBackward(5, 0.5);
+        encodersBackward(5, 0.3);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);

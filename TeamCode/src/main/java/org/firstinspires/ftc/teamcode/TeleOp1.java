@@ -114,6 +114,9 @@ public class TeleOp1 extends OpMode {
         lift = (float) scaleInput(lift);
         shoot = (float) scaleInput(shoot);
 
+        setMotorPower(left * motorFactor, right * motorFactor);
+        setAttachmentPower(sweep, shoot, lift);
+
         if (gamepad1.x) {
 
             motorFactor = 0.3;
@@ -123,9 +126,6 @@ public class TeleOp1 extends OpMode {
 
             motorFactor = 0.9;
         }
-
-        setMotorPower(left * motorFactor, right * motorFactor);
-        setAttachmentPower(sweep, shoot, lift);
 
         if (gamepad2.left_bumper) {
 
@@ -145,11 +145,6 @@ public class TeleOp1 extends OpMode {
         if (gamepad2.y) {
 
             servoLift.setPosition(0.0);
-        }
-
-        if (gamepad1.start || gamepad2.start) {
-
-            kill();
         }
     }
 
@@ -172,19 +167,6 @@ public class TeleOp1 extends OpMode {
         motorSweeper.setPower(sweep);
         motorShooter.setPower(shoot);
         motorLift.setPower(lift);
-    }
-
-    public void kill() {
-
-        motorBackLeft.setPower(0);
-        motorBackRight.setPower(0);
-        motorFrontLeft.setPower(0);
-        motorFrontRight.setPower(0);
-        motorShooter.setPower(0);
-        motorSweeper.setPower(0);
-        motorLift.setPower(0);
-        servoBeacon.setPosition(0.5);
-        servoLift.setPosition(0.4);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values

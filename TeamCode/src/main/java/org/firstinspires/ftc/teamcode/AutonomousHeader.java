@@ -39,7 +39,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
     I2cDeviceSynch colorSensorRightReader;
     I2cDeviceSynch colorSensorFrontReader;
 
-    public void initialize() {
+    public void initialize () {
 
         motorBackLeft = hardwareMap.dcMotor.get("motorBackLeft");
         motorBackRight = hardwareMap.dcMotor.get("motorBackRight");
@@ -81,6 +81,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
     }
 
     public void calibrateGyro () throws InterruptedException {
+
+        sensorGyro.calibrate();
 
         while (sensorGyro.isCalibrating()) {
 
@@ -126,12 +128,12 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
                 else if ((colorSensorLeftCache[0] & 0xFF) >= 80) { // white
 
-                    setMotorPower(0, 0.16);
+                    setMotorPower(0, 0.12);
                 }
 
                 else if ((colorSensorRightCache[0] & 0xFF) >= 80) { // white
 
-                    setMotorPower(0.16, 0);
+                    setMotorPower(0.12, 0);
                 }
 
                 else {
@@ -144,7 +146,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void moveUntilWhiteLineLeft(double power) {
+    public void moveUntilWhiteLineLeft (double power) {
 
         if (opModeIsActive()) {
 
@@ -166,7 +168,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void moveUntilWhiteLineRight(double power) {
+    public void moveUntilWhiteLineRight (double power) {
 
         if (opModeIsActive()) {
 
@@ -188,7 +190,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void moveUntilWhiteLineStraight(double power) {
+    public void moveUntilWhiteLineStraight (double power) {
 
         if (opModeIsActive()) {
 
