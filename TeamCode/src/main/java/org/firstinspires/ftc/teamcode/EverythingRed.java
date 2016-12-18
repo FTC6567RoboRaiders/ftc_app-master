@@ -19,14 +19,14 @@ public class EverythingRed extends AutonomousHeader {
 
         waitForStart();
 
-        shoot();
+        /*shoot();
         Thread.sleep(200);
 
-        servoGate.setPosition(0.7);
+        servoGate.setPosition(0.35);
         Thread.sleep(1000);
 
         shoot();
-        Thread.sleep(200);
+        Thread.sleep(200);*/
 
         /*encodersForward(25, 0.3);
         Thread.sleep(200);
