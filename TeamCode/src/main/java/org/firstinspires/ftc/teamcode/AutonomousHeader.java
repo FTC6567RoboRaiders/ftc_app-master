@@ -17,7 +17,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLift;
-    Servo servoBeacon, servoLift;
+    Servo servoBeacon, /*servoLift*/ servoGate;
     GyroSensor sensorGyro;
 
     byte[] rangeSensorLeftCache;
@@ -55,7 +55,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
         servoBeacon = hardwareMap.servo.get("servoBeacon");
-        servoLift = hardwareMap.servo.get("servoLift");
+        // servoLift = hardwareMap.servo.get("servoLift");
+        servoGate = hardwareMap.servo.get("servoGate");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
@@ -77,7 +78,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.5);
-        servoLift.setPosition(0.4);
+        // servoLift.setPosition(0.4);
+        servoGate.setPosition(1.0);
     }
 
     public void calibrateGyro () throws InterruptedException {

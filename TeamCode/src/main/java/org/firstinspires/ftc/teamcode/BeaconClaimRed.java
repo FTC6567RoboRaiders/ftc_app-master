@@ -20,6 +20,9 @@ public class BeaconClaimRed extends AutonomousHeader {
         waitForStart();
 
         shoot();
+        Thread.sleep(200);
+
+        servoGate.setPosition(0.2);
         Thread.sleep(1000);
 
         shoot();
