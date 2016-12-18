@@ -81,7 +81,7 @@ public class EverythingBlue extends AutonomousHeader {
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        gyroTurnLeft(68, 0.25);
+        gyroTurnLeft(65, 0.25);
         Thread.sleep(200);
 
         encodersForward(5, 0.3);
