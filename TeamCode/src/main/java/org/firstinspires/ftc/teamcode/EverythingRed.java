@@ -26,7 +26,7 @@ public class EverythingRed extends AutonomousHeader {
         Thread.sleep(200);
 
         /*servoGate.setPosition(0.35);
-        Thread.sleep(1000);
+        Thread.sleep(750);
 
         shoot();
         Thread.sleep(200);*/

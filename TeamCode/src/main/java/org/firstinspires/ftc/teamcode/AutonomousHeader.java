@@ -99,7 +99,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         telemetry.update();
     }
 
-    public void lineFollowerTwoSensors (int distance) { // may be the better bet
+    public void lineFollowerTwoSensors (int distance) {
 
         if (opModeIsActive()) {
 
@@ -149,55 +149,9 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void moveUntilWhiteLineLeft (double power) {
-
-        if (opModeIsActive()) {
-
-            setMotorPower(power, power);
-
-            colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
-
-            while ((colorSensorLeftCache[0] & 0xFF) < 80) { // black
-
-                colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
-
-                telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
-                telemetry.update();
-
-                setMotorPower(power, power);
-            }
-
-            setMotorPower(0.0, 0.0);
-        }
-    }
-
-    public void moveUntilWhiteLineRight (double power) {
-
-        if (opModeIsActive()) {
-
-            setMotorPower(power, power);
-
-            colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
-
-            while ((colorSensorRightCache[0] & 0xFF) < 80) { // black
-
-                colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
-
-                telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
-                telemetry.update();
-
-                setMotorPower(power, power);
-            }
-
-            setMotorPower(0.0, 0.0);
-        }
-    }
-
     public void moveUntilWhiteLineStraight (double power) {
 
         if (opModeIsActive()) {
-
-            /*sensorGyro.getI2cController().deregisterForPortReadyCallback(sensorGyro.getPort());*/
 
             setMotorPower(power, power);
 
@@ -340,7 +294,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
             int PULSES = 1680;
             double COUNTS = PULSES * GEAR_RATIO;
 
-            COUNTS = ((COUNTS + Math.abs(motorShooter.getCurrentPosition())) / 16);
+            COUNTS = (COUNTS + Math.abs(motorShooter.getCurrentPosition())) / 16;
 
             motorShooter.setPower(1.0);
 

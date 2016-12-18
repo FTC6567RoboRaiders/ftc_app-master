@@ -19,34 +19,25 @@ public class BeaconClaimRed extends AutonomousHeader {
 
         waitForStart();
 
+        encodersForward(4, 0.3);
+        Thread.sleep(200);
+
         shoot();
         Thread.sleep(200);
 
-        servoGate.setPosition(0.2);
-        Thread.sleep(1000);
+        /*servoGate.setPosition(0.35);
+        Thread.sleep(750);
 
         shoot();
-        Thread.sleep(200);
-
-        /*encodersForward(25, 0.3);
-        Thread.sleep(200);
-
-        gyroTurnLeft(40, 0.25);
-        Thread.sleep(200);
-
-        moveUntilWhiteLineLeft(0.20);
-        Thread.sleep(200);
-
-        gyroTurnLeft(16, 0.25);
         Thread.sleep(200);*/
 
-        encodersForward(35, 0.3);
+        encodersForward(21, 0.3);
         Thread.sleep(200);
 
         gyroTurnLeft(70, 0.25);
         Thread.sleep(200);
 
-        encodersForward(25, 0.3);
+        encodersForward(35, 0.3);
         Thread.sleep(200);
 
         gyroTurnRight(70, 0.25);
@@ -55,10 +46,7 @@ public class BeaconClaimRed extends AutonomousHeader {
         moveUntilWhiteLineStraight(0.18);
         Thread.sleep(200);
 
-        encodersForward(1, 0.3);
-        Thread.sleep(200);
-
-        gyroTurnLeft(65, 0.25);
+        gyroTurnLeft(70, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -100,9 +88,6 @@ public class BeaconClaimRed extends AutonomousHeader {
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.18);
-        Thread.sleep(200);
-
-        encodersForward(1, 0.25);
         Thread.sleep(200);
 
         gyroTurnLeft(65, 0.25);
