@@ -19,43 +19,31 @@ public class EverythingBlue extends AutonomousHeader {
 
         waitForStart();
 
+        encodersForward(4, 0.3);
+        Thread.sleep(200);
+
         shoot();
         Thread.sleep(200);
 
-        servoGate.setPosition(0.2);
+        /*servoGate.setPosition(0.2);
         Thread.sleep(1000);
 
         shoot();
-        Thread.sleep(200);
-
-        /*encodersForward(8, 0.3);
-        Thread.sleep(200);
-
-        gyroTurnRight(30, 0.25);
-        Thread.sleep(200);
-
-        moveUntilWhiteLineRight(0.20);
-        Thread.sleep(200);
-
-        gyroTurnRight(16, 0.25);
         Thread.sleep(200);*/
 
-        encodersForward(35, 0.3);
+        encodersForward(18, 0.3);
         Thread.sleep(200);
 
-        gyroTurnRight(70, 0.25);
+        gyroTurnRight(65, 0.25);
         Thread.sleep(200);
 
-        encodersForward(35, 0.3);
+        encodersForward(36, 0.3);
         Thread.sleep(200);
 
-        gyroTurnLeft(70, 0.25);
+        gyroTurnLeft(65, 0.25);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.18);
-        Thread.sleep(200);
-
-        encodersForward(1, 0.3);
         Thread.sleep(200);
 
         gyroTurnRight(65, 0.25);
@@ -102,9 +90,6 @@ public class EverythingBlue extends AutonomousHeader {
         moveUntilWhiteLineStraight(0.18);
         Thread.sleep(200);
 
-        encodersForward(1, 0.25);
-        Thread.sleep(200);
-
         gyroTurnRight(65, 0.25);
         Thread.sleep(200);
 
@@ -143,7 +128,7 @@ public class EverythingBlue extends AutonomousHeader {
         encodersBackward(28, 0.5);
         Thread.sleep(200);
 
-        gyroTurnLeft(40, 0.25);
+        gyroTurnLeft(45, 0.25);
         Thread.sleep(200);
 
         encodersBackward(65, 0.65);

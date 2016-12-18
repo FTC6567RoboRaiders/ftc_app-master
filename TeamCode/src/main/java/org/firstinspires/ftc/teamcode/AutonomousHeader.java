@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
@@ -196,6 +197,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+            /*sensorGyro.getI2cController().deregisterForPortReadyCallback(sensorGyro.getPort());*/
+
             setMotorPower(power, power);
 
             colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
@@ -337,7 +340,30 @@ public abstract class AutonomousHeader extends LinearOpMode {
             int PULSES = 1680;
             double COUNTS = PULSES * GEAR_RATIO;
 
-            COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
+            COUNTS = ((COUNTS + Math.abs(motorShooter.getCurrentPosition())) / 16);
+
+            motorShooter.setPower(1.0);
+
+            while (motorShooter.getCurrentPosition() < COUNTS) {
+
+                motorShooter.setPower(1.0);
+            }
+
+            motorShooter.setPower(0.0);
+        }
+    }
+
+    public void shoot2 () {
+
+        if (opModeIsActive()) {
+
+            motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            double GEAR_RATIO = 1.456;
+            int PULSES = 1680;
+            double COUNTS = PULSES * GEAR_RATIO;
+
+            COUNTS = (COUNTS + Math.abs(motorShooter.getCurrentPosition())) + ((COUNTS + Math.abs(motorShooter.getCurrentPosition())) / 16);
 
             motorShooter.setPower(1.0);
 

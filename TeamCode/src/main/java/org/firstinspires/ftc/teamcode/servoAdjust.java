@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
@@ -10,7 +9,6 @@ import com.qualcomm.robotcore.hardware.I2cDevice;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
 
 /**
  * Created by Derin on 12/5/2016.
@@ -21,9 +19,8 @@ import com.qualcomm.robotcore.util.Range;
 public class ServoAdjust extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
-            motorShooter, motorSweeper; /*motorLift*/
-    Servo servoBeacon; /*servoLift*/
-    CRServo servoContinuous;
+            motorShooter, motorSweeper, motorLift;
+    Servo servoBeacon, /*servoLift*/ servoGate;
     GyroSensor sensorGyro;
 
     byte[] rangeSensorLeftCache;
@@ -54,7 +51,7 @@ public class ServoAdjust extends OpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
         motorShooter = hardwareMap.dcMotor.get("motorShooter");
         motorSweeper = hardwareMap.dcMotor.get("motorSweeper");
-        // motorLift = hardwareMap.dcMotor.get("motorLift");
+        motorLift = hardwareMap.dcMotor.get("motorLift");
         rangeSensorLeft = hardwareMap.i2cDevice.get("rangeSensorLeft");
         rangeSensorRight = hardwareMap.i2cDevice.get("rangeSensorRight");
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
@@ -62,8 +59,8 @@ public class ServoAdjust extends OpMode {
         colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
         servoBeacon = hardwareMap.servo.get("servoBeacon");
-        servoContinuous = hardwareMap.crservo.get("servoContinuous");
         // servoLift = hardwareMap.servo.get("servoLift");
+        servoGate = hardwareMap.servo.get("servoGate");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
@@ -81,10 +78,12 @@ public class ServoAdjust extends OpMode {
         rangeSensorLeftReader.engage();
         rangeSensorRightReader.engage();
 
-        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-        servoBeacon.setPosition(0.0);
-        // servoLift.setPosition(0.0);
+        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorShooter.setDirection(DcMotor.Direction.REVERSE);
+        servoBeacon.setPosition(0.5);
+        // servoLift.setPosition(0.4);
+        servoGate.setPosition(0.0);
     }
 
     @Override
@@ -95,56 +94,20 @@ public class ServoAdjust extends OpMode {
     @Override
     public void loop() {
 
-        /*float servo = gamepad1.right_stick_y;
+        if (gamepad1.x) {
 
-        servo = Range.clip(servo, -1, 1);
+            servoGate.setPosition(0.0);
+        }
 
-        servo = (float) scaleInput(servo);
+        if (gamepad1.y) {
 
-        setServoPower(servo);*/
-
-        setServoPower(1.0);
+            servoGate.setPosition(01.0);
+        }
     }
 
     @Override
     public void stop() {
 
 
-    }
-
-    public void setServoPower (double servo) {
-
-        servoContinuous.setPower(servo);
-    }
-
-    double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values
-        // in the floats.
-
-        double[] scaleArray = { 0.0, 0.05, 0.09, 0.10, 0.12, 0.15, 0.18, 0.24,
-                0.30, 0.36, 0.43, 0.50, 0.60, 0.72, 0.85, 1.00, 1.00 };
-
-        // get the corresponding index for the scaleInput array.
-        int index = (int) (dVal * 16.0);
-
-        // index should be positive.
-        if (index < 0) {
-            index = -index;
-        }
-
-        // index cannot exceed size of array minus 1.
-        if (index > 16) {
-            index = 16;
-        }
-
-        // get value from the array.
-        double dScale = 0.0;
-        if (dVal < 0) {
-            dScale = -scaleArray[index];
-        } else {
-            dScale = scaleArray[index];
-        }
-
-        // return scaled value.
-        return dScale;
     }
 }
