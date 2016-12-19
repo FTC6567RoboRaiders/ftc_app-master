@@ -101,7 +101,7 @@ public class TalosTeleOp extends OpMode {
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
         float sweepForward = gamepad2.right_trigger;
-        float sweepBackward = gamepad2.left_trigger;
+        float sweepBackward = -gamepad2.left_trigger;
         float lift = gamepad2.left_stick_y;
         float shoot = gamepad2.right_stick_y;
 

@@ -396,7 +396,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
             int PULSES = 1680;
             double COUNTS = PULSES * GEAR_RATIO;
 
-            COUNTS = COUNTS + Math.abs(motorShooter.getCurrentPosition());
+            COUNTS = (COUNTS + Math.abs(motorShooter.getCurrentPosition())) * (15/16);
 
             motorShooter.setPower(1.0);
 

@@ -25,11 +25,14 @@ public class EverythingBlue extends AutonomousHeader {
         shoot();
         Thread.sleep(200);
 
-        /*servoGate.setPosition(0.35);
-        Thread.sleep(750);
+        servoGate.setPosition(0.35);
+        Thread.sleep(200);
+
+        shoot2();
+        Thread.sleep(500);
 
         shoot();
-        Thread.sleep(200);*/
+        Thread.sleep(200);
 
         encodersForward(18, 0.3);
         Thread.sleep(200);
