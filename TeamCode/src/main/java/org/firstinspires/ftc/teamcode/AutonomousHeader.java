@@ -131,19 +131,19 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 else if ((colorSensorLeftCache[0] & 0xFF) >= 80) { // white
 
                     // setMotorPower(0, 0.12);
-                    motorBackLeft.setPower(0.06);
-                    motorBackRight.setPower(0.12);
-                    motorFrontLeft.setPower(0.1);
-                    motorFrontRight.setPower(0.16);
+                    motorBackLeft.setPower(0.12);
+                    motorBackRight.setPower(0.16);
+                    motorFrontLeft.setPower(0.14);
+                    motorFrontRight.setPower(0.18);
                 }
 
                 else if ((colorSensorRightCache[0] & 0xFF) >= 80) { // white
 
                     // setMotorPower(0.12, 0);
-                    motorBackLeft.setPower(0.12);
-                    motorBackRight.setPower(0.06);
-                    motorFrontLeft.setPower(0.16);
-                    motorFrontRight.setPower(0.1);
+                    motorBackLeft.setPower(0.16);
+                    motorBackRight.setPower(0.12);
+                    motorFrontLeft.setPower(0.18);
+                    motorFrontRight.setPower(0.14);
                 }
 
                 else {
