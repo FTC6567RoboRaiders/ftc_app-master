@@ -10,36 +10,42 @@ import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /**
- *
- * Purpose: Abstract classed used as the "base" for FTC6567 RoboRaiders' competition autonomous opModes.
+ * <!-- Purpose of this method, a one liner, nice and short -->
+ * Abstract classed used as the "base" for FTC6567 RoboRaiders' competition autonomous opModes.
  * <br>
+ *
+ * <!-- Detailed description, the more information here the better -->
  * All FTC6567 RoboRaiders' competition autonomous opModes should "extend" this class.  Additional methods to be added to this class need to
  * be reviewed and approved to inclusion into this abstract class.
  * <br>
  * <br>
- * <b>Change Activity</b><br>
- * <br>
- * <br>
+ * <!-- Change Activity table -->
+ * <!-- Repeat the last set of lines starting with <tr> through (including the <td></td>)</tr> -->
+ * <!-- Then update the information as follows: -->
+ * <!-- -First column is programmer name - format first name initial then full last name -->
+ * <!-- -Second column is the date of the change -->
+ * <!-- -Third column is the description of the change itself, the more information the better -->
+ *
  * <b>Change Activity</b>
+ * <br>
  * <table border="1" bordercolor="red" cellpadding="1" cellspacing="1">
  * <tr>
  * <th width="15%">Programmer</th>
- * <th>Change Date</th>
+ * <th width="15%">Change Date</th>
  * <th>Change Description</th>
  * </tr>
  * <tr>
- * <td width="15%">K. Zichittella  </td>
+ * <td>K. Zichittella  </td>
  * <td>9/20/2016       </td>
  * <td>Initial version </td>
  * </tr>
  * <tr>
- * <td width="15%">J. Programmer   </td>
+ * <td>J. Programmer   </td>
  * <td>11/23/2016      </td>
  * <td>Description of the change that was made, doesn't need to be too long but long enough
  * for the next poor slob who is reading this to understand</td>
  * </tr>
  * </table>
-
  *
  * Created by Katelin Zichittella on 11/20/2016.
  */
@@ -48,28 +54,78 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public abstract class AutonomousHeaderSMK extends LinearOpMode {
 
+    /** Motor definitions, locations are defined by orientating oneself at the rear of the robot */
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper; /*motorLift*/
+
+
+    /** Defines the servo used to capture the color beacon */
     Servo servoBeacon; /*servoLift*/
+
+    /** Defines the gyro sensor used to orient the robot properly during autonomous */
     GyroSensor sensorGyro;
 
+    /** Array of bytes that will contain the information read from the left range sensor, the term CACHE is used
+     * to indicate that this is a copy of information returned from the sensor */
     byte[] rangeSensorLeftCache;
+
+    /** Array of bytes that will contain the information read from the right range sensor, the term CACHE is used
+     * to indicate that this is a copy of information returned from the sensor */
     byte[] rangeSensorRightCache;
 
+    /** Defines the left range sensor on the front of the robot, used to determine the distance the robot is
+     * from the color beacon during autonomous */
     I2cDevice rangeSensorLeft;
+
+    /** Defines the right range sensor on the front of the robot, used to determine the distance the robot is
+     * from the color beacon during autonomous */
     I2cDevice rangeSensorRight;
+
+    /** Defines the interface to the left range sensor that allows for "easy" interaction with the sensor itself, for
+     * more information refer to the JavaDoc on I2CDeviceSynch */
     I2cDeviceSynch rangeSensorLeftReader;
+
+    /** Defines the interface to the right range sensor that allows for "easy" interaction with the sensor itself, for
+     * more information refer to the JavaDoc on I2CDeviceSynch */
     I2cDeviceSynch rangeSensorRightReader;
 
+
+    /** Array of bytes that will contain the information read from the left color sensor, the term CACHE is used
+     * to indicate that this is a copy of information returned from the sensor */
     byte[] colorSensorLeftCache;
+
+    /** Array of bytes that will contain the information read from the right color sensor, the term CACHE is used
+     * to indicate that this is a copy of information returned from the sensor */
     byte[] colorSensorRightCache;
+
+    /** Array of bytes that will contain the information read from the front color sensor, the term CACHE is used
+     * to indicate that this is a copy of information returned from the sensor */
     byte[] colorSensorFrontCache;
 
+
+    /** Defines the left color sensor on the front of the robot, used to follow the white line in front
+     * of the color beacon that is to be "captured" during autonomous.  This sensor runs in active mode. */
     I2cDevice colorSensorLeft;
+
+    /** Defines the right color sensor on the front of the robot, used to follow the white line in front
+     * of the color beacon that is to be "captured" during autonomous.  This sensor runs in active mode. */
     I2cDevice colorSensorRight;
+
+    /** Defines the front color sensor on the front of the robot, used to read the color of color beacon so that
+     * the proper button on the color beacon is pushed to capture it during autonomous.  This sensor runs in
+     * passive mode. */
     I2cDevice colorSensorFront;
+
+    /** Defines the interface to the left color sensor that allows for "easy" interaction with the sensor itself, for
+     * more information refer to the JavaDoc on I2CDeviceSynch */
     I2cDeviceSynch colorSensorLeftReader;
+
+    /** Defines the interface to the right color sensor that allows for "easy" interaction with the sensor itself, for
+     * more information refer to the JavaDoc on I2CDeviceSynch */
     I2cDeviceSynch colorSensorRightReader;
+
+    /** Defines the interface to the front color sensor that allows for "easy" interaction with the sensor itself, for
+     * more information refer to the JavaDoc on I2CDeviceSynch */
     I2cDeviceSynch colorSensorFrontReader;
 
     public void initialize() {
