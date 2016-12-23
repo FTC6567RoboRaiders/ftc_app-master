@@ -34,7 +34,7 @@ public class EverythingRed extends AutonomousHeader {
         shoot();
         Thread.sleep(200);
 
-        encodersForward(21, 0.3);
+        /*encodersForward(21, 0.3);
         Thread.sleep(200);
 
         gyroTurnLeft(70, 0.25);
@@ -138,6 +138,6 @@ public class EverythingRed extends AutonomousHeader {
         Thread.sleep(500);
 
         encodersForward(10, 0.5);
-        Thread.sleep(200);
+        Thread.sleep(200);*/
     }
 }

@@ -362,11 +362,12 @@ public abstract class AutonomousHeader extends LinearOpMode {
             double COUNTS = PULSES * GEAR_RATIO;
 
             COUNTS = (COUNTS + Math.abs(motorShooter.getCurrentPosition())) / 16;
-
+            telemetry.addData("Setting Power", true);
             motorShooter.setPower(1.0);
-
+            telemetry.addData("Set Power", true);
             while (motorShooter.getCurrentPosition() < COUNTS) {
 
+                telemetry.addData("Shoot", motorShooter.getCurrentPosition());
                 motorShooter.setPower(1.0);
             }
 
@@ -397,11 +398,12 @@ public abstract class AutonomousHeader extends LinearOpMode {
             double COUNTS = PULSES * GEAR_RATIO;
 
             COUNTS = (COUNTS + Math.abs(motorShooter.getCurrentPosition())) * (15/16);
-
+            telemetry.addData("Setting Power2", true);
             motorShooter.setPower(1.0);
-
+            telemetry.addData("Set Power2", true);
             while (motorShooter.getCurrentPosition() < COUNTS) {
 
+                telemetry.addData("Shoot2", motorShooter.getCurrentPosition());
                 motorShooter.setPower(1.0);
             }
 
