@@ -19,20 +19,20 @@ public class EverythingRed extends AutonomousHeader {
 
         waitForStart();
 
-        encodersForward(4, 0.3);
+        /*encodersForward(4, 0.3);
         Thread.sleep(200);
 
-        /*shoot();
+        shoot();
         Thread.sleep(200);
 
         servoGate.setPosition(0.35);
         Thread.sleep(200);
 
         shoot2();
-        Thread.sleep(500);
+        Thread.sleep(700);
 
         shoot();
-        Thread.sleep(200);*/
+        Thread.sleep(200);
 
         encodersForward(16, 0.3);
         Thread.sleep(200);
@@ -43,14 +43,14 @@ public class EverythingRed extends AutonomousHeader {
         encodersForward(35, 0.3);
         Thread.sleep(200);
 
-        gyroTurnRight(70, 0.25);
+        gyroTurnRight(65, 0.25);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.18);
         Thread.sleep(200);
 
         gyroTurnLeft(70, 0.25);
-        Thread.sleep(200);
+        Thread.sleep(200);*/
 
         lineFollowerTwoSensors(10);
         Thread.sleep(200);

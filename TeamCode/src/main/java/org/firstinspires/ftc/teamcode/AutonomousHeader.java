@@ -119,9 +119,9 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-                /*telemetry.addData("LeftColor", colorSensorLeftCache[0] & 0xFF);
+                telemetry.addData("LeftColor", colorSensorLeftCache[0] & 0xFF);
                 telemetry.addData("RightColor", colorSensorRightCache[0] & 0xFF);
-                telemetry.update();*/
+                telemetry.update();
 
                 if ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
 
@@ -160,8 +160,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            rangeSensorLeftReader.disengage();
-            rangeSensorRightReader.disengage();
+            /*rangeSensorLeftReader.disengage();
+            rangeSensorRightReader.disengage();*/
 
             setMotorPower(power, power);
 
@@ -182,8 +182,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             setMotorPower(0.0, 0.0);
 
-            rangeSensorLeftReader.engage();
-            rangeSensorRightReader.engage();
+            /*rangeSensorLeftReader.engage();
+            rangeSensorRightReader.engage();*/
         }
     }
 
@@ -191,11 +191,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            colorSensorLeftReader.disengage();
+            /*colorSensorLeftReader.disengage();
             colorSensorRightReader.disengage();
             colorSensorFrontReader.disengage();
             rangeSensorLeftReader.disengage();
-            rangeSensorRightReader.disengage();
+            rangeSensorRightReader.disengage();*/
 
             motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -220,11 +220,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             setMotorPower(0.0, 0.0);
 
-            colorSensorLeftReader.engage();
+            /*colorSensorLeftReader.engage();
             colorSensorRightReader.engage();
             colorSensorFrontReader.engage();
             rangeSensorLeftReader.engage();
-            rangeSensorRightReader.engage();
+            rangeSensorRightReader.engage();*/
         }
     }
 
@@ -311,11 +311,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            colorSensorLeftReader.disengage();
+            /*colorSensorLeftReader.disengage();
             colorSensorRightReader.disengage();
             colorSensorFrontReader.disengage();
             rangeSensorLeftReader.disengage();
-            rangeSensorRightReader.disengage();
+            rangeSensorRightReader.disengage();*/
 
             sensorGyro.resetZAxisIntegrator();
 
@@ -337,11 +337,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             setMotorPower(0, 0);
 
-            colorSensorLeftReader.engage();
+            /*colorSensorLeftReader.engage();
             colorSensorRightReader.engage();
             colorSensorFrontReader.engage();
             rangeSensorLeftReader.engage();
-            rangeSensorRightReader.engage();
+            rangeSensorRightReader.engage();*/
         }
     }
 
@@ -349,11 +349,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            colorSensorLeftReader.disengage();
+            /*colorSensorLeftReader.disengage();
             colorSensorRightReader.disengage();
             colorSensorFrontReader.disengage();
             rangeSensorLeftReader.disengage();
-            rangeSensorRightReader.disengage();
+            rangeSensorRightReader.disengage();*/
 
             motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -373,11 +373,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             motorShooter.setPower(0.0);
 
-            colorSensorLeftReader.engage();
+            /*colorSensorLeftReader.engage();
             colorSensorRightReader.engage();
             colorSensorFrontReader.engage();
             rangeSensorLeftReader.engage();
-            rangeSensorRightReader.engage();
+            rangeSensorRightReader.engage();*/
         }
     }
 
@@ -385,11 +385,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            colorSensorLeftReader.disengage();
+            /*colorSensorLeftReader.disengage();
             colorSensorRightReader.disengage();
             colorSensorFrontReader.disengage();
             rangeSensorLeftReader.disengage();
-            rangeSensorRightReader.disengage();
+            rangeSensorRightReader.disengage();*/
 
             motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -409,11 +409,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             motorShooter.setPower(0.0);
 
-            colorSensorLeftReader.engage();
+            /*colorSensorLeftReader.engage();
             colorSensorRightReader.engage();
             colorSensorFrontReader.engage();
             rangeSensorLeftReader.engage();
-            rangeSensorRightReader.engage();
+            rangeSensorRightReader.engage();*/
         }
     }
 
@@ -421,22 +421,22 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            colorSensorLeftReader.disengage();
+            /*colorSensorLeftReader.disengage();
             colorSensorRightReader.disengage();
             colorSensorFrontReader.disengage();
             rangeSensorLeftReader.disengage();
-            rangeSensorRightReader.disengage();
+            rangeSensorRightReader.disengage();*/
 
             motorBackLeft.setPower(left);
             motorBackRight.setPower(right);
             motorFrontLeft.setPower(left);
             motorFrontRight.setPower(right);
 
-            colorSensorLeftReader.engage();
+            /*colorSensorLeftReader.engage();
             colorSensorRightReader.engage();
             colorSensorFrontReader.engage();
             rangeSensorLeftReader.engage();
-            rangeSensorRightReader.engage();
+            rangeSensorRightReader.engage();*/
         }
     }
 }
