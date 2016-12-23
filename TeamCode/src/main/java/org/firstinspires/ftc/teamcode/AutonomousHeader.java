@@ -209,11 +209,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
             double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
             double COUNTS = PULSES * ROTATIONS;
 
-            COUNTS = COUNTS + Math.abs(motorBackLeft.getCurrentPosition());
+            COUNTS = COUNTS + Math.abs((double)motorBackLeft.getCurrentPosition());
 
             setMotorPower(power, power);
 
-            while (motorBackLeft.getCurrentPosition() < COUNTS) {
+            while ((double)motorBackLeft.getCurrentPosition() < COUNTS) {
 
                 setMotorPower(power, power);
             }
@@ -232,11 +232,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            colorSensorLeftReader.disengage();
+            /*colorSensorLeftReader.disengage();
             colorSensorRightReader.disengage();
             colorSensorFrontReader.disengage();
             rangeSensorLeftReader.disengage();
-            rangeSensorRightReader.disengage();
+            rangeSensorRightReader.disengage();*/
 
             motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -250,22 +250,22 @@ public abstract class AutonomousHeader extends LinearOpMode {
             double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
             double COUNTS = PULSES * ROTATIONS;
 
-            COUNTS = Math.abs(motorBackLeft.getCurrentPosition()) - COUNTS;
+            COUNTS = Math.abs((double)motorBackLeft.getCurrentPosition()) - COUNTS;
 
             setMotorPower(-power, -power);
 
-            while (motorBackLeft.getCurrentPosition() > COUNTS) {
+            while ((double)motorBackLeft.getCurrentPosition() > COUNTS) {
 
                 setMotorPower(-power, -power);
             }
 
             setMotorPower(0.0, 0.0);
 
-            colorSensorLeftReader.engage();
+            /*colorSensorLeftReader.engage();
             colorSensorRightReader.engage();
             colorSensorFrontReader.engage();
             rangeSensorLeftReader.engage();
-            rangeSensorRightReader.engage();
+            rangeSensorRightReader.engage();*/
         }
     }
 
@@ -273,11 +273,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            colorSensorLeftReader.disengage();
+            /*colorSensorLeftReader.disengage();
             colorSensorRightReader.disengage();
             colorSensorFrontReader.disengage();
             rangeSensorLeftReader.disengage();
-            rangeSensorRightReader.disengage();
+            rangeSensorRightReader.disengage();*/
 
             sensorGyro.resetZAxisIntegrator();
 
@@ -299,11 +299,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             setMotorPower(0, 0);
 
-            colorSensorLeftReader.engage();
+            /*colorSensorLeftReader.engage();
             colorSensorRightReader.engage();
             colorSensorFrontReader.engage();
             rangeSensorLeftReader.engage();
-            rangeSensorRightReader.engage();
+            rangeSensorRightReader.engage();*/
         }
     }
 
@@ -361,13 +361,13 @@ public abstract class AutonomousHeader extends LinearOpMode {
             int PULSES = 1680;
             double COUNTS = PULSES * GEAR_RATIO;
 
-            COUNTS = (COUNTS + Math.abs(motorShooter.getCurrentPosition())) / 16;
+            COUNTS = (COUNTS + Math.abs((double)motorShooter.getCurrentPosition())) / 16.0;
             telemetry.addData("Setting Power", true);
             motorShooter.setPower(1.0);
             telemetry.addData("Set Power", true);
-            while (motorShooter.getCurrentPosition() < COUNTS) {
+            while ((double)motorShooter.getCurrentPosition() < COUNTS) {
 
-                telemetry.addData("Shoot", motorShooter.getCurrentPosition());
+                telemetry.addData("Shoot", (double)motorShooter.getCurrentPosition());
                 motorShooter.setPower(1.0);
             }
 
@@ -397,13 +397,13 @@ public abstract class AutonomousHeader extends LinearOpMode {
             int PULSES = 1680;
             double COUNTS = PULSES * GEAR_RATIO;
 
-            COUNTS = (COUNTS + Math.abs(motorShooter.getCurrentPosition())) * (15/16);
+            COUNTS = (COUNTS + Math.abs((double)motorShooter.getCurrentPosition())) * (15.0/16.0);
             telemetry.addData("Setting Power2", true);
             motorShooter.setPower(1.0);
             telemetry.addData("Set Power2", true);
-            while (motorShooter.getCurrentPosition() < COUNTS) {
+            while ((double)motorShooter.getCurrentPosition() < COUNTS) {
 
-                telemetry.addData("Shoot2", motorShooter.getCurrentPosition());
+                telemetry.addData("Shoot2", (double)motorShooter.getCurrentPosition());
                 motorShooter.setPower(1.0);
             }
 
