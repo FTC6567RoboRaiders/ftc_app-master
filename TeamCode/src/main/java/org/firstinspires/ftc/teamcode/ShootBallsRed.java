@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 public class ShootBallsRed extends AutonomousHeader {
 
     @Override
-    public void runOpMode() throws InterruptedException {//
+    public void runOpMode() throws InterruptedException {
 
         initialize();
 
