@@ -77,7 +77,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
-        servoBeacon.setPosition(0.5);
+        servoBeacon.setPosition(0.0);
         // servoLift.setPosition(0.4);
         servoGate.setPosition(0.0);
 
@@ -320,7 +320,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
             int PULSES = 1680;
             double COUNTS = PULSES * GEAR_RATIO;
 
-            COUNTS = (COUNTS + Math.abs((double)motorShooter.getCurrentPosition())) * (15.5/16.0);
+            COUNTS = (COUNTS + Math.abs((double)motorShooter.getCurrentPosition())) * (3.0/4.0);
 
             motorShooter.setPower(1.0);
 
@@ -344,7 +344,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
             int PULSES = 1680;
             double COUNTS = PULSES * GEAR_RATIO;
 
-            COUNTS = (COUNTS + Math.abs((double)motorShooter.getCurrentPosition())) / 12.0;
+            COUNTS = (COUNTS + Math.abs((double)motorShooter.getCurrentPosition())) / 6.0;
 
             motorShooter.setPower(1.0);
 
