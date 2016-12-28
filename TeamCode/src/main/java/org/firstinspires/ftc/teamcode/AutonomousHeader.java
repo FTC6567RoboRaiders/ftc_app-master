@@ -80,6 +80,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         servoBeacon.setPosition(0.5);
         // servoLift.setPosition(0.4);
         servoGate.setPosition(0.0);
+
+        motorShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     public void calibrateGyro () throws InterruptedException {
@@ -287,6 +289,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+            motorShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             double GEAR_RATIO = 1.456;
@@ -310,6 +313,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+            motorShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             double GEAR_RATIO = 1.456;
@@ -333,6 +337,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+            motorShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             motorShooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             double GEAR_RATIO = 1.456;

@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 /**
- * Created by Alex Snyder on 10/26/2016.
+ * Created by Alex and Nick on 10/26/2016.
  */
 
 @Autonomous
