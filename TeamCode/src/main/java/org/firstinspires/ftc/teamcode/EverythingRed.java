@@ -37,7 +37,7 @@ public class EverythingRed extends AutonomousHeader {
         encodersForward(25, 0.3);
         Thread.sleep(200);
 
-        gyroTurnLeft(73, 0.25);
+        gyroTurnLeft(74, 0.25);
         Thread.sleep(200);
 
         encodersForward(30, 0.3);
