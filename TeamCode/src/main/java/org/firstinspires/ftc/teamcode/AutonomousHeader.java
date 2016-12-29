@@ -167,8 +167,6 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 telemetry.addData("Left", colorSensorLeftCache[0] & 0xFF);
                 telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
                 telemetry.update();
-
-                // setMotorPower(power, power);
             }
 
             setMotorPower(0.0, 0.0);
@@ -197,7 +195,6 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             while ((double)motorBackLeft.getCurrentPosition() < COUNTS) {
 
-                // setMotorPower(power, power);
             }
 
             setMotorPower(0.0, 0.0);
@@ -226,7 +223,6 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             while ((double)motorBackLeft.getCurrentPosition() > COUNTS) {
 
-                // setMotorPower(-power, -power);
             }
 
             setMotorPower(0.0, 0.0);
@@ -246,8 +242,6 @@ public abstract class AutonomousHeader extends LinearOpMode {
             while (heading < degrees) {
 
                 heading = sensorGyro.getHeading();
-
-                // setMotorPower(power, -power);
 
                 if (heading >= 180) {
 
@@ -272,8 +266,6 @@ public abstract class AutonomousHeader extends LinearOpMode {
             while (heading < degrees) {
 
                 heading = sensorGyro.getHeading();
-
-                // setMotorPower(-power, power);
 
                 if (heading >= 180) {
 
@@ -302,7 +294,6 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             while ((double)motorShooter.getCurrentPosition() < COUNTS) {
 
-                // motorShooter.setPower(1.0);
             }
 
             motorShooter.setPower(0.0);
@@ -326,7 +317,6 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             while ((double)motorShooter.getCurrentPosition() < COUNTS) {
 
-                // motorShooter.setPower(1.0);
             }
 
             motorShooter.setPower(0.0);
@@ -350,7 +340,6 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             while ((double)motorShooter.getCurrentPosition() < COUNTS) {
 
-                // motorShooter.setPower(1.0);
             }
 
             motorShooter.setPower(0.0);
