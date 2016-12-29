@@ -27,6 +27,18 @@ public class RunIntoCapBallBlue extends AutonomousHeader {
         gyroTurnRight(20, 0.2);
         Thread.sleep(200);
 
+        shoot();
+        Thread.sleep(200);
+
+        servoGate.setPosition(0.35);
+        Thread.sleep(100);
+
+        shoot2();
+        Thread.sleep(500);
+
+        shoot3();
+        Thread.sleep(200);
+
         encodersForward(60, 0.5);
         Thread.sleep(200);
 
