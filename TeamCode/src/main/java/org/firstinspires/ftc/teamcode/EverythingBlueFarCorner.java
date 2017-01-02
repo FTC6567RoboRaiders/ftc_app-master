@@ -148,13 +148,13 @@ public class EverythingBlueFarCorner extends AutonomousHeader {
         gyroTurnLeft(65, 0.25);
         Thread.sleep(200);
 
-        encodersBackward(100, 0.4);
+        encodersBackward(63, 0.25);
         Thread.sleep(500);
 
         gyroTurnLeft(37, 0.25);
         Thread.sleep(500);
 
-        encodersBackward(30, 0.25);
+        encodersBackward(22, 0.25);
 
 
     }
