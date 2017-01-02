@@ -26,6 +26,9 @@ public class ShootBallBlueRight extends AutonomousHeader {
         shoot3();
         Thread.sleep(200);
 
+        encodersForward(5, 0.25);
+        Thread.sleep(200);
+
         gyroTurnRight(65, 0.25);
         Thread.sleep(200);
 
