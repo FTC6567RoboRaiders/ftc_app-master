@@ -83,8 +83,7 @@ public class TalosTeleOp extends OpMode {
 
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-        motorLift.setDirection(DcMotor.Direction.REVERSE);
-        motorSweeper.setDirection(DcMotor.Direction.REVERSE);
+        motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.5);
         // servoLift.setPosition(0.4);
         servoGate.setPosition(0.0);
@@ -151,7 +150,7 @@ public class TalosTeleOp extends OpMode {
 
         if (gamepad2.a) {
 
-            servoGate.setPosition(0.35);
+            servoGate.setPosition(0.25);
             telemetry.addData("Gate Servo Position: Down", true);
             telemetry.update();
         }
