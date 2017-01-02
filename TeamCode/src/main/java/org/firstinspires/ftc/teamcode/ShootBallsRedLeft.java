@@ -1,8 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
 /**
  * Created by saras on 1/2/2017.
  */
+    @Autonomous
+
 public class ShootBallsRedLeft extends AutonomousHeader{
 
 
