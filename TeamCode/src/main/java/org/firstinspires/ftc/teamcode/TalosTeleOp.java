@@ -100,39 +100,24 @@ public class TalosTeleOp extends OpMode {
 
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
-        float sweepForward = gamepad2.right_trigger;
-        float sweepBackward = -gamepad2.left_trigger;
+        float sweep = gamepad2.right_stick_y;
         float lift = gamepad2.left_stick_y;
-        float shoot = gamepad2.right_stick_y;
+        float shoot = gamepad2.right_trigger;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
-        sweepForward = Range.clip(sweepForward, -1, 1);
-        sweepBackward = Range.clip(sweepBackward, -1, 1);
+        sweep = Range.clip(sweep, -1, 1);
         lift = Range.clip(lift, -1, 1);
         shoot = Range.clip(shoot, -1, 1);
 
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
-        sweepForward = (float) scaleInput(sweepForward);
-        sweepBackward = (float) scaleInput(sweepBackward);
+        sweep = (float) scaleInput(sweep);
         lift = (float) scaleInput(lift);
         shoot = (float) scaleInput(shoot);
 
-        float sweeperMode = sweepForward;
-
-        if (gamepad2.left_bumper) {
-
-            sweeperMode = sweepBackward;
-        }
-
-        if (gamepad2.right_bumper) {
-
-            sweeperMode = sweepForward;
-        }
-
         setMotorPower(left * motorFactor, right * motorFactor);
-        setAttachmentPower(sweeperMode, shoot, lift);
+        setAttachmentPower(sweep, shoot, lift);
 
         if (gamepad1.x) {
 
@@ -167,11 +152,15 @@ public class TalosTeleOp extends OpMode {
         if (gamepad2.a) {
 
             servoGate.setPosition(0.35);
+            telemetry.addData("Gate Servo Position: Down", true);
+            telemetry.update();
         }
 
         if (gamepad2.b) {
 
             servoGate.setPosition(0.0);
+            telemetry.addData("Gate Servo Position: Up", true);
+            telemetry.update();
         }
     }
 
@@ -189,9 +178,9 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweeperMode, double shoot, double lift) {
+    public void setAttachmentPower (double sweep, double shoot, double lift) {
 
-        motorSweeper.setPower(sweeperMode);
+        motorSweeper.setPower(sweep);
         motorShooter.setPower(shoot);
         motorLift.setPower(lift);
     }
