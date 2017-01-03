@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
  */
 
 @Autonomous
+
 public class ParkRed extends AutonomousHeader {
 
     @Override
@@ -26,13 +27,13 @@ public class ParkRed extends AutonomousHeader {
         gyroTurnLeft(73, 0.25);
         Thread.sleep(200);
 
-        encodersForward(50, 0.25);
+        encodersForward(55, 0.25);
         Thread.sleep(200);
 
         gyroTurnLeft(35, 0.25);
         Thread.sleep(200);
 
-        encodersForward(30, 0.25);
+        encodersForward(15, 0.25);
         Thread.sleep(200);
     }
 }

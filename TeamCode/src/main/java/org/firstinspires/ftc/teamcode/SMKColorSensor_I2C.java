@@ -28,6 +28,7 @@ Support is available by emailing support@modernroboticsinc.com.
  */
 
 //import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.I2cAddr;
@@ -39,7 +40,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "Color Sensors I2C", group = "Steve")
 // @Autonomous(...) is the other common choice
-//@Disabled
+@Disabled
 public class SMKColorSensor_I2C extends OpMode {
 
     /* Declare OpMode members. */

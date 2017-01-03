@@ -150,7 +150,7 @@ public class TalosTeleOp extends OpMode {
 
         if (gamepad2.a) {
 
-            servoGate.setPosition(0.25);
+            servoGate.setPosition(0.3);
             telemetry.addData("Gate Servo Position: Down", true);
             telemetry.update();
         }

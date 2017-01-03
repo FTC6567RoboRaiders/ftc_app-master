@@ -22,7 +22,7 @@ public class EverythingBlue extends AutonomousHeader {
         shoot();
         Thread.sleep(200);
 
-        servoGate.setPosition(0.35);
+        servoGate.setPosition(0.3);
         Thread.sleep(100);
 
         shoot2();
@@ -49,7 +49,7 @@ public class EverythingBlue extends AutonomousHeader {
         moveUntilWhiteLineStraight(0.15);
         Thread.sleep(200);
 
-        encodersForward(1, 0.3);
+        encodersForward(1, 0.25);
         Thread.sleep(200);
 
         gyroTurnRight(65, 0.3);
@@ -96,7 +96,7 @@ public class EverythingBlue extends AutonomousHeader {
         moveUntilWhiteLineStraight(0.15);
         Thread.sleep(200);
 
-        encodersForward(1, 0.3);
+        encodersForward(1, 0.25);
         Thread.sleep(200);
 
         gyroTurnRight(65, 0.3);

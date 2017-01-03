@@ -1,14 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
- * Created by saras on 1/2/2017.
+ * Created by Derin on 1/2/2017.
  */
-    @Autonomous
+
+@Autonomous
+@Disabled
 
 public class ShootBallsRedLeft extends AutonomousHeader{
-
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -47,14 +49,6 @@ public class ShootBallsRedLeft extends AutonomousHeader{
 
         encodersForward(30, 0.25);
         Thread.sleep(200);
-
-
-
-
-
-
-
-
 
     }
 }

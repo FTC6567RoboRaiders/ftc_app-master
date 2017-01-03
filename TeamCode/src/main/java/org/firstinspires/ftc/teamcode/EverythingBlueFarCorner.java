@@ -1,14 +1,22 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
- * Created by saras on 1/2/2017.
+ * Created by Derin and Simon on 1/2/2017.
  */
+
 @Autonomous
+@Disabled
+
+// NEEDS TO BE TESTED
+
 public class EverythingBlueFarCorner extends AutonomousHeader {
+
     @Override
     public void runOpMode() throws InterruptedException {
+
         initialize();
 
         calibrateGyro();
@@ -158,7 +166,6 @@ public class EverythingBlueFarCorner extends AutonomousHeader {
         Thread.sleep(500);
 
         encodersBackward(22, 0.25);
-
-
+        Thread.sleep(200);
     }
 }

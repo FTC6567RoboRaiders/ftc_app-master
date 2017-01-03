@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
-//@Disabled
+@Disabled
 
 public class CalibrateColorSensorLeft extends LinearOpMode {
 

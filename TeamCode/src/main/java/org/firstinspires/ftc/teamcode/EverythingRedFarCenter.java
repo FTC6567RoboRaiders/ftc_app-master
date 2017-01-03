@@ -1,12 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
- * Created by Simon on 1/2/17.
+ * Created by Derin and Simon on 1/2/17.
  */
 
 @Autonomous
+@Disabled
+
+// NEEDS TO BE TESTED
 
 public class EverythingRedFarCenter extends AutonomousHeader {
 
@@ -131,11 +135,13 @@ public class EverythingRedFarCenter extends AutonomousHeader {
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        encodersBackward(10,0.25);
+        encodersBackward(10, 0.25);
+        Thread.sleep(200);
 
-        gyroTurnLeft(135,0.25);
+        gyroTurnLeft(135, 0.25);
+        Thread.sleep(200);
 
-        encodersForward(20,0.25);
-
+        encodersForward(20, 0.25);
+        Thread.sleep(200);
     }
 }

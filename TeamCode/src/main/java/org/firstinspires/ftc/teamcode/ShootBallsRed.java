@@ -29,7 +29,7 @@ public class ShootBallsRed extends AutonomousHeader {
         shoot();
         Thread.sleep(200);
 
-        servoGate.setPosition(0.35);
+        servoGate.setPosition(0.3);
         Thread.sleep(100);
 
         shoot2();
