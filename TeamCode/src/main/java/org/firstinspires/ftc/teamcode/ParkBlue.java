@@ -21,13 +21,22 @@ public class ParkBlue extends AutonomousHeader {
 
         Thread.sleep(10000);
 
+        encodersForward(6, 0.25);
+        Thread.sleep(200);
+
+        gyroTurnRight(20, 0.25);
+        Thread.sleep(200);
+
+        encodersForward(3, 0.25);
+        Thread.sleep(200);
+
         encodersForward(5, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(65, 0.25);
+        gyroTurnRight(28, 0.25);
         Thread.sleep(200);
 
-        encodersForward(55, 0.25);
+        encodersForward(50, 0.25);
         Thread.sleep(200);
 
         gyroTurnRight(35, 0.25);

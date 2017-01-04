@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -15,6 +16,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 
 @TeleOp
+@Disabled
 
 public class ServoAdjust extends OpMode {
 
@@ -101,7 +103,7 @@ public class ServoAdjust extends OpMode {
 
         if (gamepad1.y) {
 
-            servoGate.setPosition(01.0);
+            servoGate.setPosition(1.0);
         }
     }
 

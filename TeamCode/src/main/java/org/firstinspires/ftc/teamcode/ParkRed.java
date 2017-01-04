@@ -24,10 +24,16 @@ public class ParkRed extends AutonomousHeader {
         encodersForward(5, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(73, 0.25);
+        gyroTurnLeft(22, 0.25);
         Thread.sleep(200);
 
-        encodersForward(55, 0.25);
+        encodersForward(8, 0.25);
+        Thread.sleep(200);
+
+        gyroTurnLeft(28, 0.25);
+        Thread.sleep(200);
+
+        encodersForward(50, 0.25);
         Thread.sleep(200);
 
         gyroTurnLeft(35, 0.25);

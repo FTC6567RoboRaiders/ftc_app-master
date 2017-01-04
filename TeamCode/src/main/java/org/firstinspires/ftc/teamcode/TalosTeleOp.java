@@ -25,6 +25,7 @@ public class TalosTeleOp extends OpMode {
     GyroSensor sensorGyro;
 
     double motorFactor = 0.75;
+    double sweeperMode = 0.0;
 
     byte[] rangeSensorLeftCache;
     byte[] rangeSensorRightCache;
@@ -99,24 +100,21 @@ public class TalosTeleOp extends OpMode {
 
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
-        float sweep = gamepad2.right_stick_y;
         float lift = gamepad2.left_stick_y;
-        float shoot = gamepad2.right_trigger;
+        float shoot = gamepad2.right_stick_y;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
-        sweep = Range.clip(sweep, -1, 1);
         lift = Range.clip(lift, -1, 1);
         shoot = Range.clip(shoot, -1, 1);
 
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
-        sweep = (float) scaleInput(sweep);
         lift = (float) scaleInput(lift);
         shoot = (float) scaleInput(shoot);
 
         setMotorPower(left * motorFactor, right * motorFactor);
-        setAttachmentPower(sweep, shoot, lift);
+        setAttachmentPower(sweeperMode, shoot, lift);
 
         if (gamepad1.x) {
 
@@ -136,6 +134,21 @@ public class TalosTeleOp extends OpMode {
         if (gamepad1.right_bumper) {
 
             servoBeacon.setPosition(0);
+        }
+
+        if (gamepad2.dpad_up) {
+
+            sweeperMode = 1.0;
+        }
+
+        if (gamepad2.dpad_right) {
+
+            sweeperMode = 0.0;
+        }
+
+        if (gamepad2.dpad_down) {
+
+            sweeperMode = -1.0;
         }
 
         if (gamepad2.x) {
@@ -177,9 +190,9 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweep, double shoot, double lift) {
+    public void setAttachmentPower (double sweeperMode, double shoot, double lift) {
 
-        motorSweeper.setPower(sweep);
+        motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
         motorLift.setPower(lift);
     }
