@@ -96,7 +96,7 @@ public class TalosTeleOp extends OpMode {
     }
 
     @Override
-    public void loop() { //
+    public void loop() {
 
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
