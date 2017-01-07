@@ -36,7 +36,10 @@ public class ShootBallsBlue extends AutonomousHeader {
         Thread.sleep(100);
 
         shoot2();
-        Thread.sleep(500);
+        Thread.sleep(600);
+
+        servoGate.setPosition(0.0);
+        Thread.sleep(100);
 
         shoot3();
         Thread.sleep(200);
@@ -50,7 +53,7 @@ public class ShootBallsBlue extends AutonomousHeader {
         encodersForward(50, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(35, 0.25);
+        gyroTurnRight(30, 0.25);
         Thread.sleep(200);
 
         encodersForward(15, 0.25);

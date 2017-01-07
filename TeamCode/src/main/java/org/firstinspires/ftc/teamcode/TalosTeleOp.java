@@ -84,8 +84,8 @@ public class TalosTeleOp extends OpMode {
 
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-        motorShooter.setDirection(DcMotor.Direction.REVERSE);
-        servoBeacon.setPosition(0.5);
+        motorSweeper.setDirection(DcMotor.Direction.REVERSE);
+        servoBeacon.setPosition(0.0);
         // servoLift.setPosition(0.4);
         servoGate.setPosition(0.0);
     }
@@ -118,7 +118,7 @@ public class TalosTeleOp extends OpMode {
 
         if (gamepad1.x) {
 
-            motorFactor = 0.25;
+            motorFactor = 0.4;
         }
 
         if (gamepad1.y) {
@@ -136,19 +136,22 @@ public class TalosTeleOp extends OpMode {
             servoBeacon.setPosition(0);
         }
 
-        if (gamepad2.dpad_up) {
+        if (gamepad2.right_bumper) {
 
             sweeperMode = 1.0;
         }
-
-        if (gamepad2.dpad_right) {
+        else {
 
             sweeperMode = 0.0;
         }
 
-        if (gamepad2.dpad_down) {
+        if (gamepad2.left_bumper) {
 
             sweeperMode = -1.0;
+        }
+        else {
+
+            sweeperMode = 0.0;
         }
 
         if (gamepad2.x) {

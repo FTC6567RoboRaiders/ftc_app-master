@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
  */
 
 @Autonomous
-
 public class ParkBlue extends AutonomousHeader {
 
     @Override
@@ -27,10 +26,7 @@ public class ParkBlue extends AutonomousHeader {
         gyroTurnRight(20, 0.25);
         Thread.sleep(200);
 
-        encodersForward(3, 0.25);
-        Thread.sleep(200);
-
-        encodersForward(5, 0.25);
+        encodersForward(8, 0.25);
         Thread.sleep(200);
 
         gyroTurnRight(28, 0.25);
@@ -39,7 +35,7 @@ public class ParkBlue extends AutonomousHeader {
         encodersForward(50, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(35, 0.25);
+        gyroTurnRight(30, 0.25);
         Thread.sleep(200);
 
         encodersForward(15, 0.25);

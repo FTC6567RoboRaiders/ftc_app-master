@@ -26,7 +26,10 @@ public class BeaconClaimRed extends AutonomousHeader {
         Thread.sleep(100);
 
         shoot2();
-        Thread.sleep(500);
+        Thread.sleep(600);
+
+        servoGate.setPosition(0.0);
+        Thread.sleep(100);
 
         shoot3();
         Thread.sleep(200);
@@ -37,13 +40,13 @@ public class BeaconClaimRed extends AutonomousHeader {
         encodersForward(22, 0.3);
         Thread.sleep(200);
 
-        gyroTurnLeft(73, 0.3);
+        gyroTurnLeft(73, 0.25);
         Thread.sleep(200);
 
-        encodersForward(30, 0.35);
+        encodersForward(30, 0.3);
         Thread.sleep(200);
 
-        gyroTurnRight(65, 0.3);
+        gyroTurnRight(62, 0.25);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.15);
@@ -52,7 +55,7 @@ public class BeaconClaimRed extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(65, 0.3);
+        gyroTurnLeft(65, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -81,16 +84,16 @@ public class BeaconClaimRed extends AutonomousHeader {
             Thread.sleep(500);
         }
 
-        encodersBackward(10, 0.35);
+        encodersBackward(10, 0.3);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        gyroTurnRight(68, 0.3);
+        gyroTurnRight(68, 0.25);
         Thread.sleep(200);
 
-        encodersForward(5, 0.35);
+        encodersForward(5, 0.3);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.15);
@@ -99,7 +102,7 @@ public class BeaconClaimRed extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(65, 0.3);
+        gyroTurnLeft(65, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -128,7 +131,7 @@ public class BeaconClaimRed extends AutonomousHeader {
             Thread.sleep(500);
         }
 
-        encodersBackward(5, 0.35);
+        encodersBackward(5, 0.3);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);

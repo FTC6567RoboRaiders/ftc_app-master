@@ -37,7 +37,10 @@ public class RunIntoCapBallBlue extends AutonomousHeader {
         Thread.sleep(100);
 
         shoot2();
-        Thread.sleep(500);
+        Thread.sleep(600);
+
+        servoGate.setPosition(0.0);
+        Thread.sleep(100);
 
         shoot3();
         Thread.sleep(200);
