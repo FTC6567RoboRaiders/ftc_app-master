@@ -25,7 +25,7 @@ public class TalosTeleOp extends OpMode {
     GyroSensor sensorGyro;
 
     double motorFactor = 0.75;
-    double sweeperMode = 0.0;
+    double sweeperMode;
 
     byte[] rangeSensorLeftCache;
     byte[] rangeSensorRightCache;
@@ -142,16 +142,12 @@ public class TalosTeleOp extends OpMode {
         }
         else {
 
-            sweeperMode = 0.0;
-        }
-
-        if (gamepad2.left_bumper) {
-
-            sweeperMode = -1.0;
-        }
-        else {
-
-            sweeperMode = 0.0;
+            if (gamepad2.left_bumper) {
+                sweeperMode = -1.0;
+            }
+            else {
+                sweeperMode = 0.0;
+            }
         }
 
         if (gamepad2.x) {
