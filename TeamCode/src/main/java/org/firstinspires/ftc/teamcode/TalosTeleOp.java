@@ -140,14 +140,13 @@ public class TalosTeleOp extends OpMode {
 
             sweeperMode = 1.0;
         }
+        else if (gamepad2.left_bumper) {
+
+            sweeperMode = -1.0;
+        }
         else {
 
-            if (gamepad2.left_bumper) {
-                sweeperMode = -1.0;
-            }
-            else {
-                sweeperMode = 0.0;
-            }
+            sweeperMode = 0.0;
         }
 
         if (gamepad2.x) {
