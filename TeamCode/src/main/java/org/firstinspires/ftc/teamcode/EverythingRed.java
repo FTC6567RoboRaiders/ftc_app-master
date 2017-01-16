@@ -37,16 +37,16 @@ public class EverythingRed extends AutonomousHeader {
         servoBeacon.setPosition(0.5);
         Thread.sleep(200);
 
-        encodersForward(22, 0.3);
+        encodersForward(26, 0.3);
         Thread.sleep(200);
 
         gyroTurnLeft(73, 0.25);
         Thread.sleep(200);
 
-        encodersForward(30, 0.3);
+        encodersForward(25, 0.3);
         Thread.sleep(200);
 
-        gyroTurnRight(62, 0.25);
+        gyroTurnRight(58, 0.25);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.15);
@@ -55,7 +55,7 @@ public class EverythingRed extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(65, 0.25);
+        gyroTurnLeft(58, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -84,16 +84,16 @@ public class EverythingRed extends AutonomousHeader {
             Thread.sleep(500);
         }
 
-        encodersBackward(10, 0.3);
+        encodersBackward(14, 0.3);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        gyroTurnRight(68, 0.25);
+        gyroTurnRight(60, 0.25);
         Thread.sleep(200);
 
-        encodersForward(5, 0.3);
+        encodersForward(15, 0.3);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.15);
@@ -102,7 +102,7 @@ public class EverythingRed extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(65, 0.25);
+        gyroTurnLeft(60, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);

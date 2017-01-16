@@ -43,19 +43,19 @@ public class EverythingBlue extends AutonomousHeader {
         gyroTurnRight(65, 0.25);
         Thread.sleep(200);
 
-        encodersForward(36, 0.3);
+        encodersForward(31, 0.3);
         Thread.sleep(200);
 
-        gyroTurnLeft(62, 0.25);
+        gyroTurnLeft(57, 0.25);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.15);
         Thread.sleep(200);
 
-        encodersForward(1, 0.25);
+        encodersForward(0.5, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(64, 0.25);
+        gyroTurnRight(59, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -93,13 +93,13 @@ public class EverythingBlue extends AutonomousHeader {
         gyroTurnLeft(65, 0.25);
         Thread.sleep(200);
 
-        encodersForward(5, 0.3);
+        encodersForward(10, 0.35);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.15);
         Thread.sleep(200);
 
-        encodersForward(1, 0.25);
+        encodersForward(0.5, 0.25);
         Thread.sleep(200);
 
         gyroTurnRight(64, 0.25);

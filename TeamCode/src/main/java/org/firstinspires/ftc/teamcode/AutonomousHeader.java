@@ -173,7 +173,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void encodersForward (int distance, double power) {
+    public void encodersForward (double distance, double power) {
 
         if (opModeIsActive()) {
 
@@ -201,7 +201,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void encodersBackward (int distance, double power) {
+    public void encodersBackward (double distance, double power) {
 
         if (opModeIsActive()) {
 
