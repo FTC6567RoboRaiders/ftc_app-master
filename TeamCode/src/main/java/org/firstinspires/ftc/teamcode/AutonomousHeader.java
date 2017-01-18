@@ -178,11 +178,6 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             setMotorPower(0.0, 0.0);
         }
-
-        else {
-
-            setMotorPower(0.0, 0.0);
-        }
     }
 
     public void encodersForward (double distance, double power) {
