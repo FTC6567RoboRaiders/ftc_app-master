@@ -84,6 +84,22 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(500);
         }
 
+        Thread.sleep(200);
+
+        colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
+        telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
+        telemetry.update();
+
+        if ((colorSensorFrontCache[0] & 0xFF) >= 6) { // red
+
+            encodersBackward(2, 0.25);
+            Thread.sleep(200);
+            servoBeacon.setPosition(0.0);
+            Thread.sleep(500);
+            encodersForward(2, 0.2);
+            Thread.sleep(500);
+        }
+
         encodersBackward(10, 0.3);
         Thread.sleep(200);
 
@@ -122,6 +138,22 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(500);
         }
         else {
+
+            encodersBackward(2, 0.25);
+            Thread.sleep(200);
+            servoBeacon.setPosition(0.0);
+            Thread.sleep(500);
+            encodersForward(2, 0.2);
+            Thread.sleep(500);
+        }
+
+        Thread.sleep(200);
+
+        colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
+        telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
+        telemetry.update();
+
+        if ((colorSensorFrontCache[0] & 0xFF) >= 6) { // red
 
             encodersBackward(2, 0.25);
             Thread.sleep(200);
