@@ -8,12 +8,15 @@ import com.qualcomm.robotcore.hardware.I2cDevice;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * Created by Katelin Zichittella on 11/20/2016.
  */
 
 public abstract class AutonomousHeader extends LinearOpMode {
+
+    private ElapsedTime runtime = new ElapsedTime();
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLift;
@@ -152,7 +155,9 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
     public void moveUntilWhiteLineStraight (double power) {
 
-        if (opModeIsActive()) {
+        runtime.reset();
+
+        if (opModeIsActive() && runtime.seconds() < 10) {
 
             setMotorPower(power, power);
 
@@ -168,6 +173,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 telemetry.addData("Right", colorSensorRightCache[0] & 0xFF);
                 telemetry.update();
             }
+
+            setMotorPower(0.0, 0.0);
+        }
+
+        else {
 
             setMotorPower(0.0, 0.0);
         }
