@@ -49,7 +49,7 @@ public class EverythingRed extends AutonomousHeader {
         gyroTurnRight(58, 0.25);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.15);
+        moveUntilWhiteLineStraight(0.15, 10);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);
@@ -113,7 +113,7 @@ public class EverythingRed extends AutonomousHeader {
         encodersForward(15, 0.3);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.15);
+        moveUntilWhiteLineStraight(0.15, 10);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);

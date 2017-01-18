@@ -50,7 +50,7 @@ public class BackupEverythingRed extends AutonomousHeader {
         setMotorPower(0, 0);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.15);
+        moveUntilWhiteLineStraight(0.15, 10);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);
@@ -103,7 +103,7 @@ public class BackupEverythingRed extends AutonomousHeader {
         encodersForward(5, 0.35);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.15);
+        moveUntilWhiteLineStraight(0.15, 10);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);

@@ -155,11 +155,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void moveUntilWhiteLineStraight (double power) {
+    public void moveUntilWhiteLineStraight (double power, double expireTime) {
 
         runtime.reset();
 
-        if (opModeIsActive() && runtime.seconds() < 10) {
+        if (opModeIsActive() && runtime.seconds() < expireTime) {
 
             setMotorPower(power, power);
 
