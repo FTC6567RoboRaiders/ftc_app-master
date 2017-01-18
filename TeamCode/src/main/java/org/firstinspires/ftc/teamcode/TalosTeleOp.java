@@ -25,7 +25,6 @@ public class TalosTeleOp extends OpMode {
     GyroSensor sensorGyro;
 
     double motorFactor = 0.75;
-    double sweeperMode;
 
     byte[] rangeSensorLeftCache;
     byte[] rangeSensorRightCache;
@@ -84,8 +83,8 @@ public class TalosTeleOp extends OpMode {
 
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-        motorSweeper.setDirection(DcMotor.Direction.REVERSE);
-        servoBeacon.setPosition(0.0);
+        motorShooter.setDirection(DcMotor.Direction.REVERSE);
+        servoBeacon.setPosition(0.5);
         // servoLift.setPosition(0.4);
         servoGate.setPosition(0.0);
     }
@@ -100,25 +99,28 @@ public class TalosTeleOp extends OpMode {
 
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
+        float sweep = gamepad2.right_stick_y;
         float lift = gamepad2.left_stick_y;
-        float shoot = gamepad2.right_stick_y;
+        float shoot = gamepad2.right_trigger;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
+        sweep = Range.clip(sweep, -1, 1);
         lift = Range.clip(lift, -1, 1);
         shoot = Range.clip(shoot, -1, 1);
 
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
+        sweep = (float) scaleInput(sweep);
         lift = (float) scaleInput(lift);
         shoot = (float) scaleInput(shoot);
 
         setMotorPower(left * motorFactor, right * motorFactor);
-        setAttachmentPower(sweeperMode, shoot, lift);
+        setAttachmentPower(sweep, shoot, lift);
 
         if (gamepad1.x) {
 
-            motorFactor = 0.4;
+            motorFactor = 0.25;
         }
 
         if (gamepad1.y) {
@@ -134,19 +136,6 @@ public class TalosTeleOp extends OpMode {
         if (gamepad1.right_bumper) {
 
             servoBeacon.setPosition(0);
-        }
-
-        if (gamepad2.right_bumper) {
-
-            sweeperMode = 1.0;
-        }
-        else if (gamepad2.left_bumper) {
-
-            sweeperMode = -1.0;
-        }
-        else {
-
-            sweeperMode = 0.0;
         }
 
         if (gamepad2.x) {
@@ -188,9 +177,9 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweeperMode, double shoot, double lift) {
+    public void setAttachmentPower (double sweep, double shoot, double lift) {
 
-        motorSweeper.setPower(sweeperMode);
+        motorSweeper.setPower(sweep);
         motorShooter.setPower(shoot);
         motorLift.setPower(lift);
     }
