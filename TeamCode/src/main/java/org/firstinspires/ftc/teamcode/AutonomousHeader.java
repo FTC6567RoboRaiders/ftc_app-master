@@ -22,7 +22,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLift;
     Servo servoBeacon, servoGate;
-    CRServo /*servoLiftLeft, servoLiftRight;*/
+    /* CRServo servoLiftLeft, servoLiftRight;*/
     GyroSensor sensorGyro;
 
     byte[] rangeSensorLeftCache;
