@@ -84,6 +84,11 @@ public class BeaconClaimBlue extends AutonomousHeader {
             Thread.sleep(500);
         }
 
+        encodersBackward(0.5, 0.2);
+        Thread.sleep(100);
+        servoBeacon.setPosition(0.5);
+        Thread.sleep(300);
+
         colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
         telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
         telemetry.update();
@@ -148,6 +153,11 @@ public class BeaconClaimBlue extends AutonomousHeader {
             encodersForward(2, 0.2);
             Thread.sleep(500);
         }
+
+        encodersBackward(0.5, 0.2);
+        Thread.sleep(100);
+        servoBeacon.setPosition(0.5);
+        Thread.sleep(300);
 
         colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
         telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
