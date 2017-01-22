@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
@@ -8,6 +9,7 @@ import com.qualcomm.robotcore.hardware.I2cDevice;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * Created by Katelin Zichittella on 11/20/2016.
@@ -15,9 +17,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public abstract class AutonomousHeader extends LinearOpMode {
 
+    private ElapsedTime runtime = new ElapsedTime();
+
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLift;
-    Servo servoBeacon, /*servoLift*/ servoGate;
+    Servo servoBeacon, servoGate;
+    CRServo servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
     byte[] rangeSensorLeftCache;
@@ -55,8 +60,9 @@ public abstract class AutonomousHeader extends LinearOpMode {
         colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
         servoBeacon = hardwareMap.servo.get("servoBeacon");
-        // servoLift = hardwareMap.servo.get("servoLift");
         servoGate = hardwareMap.servo.get("servoGate");
+        servoLiftLeft = hardwareMap.crservo.get("servoLiftLeft");
+        servoLiftRight = hardwareMap.crservo.get("servoLiftRight");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
@@ -78,8 +84,9 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
-        // servoLift.setPosition(0.4);
         servoGate.setPosition(0.0);
+        servoLiftLeft.setPower(0.0);
+        servoLiftRight.setPower(0.0);
 
         motorShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
@@ -150,9 +157,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void moveUntilWhiteLineStraight (double power) {
+    public void moveUntilWhiteLineStraight (double power, double expireTime) {
 
-        if (opModeIsActive()) {
+        runtime.reset();
+
+        if (opModeIsActive() && runtime.seconds() < expireTime) {
 
             setMotorPower(power, power);
 
@@ -173,7 +182,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void encodersForward (int distance, double power) {
+    public void encodersForward (double distance, double power) {
 
         if (opModeIsActive()) {
 
@@ -201,7 +210,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void encodersBackward (int distance, double power) {
+    public void encodersBackward (double distance, double power) {
 
         if (opModeIsActive()) {
 

@@ -1,38 +1,26 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
- * Created by Derin and Simon on 1/2/2017.
+ * Created by Alex and Simon on 1/16/17.
  */
 
 @Autonomous
-@Disabled
 
-// NEEDS TO BE TESTED
-
-public class EverythingBlueFarCorner extends AutonomousHeader {
+public class BackupEverythingBlue extends AutonomousHeader {
 
     @Override
     public void runOpMode() throws InterruptedException {
 
         initialize();
 
-        calibrateGyro();
-
         waitForStart();
-
-        encodersForward(5, 0.25);
-        Thread.sleep(200);
-
-        gyroTurnRight(15, 0.25);
-        Thread.sleep(200);
 
         shoot();
         Thread.sleep(200);
 
-        servoGate.setPosition(0.35);
+        servoGate.setPosition(0.3);
         Thread.sleep(100);
 
         shoot2();
@@ -44,25 +32,22 @@ public class EverythingBlueFarCorner extends AutonomousHeader {
         servoBeacon.setPosition(0.5);
         Thread.sleep(200);
 
-        gyroTurnRight(50, 0.25);
-        Thread.sleep(500);
-
-        encodersForward(25, 0.25);
-        Thread.sleep(500);
-
-        gyroTurnLeft(65, 0.25);
-        Thread.sleep(500);
-
-        encodersForward(20, 0.3);
+        encodersForward(22, 0.3);
         Thread.sleep(200);
 
-        gyroTurnRight(65, 0.25);
+        setMotorPower(-0.3, 0.3);
+        Thread.sleep(250);
+
+        setMotorPower(0, 0);
         Thread.sleep(200);
 
-        encodersForward(35, 0.3);
+        encodersForward(35, 0.35);
         Thread.sleep(200);
 
-        gyroTurnLeft(62, 0.25);
+        setMotorPower(0.3, -0.3);
+        Thread.sleep(250);
+
+        setMotorPower(0, 0);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.15, 10);
@@ -71,7 +56,10 @@ public class EverythingBlueFarCorner extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(65, 0.25);
+        setMotorPower(-0.3, 0.3);
+        Thread.sleep(250);
+
+        setMotorPower(0, 0);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -100,16 +88,19 @@ public class EverythingBlueFarCorner extends AutonomousHeader {
             Thread.sleep(500);
         }
 
-        encodersBackward(10, 0.3);
+        encodersBackward(10, 0.35);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        gyroTurnLeft(62, 0.25);
+        setMotorPower(0.3, -0.3);
+        Thread.sleep(250);
+
+        setMotorPower(0, 0);
         Thread.sleep(200);
 
-        encodersForward(5, 0.3);
+        encodersForward(5, 0.35);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.15, 10);
@@ -118,7 +109,10 @@ public class EverythingBlueFarCorner extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(65, 0.25);
+        setMotorPower(-0.3, 0.3);
+        Thread.sleep(250);
+
+        setMotorPower(0, 0);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -147,7 +141,7 @@ public class EverythingBlueFarCorner extends AutonomousHeader {
             Thread.sleep(500);
         }
 
-        encodersBackward(5, 0.3);
+        encodersBackward(5, 0.35);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);
@@ -156,16 +150,13 @@ public class EverythingBlueFarCorner extends AutonomousHeader {
         encodersBackward(28, 0.4);
         Thread.sleep(200);
 
-        gyroTurnLeft(65, 0.25);
+        setMotorPower(-0.3, 0.3);
+        Thread.sleep(125);
+
+        setMotorPower(0, 0);
         Thread.sleep(200);
 
-        encodersBackward(63, 0.25);
+        encodersBackward(50, 0.4);
         Thread.sleep(500);
-
-        gyroTurnLeft(37, 0.25);
-        Thread.sleep(500);
-
-        encodersBackward(22, 0.25);
-        Thread.sleep(200);
     }
 }

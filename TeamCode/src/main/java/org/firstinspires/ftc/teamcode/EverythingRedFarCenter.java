@@ -47,7 +47,7 @@ public class EverythingRedFarCenter extends AutonomousHeader {
 
         gyroTurnRight(45,0.25);
 
-        moveUntilWhiteLineStraight(0.15);
+        moveUntilWhiteLineStraight(0.15, 10);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);
@@ -94,7 +94,7 @@ public class EverythingRedFarCenter extends AutonomousHeader {
         encodersForward(5, 0.3);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.15);
+        moveUntilWhiteLineStraight(0.15, 10);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);

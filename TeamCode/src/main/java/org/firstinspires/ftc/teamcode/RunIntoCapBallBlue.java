@@ -19,7 +19,7 @@ public class RunIntoCapBallBlue extends AutonomousHeader {
 
         waitForStart();
 
-        Thread.sleep(10000);
+        Thread.sleep(15000);
 
         encodersForward(6, 0.25);
         Thread.sleep(200);

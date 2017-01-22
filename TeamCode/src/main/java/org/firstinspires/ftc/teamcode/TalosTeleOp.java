@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
@@ -21,7 +22,8 @@ public class TalosTeleOp extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLift;
-    Servo servoBeacon, /*servoLift*/ servoGate;
+    Servo servoBeacon, servoGate;
+    CRServo servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
     double motorFactor = 0.75;
@@ -63,8 +65,9 @@ public class TalosTeleOp extends OpMode {
         colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
         servoBeacon = hardwareMap.servo.get("servoBeacon");
-        // servoLift = hardwareMap.servo.get("servoLift");
         servoGate = hardwareMap.servo.get("servoGate");
+        servoLiftLeft = hardwareMap.crservo.get("servoLiftLeft");
+        servoLiftRight = hardwareMap.crservo.get("servoLiftLeft");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
@@ -86,8 +89,9 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
-        // servoLift.setPosition(0.4);
         servoGate.setPosition(0.0);
+        servoLiftLeft.setPower(-0.1);
+        servoLiftRight.setPower(0.1);
     }
 
     @Override
@@ -102,19 +106,25 @@ public class TalosTeleOp extends OpMode {
         float right = gamepad1.right_stick_y;
         float lift = gamepad2.left_stick_y;
         float shoot = gamepad2.right_stick_y;
+        float liftLeft = -gamepad2.right_stick_x;
+        float liftRight = gamepad2.right_stick_x;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
         lift = Range.clip(lift, -1, 1);
         shoot = Range.clip(shoot, -1, 1);
+        liftLeft = Range.clip(liftLeft, -1, 1);
+        liftRight = Range.clip(liftRight, -1,1);
 
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
         lift = (float) scaleInput(lift);
         shoot = (float) scaleInput(shoot);
+        liftLeft = (float) scaleInput(liftLeft);
+        liftRight = (float) scaleInput(liftRight);
 
         setMotorPower(left * motorFactor, right * motorFactor);
-        setAttachmentPower(sweeperMode, shoot, lift);
+        setAttachmentPower(sweeperMode, shoot, lift, liftLeft, liftRight);
 
         if (gamepad1.x) {
 
@@ -149,28 +159,13 @@ public class TalosTeleOp extends OpMode {
             sweeperMode = 0.0;
         }
 
-        if (gamepad2.x) {
-
-            // servoLift.setPosition(0.4);
-        }
-
-        if (gamepad2.y) {
-
-            // servoLift.setPosition(0.0);
-        }
-
-        if (gamepad2.a) {
+        if (gamepad2.dpad_down) {
 
             servoGate.setPosition(0.3);
-            telemetry.addData("Gate Servo Position: Down", true);
-            telemetry.update();
         }
-
-        if (gamepad2.b) {
+        else {
 
             servoGate.setPosition(0.0);
-            telemetry.addData("Gate Servo Position: Up", true);
-            telemetry.update();
         }
     }
 
@@ -188,11 +183,13 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweeperMode, double shoot, double lift) {
+    public void setAttachmentPower (double sweeperMode, double shoot, double lift, double liftLeft, double liftRight) {
 
         motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
         motorLift.setPower(lift);
+        servoLiftLeft.setPower(liftLeft);
+        servoLiftRight.setPower(liftRight);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values
