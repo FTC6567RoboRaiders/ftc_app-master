@@ -90,8 +90,8 @@ public class TalosTeleOp extends OpMode {
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPower(0.0);
-        servoLiftRight.setPower(0.0);
+        servoLiftLeft.setPower(-0.1);
+        servoLiftRight.setPower(0.1);
     }
 
     @Override
