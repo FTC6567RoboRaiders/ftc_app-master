@@ -128,6 +128,10 @@ public abstract class AutonomousHeaderSMK extends LinearOpMode {
      * more information refer to the JavaDoc on I2CDeviceSynch */
     I2cDeviceSynch colorSensorFrontReader;
 
+    /** initialize - initializes the hardware definitions   more stuff to be added
+     *
+     *
+     */
     public void initialize() {
 
         motorBackLeft = hardwareMap.dcMotor.get("motorBackLeft");
@@ -407,6 +411,12 @@ public abstract class AutonomousHeaderSMK extends LinearOpMode {
         motorShooter.setPower(0.0);
     }
 
+
+    /**
+     * setMotorPower - sets the power of the left and right motors
+     * @param left - the left side
+     * @param right - the right side
+     */
     public void setMotorPower (double left, double right) {
 
         motorBackLeft.setPower(left);
