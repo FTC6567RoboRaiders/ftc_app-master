@@ -28,6 +28,7 @@ public class TalosTeleOp extends OpMode {
 
     double motorFactor = 0.75;
     double sweeperMode;
+    double liftMode;
 
     byte[] rangeSensorLeftCache;
     byte[] rangeSensorRightCache;
@@ -88,6 +89,7 @@ public class TalosTeleOp extends OpMode {
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
+        motorLift.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
         servoLiftLeft.setPower(0.0);
@@ -106,29 +108,19 @@ public class TalosTeleOp extends OpMode {
         float right = gamepad1.right_stick_y;
         float lift = gamepad2.left_stick_y;
         float shoot = gamepad2.right_stick_y;
-        float liftLeft = -gamepad2.right_stick_x;
-        float liftRight = gamepad2.right_stick_x;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
         lift = Range.clip(lift, -1, 1);
         shoot = Range.clip(shoot, -1, 1);
-        liftLeft = Range.clip(liftLeft, -1, 1);
-        liftRight = Range.clip(liftRight, -1,1);
 
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
         lift = (float) scaleInput(lift);
         shoot = (float) scaleInput(shoot);
-        liftLeft = (float) scaleInput(liftLeft);
-        liftRight = (float) scaleInput(liftRight);
 
         setMotorPower(left * motorFactor, right * motorFactor);
-        setAttachmentPower(sweeperMode, shoot, lift, liftLeft, liftRight);
-
-        telemetry.addData("Joystick", gamepad2.right_stick_x);
-        telemetry.addData("Servo", servoLiftLeft.getPower());
-        telemetry.update();
+        setAttachmentPower(sweeperMode, shoot, lift, liftMode);
 
         if (gamepad1.x) {
 
@@ -171,6 +163,19 @@ public class TalosTeleOp extends OpMode {
 
             servoGate.setPosition(0.0);
         }
+
+        if (gamepad2.b) {
+
+            liftMode = 1.0;
+        }
+        else if (gamepad2.a) {
+
+            liftMode = -1.0;
+        }
+        else {
+
+            liftMode = 0.0;
+        }
     }
 
     @Override
@@ -187,13 +192,13 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweeperMode, double shoot, double lift, double liftLeft, double liftRight) {
+    public void setAttachmentPower (double sweeperMode, double shoot, double lift, double liftMode) {
 
         motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
         motorLift.setPower(lift);
-        servoLiftLeft.setPower(liftLeft);
-        servoLiftRight.setPower(liftRight);
+        servoLiftLeft.setPower(-liftMode);
+        servoLiftRight.setPower(liftMode);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values
