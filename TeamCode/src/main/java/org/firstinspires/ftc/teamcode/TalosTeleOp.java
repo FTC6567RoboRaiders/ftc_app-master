@@ -171,11 +171,12 @@ public class TalosTeleOp extends OpMode {
         else if (gamepad2.a) {
 
             liftMode = -1.0;
-        }
-        else {
+        } else {
 
-            liftMode = 0.0;
+                liftMode = 0.0;
         }
+        telemetry.addData("liftmode = ", liftMode);
+        telemetry.update();
     }
 
     @Override
