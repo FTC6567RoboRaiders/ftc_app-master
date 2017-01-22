@@ -95,6 +95,7 @@ public class BeaconClaimRed extends AutonomousHeader {
 
         if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
+            Thread.sleep(5000);
             encodersBackward(2, 0.25);
             Thread.sleep(200);
             servoBeacon.setPosition(0.0);
@@ -165,6 +166,7 @@ public class BeaconClaimRed extends AutonomousHeader {
 
         if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
+            Thread.sleep(5000);
             encodersBackward(2, 0.25);
             Thread.sleep(200);
             servoBeacon.setPosition(1.0);
