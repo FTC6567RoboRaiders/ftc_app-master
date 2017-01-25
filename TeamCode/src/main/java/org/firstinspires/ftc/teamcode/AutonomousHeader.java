@@ -139,12 +139,12 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
                 else if ((colorSensorLeftCache[0] & 0xFF) >= 80) { // white
 
-                    setMotorPower(0, 0.18);
+                    setMotorPower(0, 0.16);
                 }
 
                 else if ((colorSensorRightCache[0] & 0xFF) >= 80) { // white
 
-                    setMotorPower(0.18, 0);
+                    setMotorPower(0.16, 0);
                 }
 
                 else {

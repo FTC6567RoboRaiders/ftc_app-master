@@ -176,9 +176,6 @@ public class TalosTeleOp extends OpMode {
 
             liftMode = 0.0;
         }
-
-        telemetry.addData("LiftMode", liftMode);
-        telemetry.update();
     }
 
     @Override
