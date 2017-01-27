@@ -89,7 +89,6 @@ public class TalosTeleOp extends OpMode {
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
-        motorLift.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
         servoLiftLeft.setPower(0.0);
@@ -106,21 +105,18 @@ public class TalosTeleOp extends OpMode {
 
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
-        float lift = gamepad2.left_stick_y;
         float shoot = gamepad2.right_stick_y;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
-        lift = Range.clip(lift, -1, 1);
         shoot = Range.clip(shoot, -1, 1);
 
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
-        lift = (float) scaleInput(lift);
         shoot = (float) scaleInput(shoot);
 
         setMotorPower(left * motorFactor, right * motorFactor);
-        setAttachmentPower(sweeperMode, shoot, lift, liftMode);
+        setAttachmentPower(sweeperMode, shoot, liftMode);
 
         if (gamepad1.x) {
 
@@ -140,6 +136,19 @@ public class TalosTeleOp extends OpMode {
         if (gamepad1.right_bumper) {
 
             servoBeacon.setPosition(0);
+        }
+
+        if (gamepad2.y) {
+
+            motorLift.setPower(-1.0);
+        }
+        else if (gamepad2.x) {
+
+            motorLift.setPower(1.0);
+        }
+        else {
+
+            motorLift.setPower(0.0);
         }
 
         if (gamepad2.right_bumper) {
@@ -192,11 +201,10 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweeperMode, double shoot, double lift, double liftMode) {
+    public void setAttachmentPower (double sweeperMode, double shoot, double liftMode) {
 
         motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
-        motorLift.setPower(lift);
         servoLiftLeft.setPower(liftMode);
         servoLiftRight.setPower(liftMode);
     }
