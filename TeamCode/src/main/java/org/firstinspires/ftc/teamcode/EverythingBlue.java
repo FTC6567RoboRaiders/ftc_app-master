@@ -40,13 +40,13 @@ public class EverythingBlue extends AutonomousHeader {
         encodersForward(22, 0.3);
         Thread.sleep(200);
 
-        gyroTurnRight(65, 0.25);
+        gyroTurnRight(68, 0.25);
         Thread.sleep(200);
 
         encodersForward(31, 0.3);
         Thread.sleep(200);
 
-        gyroTurnLeft(48, 0.25);
+        gyroTurnLeft(44, 0.25);
         Thread.sleep(200);
 
         encodersForward(5, 0.3);
@@ -58,7 +58,7 @@ public class EverythingBlue extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(52, 0.25);
+        gyroTurnRight(48, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -117,7 +117,7 @@ public class EverythingBlue extends AutonomousHeader {
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        gyroTurnLeft(62, 0.25);
+        gyroTurnLeft(54, 0.25);
         Thread.sleep(200);
 
         encodersForward(20, 0.35);
@@ -132,7 +132,7 @@ public class EverythingBlue extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(56, 0.25);
+        gyroTurnRight(54, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
