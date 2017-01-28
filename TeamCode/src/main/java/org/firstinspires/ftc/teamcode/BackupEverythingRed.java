@@ -24,7 +24,10 @@ public class BackupEverythingRed extends AutonomousHeaderPretzel {
         Thread.sleep(100);
 
         shoot2();
-        Thread.sleep(500);
+        Thread.sleep(600);
+
+        servoGate.setPosition(0.0);
+        Thread.sleep(100);
 
         shoot3();
         Thread.sleep(200);
@@ -36,21 +39,27 @@ public class BackupEverythingRed extends AutonomousHeaderPretzel {
         Thread.sleep(200);*/
 
         encoderTurnRight(18, 0.3);
-
-        /*encodersForward(35, 0.35);
         Thread.sleep(200);
 
-        encoderTurnRight(18, 0.3)
+        /*encodersForward(31, 0.3);
+        Thread.sleep(200);*/
 
-        moveUntilWhiteLineStraight(0.15, 10);
+        encoderTurnRight(18, 0.3);
+        Thread.sleep(200);
+
+        /*encodersForward(5, 0.3);
+        Thread.sleep(200);
+
+        moveUntilWhiteLineStraight(0.12, 10);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);
+        Thread.sleep(200);*/
+
+        encoderTurnLeft(18, 0.3);
         Thread.sleep(200);
 
-        encoderTurnRight(18, 0.3)
-
-        lineFollowerTwoSensors(10);
+        /*lineFollowerTwoSensors(10);
         Thread.sleep(200);
 
         colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
@@ -63,7 +72,7 @@ public class BackupEverythingRed extends AutonomousHeaderPretzel {
             Thread.sleep(200);
             servoBeacon.setPosition(1.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
         else {
@@ -72,30 +81,59 @@ public class BackupEverythingRed extends AutonomousHeaderPretzel {
             Thread.sleep(200);
             servoBeacon.setPosition(0.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
 
-        encodersBackward(10, 0.35);
-        Thread.sleep(200);
-
+        encodersBackward(0.5, 0.2);
+        Thread.sleep(100);
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        encodesTurnLeft(18, 0.3)
+        colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
+        telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
+        telemetry.update();
 
-        encodersForward(5, 0.35);
+        if ((colorSensorFrontCache[0] & 0xFF) >= 6) { // red
+
+            Thread.sleep(5000);
+            encodersBackward(2, 0.25);
+            Thread.sleep(200);
+            servoBeacon.setPosition(0.0);
+            Thread.sleep(500);
+            encodersForward(4, 0.2);
+            Thread.sleep(500);
+        }
+        else {
+
+            Thread.sleep(100);
+        }
+
+        encodersBackward(14, 0.3);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.15, 10);
+        servoBeacon.setPosition(0.5);
+        Thread.sleep(300);*/
+
+        encoderTurnRight(18, 0.3);
+        Thread.sleep(200);
+
+        /*encodersForward(20, 0.35);
+        Thread.sleep(200);*/
+
+        encoderTurnLeft(6, 0.25);
+        Thread.sleep(200);
+
+        /*moveUntilWhiteLineStraight(0.12, 10);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);
+        Thread.sleep(200);*/
+
+        encoderTurnLeft(18, 0.3);
         Thread.sleep(200);
 
-        encoderTurnRight(18, 0.3)
-
-        lineFollowerTwoSensors(10);
+        /*lineFollowerTwoSensors(10);
         Thread.sleep(200);
 
         colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
@@ -108,7 +146,7 @@ public class BackupEverythingRed extends AutonomousHeaderPretzel {
             Thread.sleep(200);
             servoBeacon.setPosition(1.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
         else {
@@ -117,22 +155,38 @@ public class BackupEverythingRed extends AutonomousHeaderPretzel {
             Thread.sleep(200);
             servoBeacon.setPosition(0.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
 
-        encodersBackward(5, 0.35);
-        Thread.sleep(200);
-
+        encodersBackward(0.5, 0.2);
+        Thread.sleep(100);
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        encodersBackward(28, 0.4);
+        colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
+        telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
+        telemetry.update();
+
+        if ((colorSensorFrontCache[0] & 0xFF) >= 6) { // red
+
+            Thread.sleep(5000);
+            encodersBackward(2, 0.25);
+            Thread.sleep(200);
+            servoBeacon.setPosition(0.0);
+            Thread.sleep(500);
+            encodersForward(4, 0.2);
+            Thread.sleep(500);
+        }
+        else {
+
+            Thread.sleep(100);
+        }
+
+        encodersBackward(5, 0.3);
         Thread.sleep(200);
 
-        encoderTurnRight(18, 0.3)
-
-        encodersBackward(50, 0.4);
-        Thread.sleep(500);*/
+        servoBeacon.setPosition(0.5);
+        Thread.sleep(300);*/
     }
 }
