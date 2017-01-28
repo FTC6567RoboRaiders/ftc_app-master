@@ -17,7 +17,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public abstract class AutonomousHeader extends LinearOpMode {
 
-    private ElapsedTime runtime = new ElapsedTime();
+    private ElapsedTime runtime = new  ElapsedTime();
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLiftLeft, motorLiftRight;
