@@ -49,6 +49,5 @@ public class ShootBallsRedLeft extends AutonomousHeader {
 
         encodersForward(30, 0.25);
         Thread.sleep(200);
-
     }
 }

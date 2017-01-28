@@ -87,7 +87,7 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(500);
         }
 
-        encodersBackward(0.5, 0.2);
+        encodersBackward(1, 0.2);
         Thread.sleep(100);
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
@@ -161,7 +161,7 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(500);
         }
 
-        encodersBackward(0.5, 0.2);
+        encodersBackward(1, 0.2);
         Thread.sleep(100);
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
