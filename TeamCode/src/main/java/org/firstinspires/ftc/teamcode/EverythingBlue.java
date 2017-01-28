@@ -46,7 +46,7 @@ public class EverythingBlue extends AutonomousHeader {
         encodersForward(31, 0.3);
         Thread.sleep(200);
 
-        gyroTurnLeft(57, 0.25);
+        gyroTurnLeft(48, 0.25);
         Thread.sleep(200);
 
         encodersForward(5, 0.3);
@@ -55,10 +55,10 @@ public class EverythingBlue extends AutonomousHeader {
         moveUntilWhiteLineStraight(0.12, 10);
         Thread.sleep(200);
 
-        encodersForward(0.5, 0.25);
+        encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(59, 0.25);
+        gyroTurnRight(52, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -74,7 +74,7 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(200);
             servoBeacon.setPosition(1.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
         else {
@@ -83,7 +83,7 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(200);
             servoBeacon.setPosition(0.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
 
@@ -103,7 +103,7 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(200);
             servoBeacon.setPosition(0.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
         else {
@@ -111,25 +111,28 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(100);
         }
 
-        encodersBackward(10, 0.3);
+        encodersBackward(14, 0.3);
         Thread.sleep(200);
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        gyroTurnLeft(65, 0.25);
+        gyroTurnLeft(62, 0.25);
         Thread.sleep(200);
 
-        encodersForward(10, 0.35);
+        encodersForward(20, 0.35);
+        Thread.sleep(200);
+
+        gyroTurnRight(6, 0.25);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.12, 10);
         Thread.sleep(200);
 
-        encodersForward(0.5, 0.25);
+        encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        gyroTurnRight(64, 0.25);
+        gyroTurnRight(56, 0.25);
         Thread.sleep(200);
 
         lineFollowerTwoSensors(10);
@@ -145,7 +148,7 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(200);
             servoBeacon.setPosition(1.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
         else {
@@ -154,7 +157,7 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(200);
             servoBeacon.setPosition(0.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
 
@@ -174,7 +177,7 @@ public class EverythingBlue extends AutonomousHeader {
             Thread.sleep(200);
             servoBeacon.setPosition(0.0);
             Thread.sleep(500);
-            encodersForward(2, 0.2);
+            encodersForward(4, 0.2);
             Thread.sleep(500);
         }
         else {
@@ -187,14 +190,5 @@ public class EverythingBlue extends AutonomousHeader {
 
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
-
-        encodersBackward(28, 0.4);
-        Thread.sleep(200);
-
-        gyroTurnLeft(44, 0.3);
-        Thread.sleep(200);
-
-        encodersBackward(50, 0.4);
-        Thread.sleep(500);
     }
 }
