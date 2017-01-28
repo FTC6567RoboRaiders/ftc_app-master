@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
 
-public class BackupEverythingRed extends AutonomousHeader {
+public class BackupEverythingRed extends AutonomousHeaderPretzel {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -17,7 +17,7 @@ public class BackupEverythingRed extends AutonomousHeader {
 
         waitForStart();
 
-        shoot();
+        /*shoot();
         Thread.sleep(200);
 
         servoGate.setPosition(0.3);
@@ -33,22 +33,14 @@ public class BackupEverythingRed extends AutonomousHeader {
         Thread.sleep(200);
 
         encodersForward(22, 0.3);
+        Thread.sleep(200);*/
+
+        encoderTurnRight(18, 0.3);
+
+        /*encodersForward(35, 0.35);
         Thread.sleep(200);
 
-        setMotorPower(0.3, -0.3);
-        Thread.sleep(250);
-
-        setMotorPower(0, 0);
-        Thread.sleep(200);
-
-        encodersForward(35, 0.35);
-        Thread.sleep(200);
-
-        setMotorPower(-0.3, 0.3);
-        Thread.sleep(250);
-
-        setMotorPower(0, 0);
-        Thread.sleep(200);
+        encoderTurnRight(18, 0.3)
 
         moveUntilWhiteLineStraight(0.15, 10);
         Thread.sleep(200);
@@ -56,11 +48,7 @@ public class BackupEverythingRed extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        setMotorPower(0.3, -0.3);
-        Thread.sleep(250);
-
-        setMotorPower(0, 0);
-        Thread.sleep(200);
+        encoderTurnRight(18, 0.3)
 
         lineFollowerTwoSensors(10);
         Thread.sleep(200);
@@ -94,11 +82,7 @@ public class BackupEverythingRed extends AutonomousHeader {
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        setMotorPower(-0.3, 0.3);
-        Thread.sleep(250);
-
-        setMotorPower(0, 0);
-        Thread.sleep(200);
+        encodesTurnLeft(18, 0.3)
 
         encodersForward(5, 0.35);
         Thread.sleep(200);
@@ -109,11 +93,7 @@ public class BackupEverythingRed extends AutonomousHeader {
         encodersForward(1, 0.25);
         Thread.sleep(200);
 
-        setMotorPower(0.3, -0.3);
-        Thread.sleep(250);
-
-        setMotorPower(0, 0);
-        Thread.sleep(200);
+        encoderTurnRight(18, 0.3)
 
         lineFollowerTwoSensors(10);
         Thread.sleep(200);
@@ -150,13 +130,9 @@ public class BackupEverythingRed extends AutonomousHeader {
         encodersBackward(28, 0.4);
         Thread.sleep(200);
 
-        setMotorPower(0.3, -0.3);
-        Thread.sleep(125);
-
-        setMotorPower(0, 0);
-        Thread.sleep(200);
+        encoderTurnRight(18, 0.3)
 
         encodersBackward(50, 0.4);
-        Thread.sleep(500);
+        Thread.sleep(500);*/
     }
 }

@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 @Autonomous
 @Disabled
 
-public class ShootBallsRedLeft extends AutonomousHeader{
+public class ShootBallsRedLeft extends AutonomousHeader {
 
     @Override
     public void runOpMode() throws InterruptedException {
