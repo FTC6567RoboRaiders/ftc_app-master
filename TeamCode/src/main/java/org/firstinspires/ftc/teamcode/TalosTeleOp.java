@@ -21,7 +21,7 @@ import com.qualcomm.robotcore.util.Range;
 public class TalosTeleOp extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
-            motorShooter, motorSweeper, motorLift;
+            motorShooter, motorSweeper, motorLiftLeft, motorLiftRight;
     Servo servoBeacon, servoGate;
     CRServo servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
@@ -58,7 +58,8 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
         motorShooter = hardwareMap.dcMotor.get("motorShooter");
         motorSweeper = hardwareMap.dcMotor.get("motorSweeper");
-        motorLift = hardwareMap.dcMotor.get("motorLift");
+        motorLiftLeft = hardwareMap.dcMotor.get("motorLiftLeft");
+        motorLiftRight = hardwareMap.dcMotor.get("motorLiftRight");
         rangeSensorLeft = hardwareMap.i2cDevice.get("rangeSensorLeft");
         rangeSensorRight = hardwareMap.i2cDevice.get("rangeSensorRight");
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
@@ -89,6 +90,8 @@ public class TalosTeleOp extends OpMode {
         motorBackRight.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
+        motorLiftLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorLiftRight.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
         servoLiftLeft.setPower(0.0);
@@ -138,17 +141,20 @@ public class TalosTeleOp extends OpMode {
             servoBeacon.setPosition(0);
         }
 
-        if (gamepad2.y) {
+        if (gamepad2.x) {
 
-            motorLift.setPower(-1.0);
+            motorLiftLeft.setPower(-1.0);
+            motorLiftRight.setPower(-1.0);
         }
-        else if (gamepad2.x) {
+        else if (gamepad2.y) {
 
-            motorLift.setPower(1.0);
+            motorLiftLeft.setPower(1.0);
+            motorLiftRight.setPower(1.0);
         }
         else {
 
-            motorLift.setPower(0.0);
+            motorLiftLeft.setPower(0.0);
+            motorLiftRight.setPower(0.0);
         }
 
         if (gamepad2.right_bumper) {
@@ -173,11 +179,11 @@ public class TalosTeleOp extends OpMode {
             servoGate.setPosition(0.0);
         }
 
-        if (gamepad2.b) {
+        if (gamepad2.a) {
 
             liftMode = 1.0;
         }
-        else if (gamepad2.a) {
+        else if (gamepad2.b) {
 
             liftMode = -1.0;
         }
