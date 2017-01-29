@@ -23,7 +23,7 @@ public class TalosTeleOp extends OpMode {
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLiftLeft, motorLiftRight;
     Servo servoBeacon, servoGate;
-    CRServo servoLiftLeft /*servoLiftRight*/;
+    CRServo servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
     double motorFactor = 0.75;
@@ -69,7 +69,7 @@ public class TalosTeleOp extends OpMode {
         servoBeacon = hardwareMap.servo.get("servoBeacon");
         servoGate = hardwareMap.servo.get("servoGate");
         servoLiftLeft = hardwareMap.crservo.get("servoLiftLeft");
-        //servoLiftRight = hardwareMap.crservo.get("servoLiftRight");
+        servoLiftRight = hardwareMap.crservo.get("servoLiftRight");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
@@ -95,7 +95,7 @@ public class TalosTeleOp extends OpMode {
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
         servoLiftLeft.setPower(0.0);
-        //servoLiftRight.setPower(0.0);
+        servoLiftRight.setPower(0.0);
     }
 
     @Override
@@ -212,7 +212,7 @@ public class TalosTeleOp extends OpMode {
         motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
         servoLiftLeft.setPower(liftMode);
-        //servoLiftRight.setPower(liftMode);
+        servoLiftRight.setPower(liftMode);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values

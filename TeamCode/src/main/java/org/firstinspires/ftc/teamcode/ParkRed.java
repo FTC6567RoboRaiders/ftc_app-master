@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 /**
- * Created by Katelin Zichittella on 11/14/16.
+ * Created by Katelin Zichittella on 10/26/2016.
  */
 
 @Autonomous
@@ -19,28 +19,15 @@ public class ParkRed extends AutonomousHeader {
 
         waitForStart();
 
-        Thread.sleep(10000);
+        Thread.sleep(15000);
 
-        encodersForward(5, 0.25);
+        encodersForward(6, 0.25);
         Thread.sleep(200);
 
-        gyroTurnLeft(22, 0.25);
+        gyroTurnLeft(23, 0.25);
         Thread.sleep(200);
 
-        encodersForward(8, 0.25);
-        Thread.sleep(200);
-
-        gyroTurnLeft(28, 0.25);
-        Thread.sleep(200);
-
-        encodersForward(50, 0.25);
-        Thread.sleep(200);
-
-        gyroTurnLeft(35, 0.25);
-        Thread.sleep(200);
-
-        encodersForward(15, 0.25);
+        encodersForward(55, 0.25);
         Thread.sleep(200);
     }
 }
-
