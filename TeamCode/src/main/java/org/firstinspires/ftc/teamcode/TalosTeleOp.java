@@ -109,17 +109,20 @@ public class TalosTeleOp extends OpMode {
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
         float shoot = gamepad2.right_stick_y;
+        float lift = gamepad2.left_stick_y;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
         shoot = Range.clip(shoot, -1, 1);
+        lift = Range.clip(lift, -1, 1);
 
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
         shoot = (float) scaleInput(shoot);
+        lift = (float) scaleInput(lift);
 
         setMotorPower(left * motorFactor, right * motorFactor);
-        setAttachmentPower(sweeperMode, shoot, liftMode);
+        setAttachmentPower(sweeperMode, shoot, liftMode, lift);
 
         if (gamepad1.x) {
 
@@ -139,22 +142,6 @@ public class TalosTeleOp extends OpMode {
         if (gamepad1.right_bumper) {
 
             servoBeacon.setPosition(0);
-        }
-
-        if (gamepad2.x) {
-
-            motorLiftLeft.setPower(-1.0);
-            motorLiftRight.setPower(-1.0);
-        }
-        else if (gamepad2.y) {
-
-            motorLiftLeft.setPower(1.0);
-            motorLiftRight.setPower(1.0);
-        }
-        else {
-
-            motorLiftLeft.setPower(0.0);
-            motorLiftRight.setPower(0.0);
         }
 
         if (gamepad2.right_bumper) {
@@ -207,12 +194,14 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweeperMode, double shoot, double liftMode) {
+    public void setAttachmentPower (double sweeperMode, double shoot, double liftMode, double lift) {
 
         motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
         servoLiftLeft.setPower(liftMode);
         servoLiftRight.setPower(liftMode);
+        motorLiftLeft.setPower(lift);
+        motorLiftRight.setPower(lift);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values
