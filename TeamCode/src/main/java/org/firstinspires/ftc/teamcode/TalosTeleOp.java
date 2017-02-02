@@ -172,6 +172,40 @@ public class TalosTeleOp extends OpMode {
 
             liftMode = -1.0;
         }
+        else if (gamepad2.x) { // Dab left
+
+            servoLiftLeft.setPower(-1.0);
+            servoLiftRight.setPower(-1.0);
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            servoLiftLeft.setPower(-1.0);
+            servoLiftRight.setPower(1.0);
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (gamepad2.y) { // Dab right
+
+            servoLiftLeft.setPower(-1.0);
+            servoLiftRight.setPower(-1.0);
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            servoLiftLeft.setPower(1.0);
+            servoLiftRight.setPower(-1.0);
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         else {
 
             liftMode = 0.0;
