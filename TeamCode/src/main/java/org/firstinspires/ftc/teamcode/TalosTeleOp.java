@@ -27,6 +27,7 @@ public class TalosTeleOp extends OpMode {
     GyroSensor sensorGyro;
 
     double motorFactor = 0.75;
+    boolean xPressedOnce = false;
     double sweeperMode;
     double liftMode;
 
@@ -73,7 +74,7 @@ public class TalosTeleOp extends OpMode {
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
-        colorSensorFrontReader = new I2cDeviceSynchImpl(colorSensorFront, I2cAddr.create8bit(0x40), false);
+        colorSensorFrontReader = new I2cDeviceSynchImpl(colorSensorFront, I2cAddr.create8bit(0x42), false);
         rangeSensorLeftReader = new I2cDeviceSynchImpl(rangeSensorLeft, I2cAddr.create8bit(0x28), false);
         rangeSensorRightReader = new I2cDeviceSynchImpl(rangeSensorRight, I2cAddr.create8bit(0x30), false);
 
@@ -122,6 +123,16 @@ public class TalosTeleOp extends OpMode {
         setMotorPower(left * motorFactor, right * motorFactor);
         setAttachmentPower(sweeperMode, shoot, liftMode, lift);
 
+        if (gamepad2.x) {
+
+            xPressedOnce = true;
+        }
+
+        if (gamepad2.y) {
+
+            xPressedOnce = false;
+        }
+
         if (gamepad1.x) {
 
             motorFactor = 0.4;
@@ -164,15 +175,15 @@ public class TalosTeleOp extends OpMode {
             servoGate.setPosition(0.0);
         }
 
-        if (gamepad2.a) {
+        if (gamepad2.a) { // Closes arms
 
             liftMode = 1.0;
         }
-        else if (gamepad2.b) {
+        else if (gamepad2.b) { // Opens arms
 
             liftMode = -1.0;
         }
-        else if (gamepad2.dpad_left) { // Dab left
+        else if (gamepad2.dpad_left) { // Dabs left
 
             servoLiftLeft.setPower(-1.0);
             servoLiftRight.setPower(-1.0);
@@ -189,7 +200,7 @@ public class TalosTeleOp extends OpMode {
                 e.printStackTrace();
             }
         }
-        else if (gamepad2.dpad_right) { // Dab right
+        else if (gamepad2.dpad_right) { // Dabs right
 
             servoLiftLeft.setPower(-1.0);
             servoLiftRight.setPower(-1.0);
@@ -206,15 +217,11 @@ public class TalosTeleOp extends OpMode {
                 e.printStackTrace();
             }
         }
-        else if (gamepad2.x) {
+        else if (xPressedOnce) { // Holds down
 
-            while (!gamepad2.y) {
-
-                liftMode = 1.0;
-            }
-            liftMode = 0.0;
+            liftMode = 1.0;
         }
-        else {
+        else { // Neutral
 
             liftMode = 0.0;
         }

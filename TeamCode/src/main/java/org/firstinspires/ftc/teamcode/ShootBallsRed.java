@@ -53,7 +53,7 @@ public class ShootBallsRed extends AutonomousHeader {
         gyroTurnLeft(35, 0.25);
         Thread.sleep(200);
 
-        encodersForward(8, 0.25);
+        encodersForward(15, 0.25);
         Thread.sleep(200);
     }
 }

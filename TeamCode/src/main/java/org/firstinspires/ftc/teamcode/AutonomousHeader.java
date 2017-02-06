@@ -192,7 +192,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             int DIAMETER = 4;
             int GEAR_RATIO = 1;
-            int PULSES = 560;
+            int PULSES = 1120;
             double CIRCUMFERENCE = Math.PI * DIAMETER;
             double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
             double COUNTS = PULSES * ROTATIONS;
@@ -220,7 +220,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             int DIAMETER = 4;
             int GEAR_RATIO = 1;
-            int PULSES = 560;
+            int PULSES = 1120;
             double CIRCUMFERENCE = Math.PI * DIAMETER;
             double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
             double COUNTS = PULSES * ROTATIONS;
