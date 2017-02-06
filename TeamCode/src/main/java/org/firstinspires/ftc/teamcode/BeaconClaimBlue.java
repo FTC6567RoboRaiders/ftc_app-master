@@ -37,7 +37,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
         servoBeacon.setPosition(0.5);
         Thread.sleep(200);
 
-        encodersForward(22, 0.3);
+        encodersForward(20, 0.3);
         Thread.sleep(200);
 
         gyroTurnRight(68, 0.25);
@@ -52,7 +52,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
         encodersForward(5, 0.3);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.12, 10);
+        moveUntilWhiteLineStraight(0.12);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);
@@ -126,7 +126,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
         gyroTurnRight(6, 0.25);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.12, 10);
+        moveUntilWhiteLineStraight(0.12);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);

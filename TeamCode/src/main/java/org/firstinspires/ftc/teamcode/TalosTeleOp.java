@@ -172,7 +172,7 @@ public class TalosTeleOp extends OpMode {
 
             liftMode = -1.0;
         }
-        else if (gamepad2.x) { // Dab left
+        else if (gamepad2.dpad_left) { // Dab left
 
             servoLiftLeft.setPower(-1.0);
             servoLiftRight.setPower(-1.0);
@@ -189,7 +189,7 @@ public class TalosTeleOp extends OpMode {
                 e.printStackTrace();
             }
         }
-        else if (gamepad2.y) { // Dab right
+        else if (gamepad2.dpad_right) { // Dab right
 
             servoLiftLeft.setPower(-1.0);
             servoLiftRight.setPower(-1.0);
@@ -205,6 +205,14 @@ public class TalosTeleOp extends OpMode {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+        else if (gamepad2.x) {
+
+            while (!gamepad2.y) {
+
+                liftMode = 1.0;
+            }
+            liftMode = 0.0;
         }
         else {
 

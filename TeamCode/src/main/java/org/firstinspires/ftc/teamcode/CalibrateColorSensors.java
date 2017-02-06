@@ -112,7 +112,7 @@ public class CalibrateColorSensors extends LinearOpMode {
         /* Calibrate Front Sensor*/
 
         colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
-        colorSensorFrontreader = new I2cDeviceSynchImpl(colorSensorFront, I2cAddr.create8bit(0x40), false);
+        colorSensorFrontreader = new I2cDeviceSynchImpl(colorSensorFront, I2cAddr.create8bit(0x42), false);
         colorSensorFrontreader.engage();
 
         colorSensorFrontreader.write8(3, 1);    //Set the mode of the color sensor to Passive

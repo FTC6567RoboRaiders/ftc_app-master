@@ -54,7 +54,7 @@ public class EverythingBlue extends AutonomousHeader {
         encodersForward(5, 0.3);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.12, 10);
+        moveUntilWhiteLineStraight(0.12);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);
@@ -128,7 +128,7 @@ public class EverythingBlue extends AutonomousHeader {
         gyroTurnRight(6, 0.25);
         Thread.sleep(200);
 
-        moveUntilWhiteLineStraight(0.12, 10);
+        moveUntilWhiteLineStraight(0.12);
         Thread.sleep(200);
 
         encodersForward(1, 0.25);

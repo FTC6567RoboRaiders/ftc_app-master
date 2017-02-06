@@ -67,7 +67,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
-        colorSensorFrontReader = new I2cDeviceSynchImpl(colorSensorFront, I2cAddr.create8bit(0x40), false);
+        colorSensorFrontReader = new I2cDeviceSynchImpl(colorSensorFront, I2cAddr.create8bit(0x42), false);
         rangeSensorLeftReader = new I2cDeviceSynchImpl(rangeSensorLeft, I2cAddr.create8bit(0x28), false);
         rangeSensorRightReader = new I2cDeviceSynchImpl(rangeSensorRight, I2cAddr.create8bit(0x30), false);
 
@@ -117,7 +117,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
             rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
             rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
 
-            while ((rangeSensorLeftCache[0] & 0xFF) > distance || (rangeSensorRightCache[0] & 0xFF) > distance) {
+            while (((rangeSensorLeftCache[0] & 0xFF) > distance || (rangeSensorRightCache[0] & 0xFF) > distance) && opModeIsActive()) {
 
                 rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
                 rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
@@ -158,18 +158,16 @@ public abstract class AutonomousHeader extends LinearOpMode {
         }
     }
 
-    public void moveUntilWhiteLineStraight (double power, double expireTime) {
+    public void moveUntilWhiteLineStraight (double power) {
 
-        runtime.reset();
-
-        if (opModeIsActive() && runtime.seconds() < expireTime) {
+        if (opModeIsActive()) {
 
             setMotorPower(power, power);
 
             colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
             colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-            while ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
+            while (((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) && opModeIsActive()) { // black
 
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
@@ -203,7 +201,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             setMotorPower(power, power);
 
-            while ((double)motorBackLeft.getCurrentPosition() < COUNTS) {
+            while ((double)motorBackLeft.getCurrentPosition() < COUNTS && opModeIsActive()) {
 
             }
 
@@ -231,7 +229,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             setMotorPower(-power, -power);
 
-            while ((double)motorBackLeft.getCurrentPosition() > COUNTS) {
+            while ((double)motorBackLeft.getCurrentPosition() > COUNTS && opModeIsActive()) {
 
             }
 
@@ -249,7 +247,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             setMotorPower(power, -power);
 
-            while (heading < degrees) {
+            while (heading < degrees && opModeIsActive()) {
 
                 heading = sensorGyro.getHeading();
 
@@ -273,7 +271,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             setMotorPower(-power, power);
 
-            while (heading < degrees) {
+            while (heading < degrees && opModeIsActive()) {
 
                 heading = sensorGyro.getHeading();
 
@@ -302,7 +300,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             motorShooter.setPower(1.0);
 
-            while ((double)motorShooter.getCurrentPosition() < COUNTS) {
+            while ((double)motorShooter.getCurrentPosition() < COUNTS && opModeIsActive()) {
 
             }
 
@@ -325,7 +323,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             motorShooter.setPower(1.0);
 
-            while ((double)motorShooter.getCurrentPosition() < COUNTS) {
+            while ((double)motorShooter.getCurrentPosition() < COUNTS && opModeIsActive()) {
 
             }
 
@@ -348,7 +346,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
             motorShooter.setPower(1.0);
 
-            while ((double)motorShooter.getCurrentPosition() < COUNTS) {
+            while ((double)motorShooter.getCurrentPosition() < COUNTS && opModeIsActive()) {
 
             }
 
