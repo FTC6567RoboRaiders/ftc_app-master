@@ -26,7 +26,7 @@ public class TalosTeleOp extends OpMode {
     CRServo servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
-    double motorFactor = 0.75;
+    double motorFactor = 1.0;
     boolean xPressedOnce = false;
     double sweeperMode;
     double liftMode;
@@ -88,8 +88,8 @@ public class TalosTeleOp extends OpMode {
         rangeSensorLeftReader.engage();
         rangeSensorRightReader.engage();
 
-        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
@@ -135,12 +135,12 @@ public class TalosTeleOp extends OpMode {
 
         if (gamepad1.x) {
 
-            motorFactor = 0.4;
+            motorFactor = 0.5;
         }
 
         if (gamepad1.y) {
 
-            motorFactor = 0.75;
+            motorFactor = 1.0;
         }
 
         if (gamepad1.left_bumper) {

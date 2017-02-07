@@ -17,8 +17,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public abstract class AutonomousHeader extends LinearOpMode {
 
-    private ElapsedTime runtime = new ElapsedTime();
-
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLiftLeft, motorLiftRight;
     Servo servoBeacon, servoGate;
@@ -81,8 +79,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         rangeSensorLeftReader.engage();
         rangeSensorRightReader.engage();
 
-        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
+        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
@@ -112,7 +110,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            setMotorPower(0.12, 0.12);
+            setMotorPower(0.24, 0.24);
 
             rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
             rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
@@ -135,22 +133,22 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
                 if ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
 
-                    setMotorPower(0.12, 0.12);
+                    setMotorPower(0.24, 0.24);
                 }
 
                 else if ((colorSensorLeftCache[0] & 0xFF) >= 80) { // white
 
-                    setMotorPower(0, 0.12);
+                    setMotorPower(0, 0.2);
                 }
 
                 else if ((colorSensorRightCache[0] & 0xFF) >= 80) { // white
 
-                    setMotorPower(0.12, 0);
+                    setMotorPower(0.2, 0);
                 }
 
                 else {
 
-                    setMotorPower(0.12, 0.12);
+                    setMotorPower(0.24, 0.24);
                 }
             }
 
