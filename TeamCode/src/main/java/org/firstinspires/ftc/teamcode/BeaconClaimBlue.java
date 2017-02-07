@@ -117,7 +117,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
         servoBeacon.setPosition(0.5);
         Thread.sleep(300);
 
-        gyroTurnLeft(54, 0.5);
+        gyroTurnLeft(65, 0.5);
         Thread.sleep(200);
 
         encodersForward(20, 0.6);
