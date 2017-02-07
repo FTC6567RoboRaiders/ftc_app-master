@@ -143,6 +143,16 @@ public class TalosTeleOp extends OpMode {
             motorFactor = 1.0;
         }
 
+        if (gamepad1.a) {
+
+            motorFactor = -0.5;
+        }
+
+        if (gamepad1.b) {
+
+            motorFactor = -1.0;
+        }
+
         if (gamepad1.left_bumper) {
 
             servoBeacon.setPosition(1);
