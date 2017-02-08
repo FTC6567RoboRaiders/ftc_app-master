@@ -123,7 +123,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
         encodersForward(20, 0.6);
         Thread.sleep(200);
 
-        gyroTurnRight(6, 0.5);
+        gyroTurnRight(5, 0.5);
         Thread.sleep(200);
 
         moveUntilWhiteLineStraight(0.24);
