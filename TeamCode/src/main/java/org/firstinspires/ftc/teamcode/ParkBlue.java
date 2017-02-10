@@ -1,12 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
  * Created by Katelin Zichittella on 11/14/16.
  */
 
 @Autonomous
+@Disabled
 public class ParkBlue extends AutonomousHeader {
 
     @Override

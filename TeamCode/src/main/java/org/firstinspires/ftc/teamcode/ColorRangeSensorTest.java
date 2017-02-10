@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
 
-public class ColorSensorTest extends OpMode {
+public class ColorRangeSensorTest extends OpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
