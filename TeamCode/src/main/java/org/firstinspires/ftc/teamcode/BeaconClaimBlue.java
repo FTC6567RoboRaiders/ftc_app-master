@@ -43,10 +43,10 @@ public class BeaconClaimBlue extends AutonomousHeader {
         gyroTurnRight(68, 0.5);
         Thread.sleep(200);
 
-        encodersForward(31, 0.6);
+        encodersForward(30, 0.6);
         Thread.sleep(200);
 
-        gyroTurnLeft(44, 0.5);
+        gyroTurnLeft(45, 0.5);
         Thread.sleep(200);
 
         encodersForward(5, 0.6);
@@ -120,7 +120,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
         gyroTurnLeft(65, 0.5);
         Thread.sleep(200);
 
-        encodersForward(20, 0.6);
+        encodersForward(24, 0.6);
         Thread.sleep(200);
 
         gyroTurnRight(5, 0.5);
