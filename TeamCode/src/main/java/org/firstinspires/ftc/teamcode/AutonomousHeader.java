@@ -131,17 +131,17 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 telemetry.addData("RightColor", colorSensorRightCache[0] & 0xFF);
                 telemetry.update();*/
 
-                if ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
+                if ((colorSensorLeftCache[0] & 0xFF) < 45 && (colorSensorRightCache[0] & 0xFF) < 45) { // black
 
                     setMotorPower(0.24, 0.24);
                 }
 
-                else if ((colorSensorLeftCache[0] & 0xFF) >= 80) { // white
+                else if ((colorSensorLeftCache[0] & 0xFF) >= 45) { // white
 
                     setMotorPower(0, 0.2);
                 }
 
-                else if ((colorSensorRightCache[0] & 0xFF) >= 80) { // white
+                else if ((colorSensorRightCache[0] & 0xFF) >= 45) { // white
 
                     setMotorPower(0.2, 0);
                 }
@@ -165,7 +165,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
             colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
             colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-            while (((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) && opModeIsActive()) { // black
+            while (((colorSensorLeftCache[0] & 0xFF) < 45 && (colorSensorRightCache[0] & 0xFF) < 45) && opModeIsActive()) { // black
 
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);

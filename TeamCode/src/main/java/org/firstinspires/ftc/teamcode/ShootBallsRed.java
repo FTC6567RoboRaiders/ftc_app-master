@@ -26,6 +26,9 @@ public class ShootBallsRed extends AutonomousHeader {
         gyroTurnLeft(22, 0.5);
         Thread.sleep(200);
 
+        encodersForward(4, 0.5);
+        Thread.sleep(200);
+
         shoot();
         Thread.sleep(200);
 
@@ -41,7 +44,7 @@ public class ShootBallsRed extends AutonomousHeader {
         shoot3();
         Thread.sleep(200);
 
-        encodersForward(18, 0.5);
+        encodersForward(14, 0.5);
         Thread.sleep(200);
 
         gyroTurnLeft(28, 0.5);

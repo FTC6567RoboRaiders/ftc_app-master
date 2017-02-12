@@ -27,7 +27,7 @@ public class RunIntoCapBallBlue extends AutonomousHeader {
         gyroTurnRight(22, 0.5);
         Thread.sleep(200);
 
-        encodersForward(3, 0.5);
+        encodersForward(5, 0.5);
         Thread.sleep(200);
 
         shoot();
@@ -45,7 +45,7 @@ public class RunIntoCapBallBlue extends AutonomousHeader {
         shoot3();
         Thread.sleep(200);
 
-        encodersForward(55, 0.5);
+        encodersForward(53, 0.5);
         Thread.sleep(200);
     }
 }
