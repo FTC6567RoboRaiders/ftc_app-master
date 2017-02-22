@@ -15,14 +15,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Created by Katelin Zichittella on 11/20/2016.
  */
 
-public abstract class AutonomousHeaderPretzel extends LinearOpMode {
-
-    private ElapsedTime runtime = new ElapsedTime();
+public abstract class TalosAutonomousHeader extends LinearOpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLiftLeft, motorLiftRight;
     Servo servoBeacon, servoGate;
-    CRServo servoLiftLeft /*servoLiftRight*/;
+    CRServo servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
     byte[] rangeSensorLeftCache;
@@ -63,11 +61,11 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
         servoBeacon = hardwareMap.servo.get("servoBeacon");
         servoGate = hardwareMap.servo.get("servoGate");
         servoLiftLeft = hardwareMap.crservo.get("servoLiftLeft");
-        //servoLiftRight = hardwareMap.crservo.get("servoLiftRight");
+        servoLiftRight = hardwareMap.crservo.get("servoLiftRight");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
-        colorSensorFrontReader = new I2cDeviceSynchImpl(colorSensorFront, I2cAddr.create8bit(0x40), false);
+        colorSensorFrontReader = new I2cDeviceSynchImpl(colorSensorFront, I2cAddr.create8bit(0x42), false);
         rangeSensorLeftReader = new I2cDeviceSynchImpl(rangeSensorLeft, I2cAddr.create8bit(0x28), false);
         rangeSensorRightReader = new I2cDeviceSynchImpl(rangeSensorRight, I2cAddr.create8bit(0x30), false);
 
@@ -81,13 +79,13 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
         rangeSensorLeftReader.engage();
         rangeSensorRightReader.engage();
 
-        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
+        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
         servoLiftLeft.setPower(0.0);
-        //servoLiftRight.setPower(0.0);
+        servoLiftRight.setPower(0.0);
 
         motorShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
@@ -112,12 +110,12 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            setMotorPower(0.12, 0.12);
+            setMotorPower(0.24, 0.24);
 
             rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
             rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
 
-            while ((rangeSensorLeftCache[0] & 0xFF) > distance || (rangeSensorRightCache[0] & 0xFF) > distance) {
+            while (((rangeSensorLeftCache[0] & 0xFF) > distance || (rangeSensorRightCache[0] & 0xFF) > distance) && opModeIsActive()) {
 
                 rangeSensorLeftCache = rangeSensorLeftReader.read(0x04, 1);
                 rangeSensorRightCache = rangeSensorRightReader.read(0x04, 1);
@@ -133,24 +131,24 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
                 telemetry.addData("RightColor", colorSensorRightCache[0] & 0xFF);
                 telemetry.update();*/
 
-                if ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
+                if ((colorSensorLeftCache[0] & 0xFF) < 45 && (colorSensorRightCache[0] & 0xFF) < 45) { // black
 
-                    setMotorPower(0.12, 0.12);
+                    setMotorPower(0.24, 0.24);
                 }
 
-                else if ((colorSensorLeftCache[0] & 0xFF) >= 80) { // white
+                else if ((colorSensorLeftCache[0] & 0xFF) >= 45) { // white
 
-                    setMotorPower(0, 0.12);
+                    setMotorPower(0, 0.2);
                 }
 
-                else if ((colorSensorRightCache[0] & 0xFF) >= 80) { // white
+                else if ((colorSensorRightCache[0] & 0xFF) >= 45) { // white
 
-                    setMotorPower(0.12, 0);
+                    setMotorPower(0.2, 0);
                 }
 
                 else {
 
-                    setMotorPower(0.12, 0.12);
+                    setMotorPower(0.24, 0.24);
                 }
             }
 
@@ -158,18 +156,16 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
         }
     }
 
-    public void moveUntilWhiteLineStraight (double power, double expireTime) {
+    public void moveUntilWhiteLineStraight (double power) {
 
-        runtime.reset();
-
-        if (opModeIsActive() && runtime.seconds() < expireTime) {
+        if (opModeIsActive()) {
 
             setMotorPower(power, power);
 
             colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
             colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-            while ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
+            while (((colorSensorLeftCache[0] & 0xFF) < 45 && (colorSensorRightCache[0] & 0xFF) < 45) && opModeIsActive()) { // black
 
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
@@ -194,7 +190,7 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
             int DIAMETER = 4;
             int GEAR_RATIO = 1;
-            int PULSES = 560;
+            int PULSES = 1120;
             double CIRCUMFERENCE = Math.PI * DIAMETER;
             double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
             double COUNTS = PULSES * ROTATIONS;
@@ -203,59 +199,7 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
             setMotorPower(power, power);
 
-            while ((double)motorBackLeft.getCurrentPosition() < COUNTS) {
-
-            }
-
-            setMotorPower(0.0, 0.0);
-        }
-    }
-
-    public void encoderTurnLeft (int distance, double power) {
-
-        if (opModeIsActive()) {
-
-            motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-            int DIAMETER = 4;
-            int GEAR_RATIO = 1;
-            int PULSES = 560;
-            double CIRCUMFERENCE = Math.PI * DIAMETER;
-            double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
-            double COUNTS = PULSES * ROTATIONS;
-
-            COUNTS = COUNTS + Math.abs((double)motorBackLeft.getCurrentPosition());
-
-            setMotorPower(-power, power);
-
-            while ((double)motorBackLeft.getCurrentPosition() < COUNTS) {
-
-            }
-
-            setMotorPower(0.0, 0.0);
-        }
-    }
-
-    public void encoderTurnRight (int distance, double power) {
-
-        if (opModeIsActive()) {
-
-            motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-            int DIAMETER = 4;
-            int GEAR_RATIO = 1;
-            int PULSES = 560;
-            double CIRCUMFERENCE = Math.PI * DIAMETER;
-            double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
-            double COUNTS = PULSES * ROTATIONS;
-
-            COUNTS = COUNTS + Math.abs((double)motorBackRight.getCurrentPosition());
-
-            setMotorPower(power, -power);
-
-            while ((double)motorBackRight.getCurrentPosition() < COUNTS) {
+            while ((double)motorBackLeft.getCurrentPosition() < COUNTS && opModeIsActive()) {
 
             }
 
@@ -274,7 +218,7 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
             int DIAMETER = 4;
             int GEAR_RATIO = 1;
-            int PULSES = 560;
+            int PULSES = 1120;
             double CIRCUMFERENCE = Math.PI * DIAMETER;
             double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
             double COUNTS = PULSES * ROTATIONS;
@@ -283,7 +227,7 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
             setMotorPower(-power, -power);
 
-            while ((double)motorBackLeft.getCurrentPosition() > COUNTS) {
+            while ((double)motorBackLeft.getCurrentPosition() > COUNTS && opModeIsActive()) {
 
             }
 
@@ -301,7 +245,7 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
             setMotorPower(power, -power);
 
-            while (heading < degrees) {
+            while (heading < degrees && opModeIsActive()) {
 
                 heading = sensorGyro.getHeading();
 
@@ -325,7 +269,7 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
             setMotorPower(-power, power);
 
-            while (heading < degrees) {
+            while (heading < degrees && opModeIsActive()) {
 
                 heading = sensorGyro.getHeading();
 
@@ -354,7 +298,7 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
             motorShooter.setPower(1.0);
 
-            while ((double)motorShooter.getCurrentPosition() < COUNTS) {
+            while ((double)motorShooter.getCurrentPosition() < COUNTS && opModeIsActive()) {
 
             }
 
@@ -377,7 +321,7 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
             motorShooter.setPower(1.0);
 
-            while ((double)motorShooter.getCurrentPosition() < COUNTS) {
+            while ((double)motorShooter.getCurrentPosition() < COUNTS && opModeIsActive()) {
 
             }
 
@@ -400,7 +344,7 @@ public abstract class AutonomousHeaderPretzel extends LinearOpMode {
 
             motorShooter.setPower(1.0);
 
-            while ((double)motorShooter.getCurrentPosition() < COUNTS) {
+            while ((double)motorShooter.getCurrentPosition() < COUNTS && opModeIsActive()) {
 
             }
 

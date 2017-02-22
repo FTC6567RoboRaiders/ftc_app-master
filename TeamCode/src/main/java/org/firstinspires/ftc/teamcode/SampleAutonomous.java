@@ -40,13 +40,3 @@ public class SampleAutonomous extends SampleAutonomousHeader {
         Thread.sleep(500);
     }
 }
-
-
-
-
-
-
-
-
-
-

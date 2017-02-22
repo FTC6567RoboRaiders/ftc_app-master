@@ -370,4 +370,3 @@ public abstract class TrueProphetOp extends LinearOpMode { // This line establis
         motorFrontLeft.setPower(left * 0.75);   // for the different gear ratios.
     }
 }
-
