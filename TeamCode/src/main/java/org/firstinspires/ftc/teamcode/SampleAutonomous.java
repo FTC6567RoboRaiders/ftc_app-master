@@ -37,6 +37,6 @@ public class SampleAutonomous extends SampleAutonomousHeader {
         move(-1.0, 1.0);
         Thread.sleep(1000);
         move(0.0, 0.0);
-        Thread.sleep(500); //
+        Thread.sleep(500);
     }
 }
