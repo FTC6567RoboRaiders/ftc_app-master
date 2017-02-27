@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
 
-public class TalosBeaconClaimRed extends AutonomousHeader {
+public class TalosBeaconClaimRed extends TalosAutonomousHeader {
 
     @Override
     public void runOpMode() throws InterruptedException {
