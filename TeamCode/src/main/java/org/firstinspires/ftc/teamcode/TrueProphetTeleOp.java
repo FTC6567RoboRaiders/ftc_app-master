@@ -421,6 +421,3 @@ public class TrueProphetTeleOp extends OpMode { // This line establishes the nam
         return dScale;
     }
 }
-
-
-

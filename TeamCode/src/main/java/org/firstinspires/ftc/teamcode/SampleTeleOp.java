@@ -77,4 +77,3 @@ public class SampleTeleOp extends OpMode {
         return dScale;
     }
 }
-

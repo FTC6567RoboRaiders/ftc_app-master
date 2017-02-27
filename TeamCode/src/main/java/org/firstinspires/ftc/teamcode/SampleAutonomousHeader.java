@@ -25,8 +25,3 @@ public abstract class SampleAutonomousHeader extends LinearOpMode {
         motorRight.setPower(right);
     }
 }
-
-
-
-
-
