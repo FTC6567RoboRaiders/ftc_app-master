@@ -91,5 +91,4 @@ public class MecanumTeleOp extends OpMode {
         // return scaled value.
         return dScale;
     }
-
 }
