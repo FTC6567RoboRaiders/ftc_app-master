@@ -30,10 +30,10 @@ public class MecanumTeleOp extends OpMode {
     @Override
     public void loop() {
 
-        float backLeft = gamepad1.left_stick_y + gamepad1.right_stick_x - gamepad1.left_stick_x;
-        float backRight = gamepad1.left_stick_y - gamepad1.right_stick_x + gamepad1.left_stick_x;
-        float frontLeft = gamepad1.left_stick_y + gamepad1.right_stick_x + gamepad1.left_stick_x;
-        float frontRight = gamepad1.left_stick_y - gamepad1.right_stick_x - gamepad1.left_stick_x;
+        float backLeft = gamepad1.left_stick_y - gamepad1.left_stick_x + gamepad1.right_stick_x;
+        float backRight = gamepad1.left_stick_y + gamepad1.left_stick_x - gamepad1.right_stick_x;
+        float frontLeft = gamepad1.left_stick_y + gamepad1.left_stick_x + gamepad1.right_stick_x;
+        float frontRight = gamepad1.left_stick_y - gamepad1.left_stick_x - gamepad1.right_stick_x;
 
         backLeft = Range.clip(backLeft, -1, 1);
         backRight = Range.clip(backRight, -1, 1);
