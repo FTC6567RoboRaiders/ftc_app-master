@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Created by Katelin Zichittella on 3/1/2017.
  */
 
-public abstract class NewPaltzAutonomousHeader extends LinearOpMode {
+public abstract class MustardAutonomousHeader extends LinearOpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight;
 

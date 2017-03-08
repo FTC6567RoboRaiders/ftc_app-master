@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
 
-public class NewPaltzAutonomous extends NewPaltzAutonomousHeader {
+public class MustardAutonomous extends MustardAutonomousHeader {
 
     @Override
     public void runOpMode() throws InterruptedException {
