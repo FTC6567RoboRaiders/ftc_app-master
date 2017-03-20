@@ -29,7 +29,7 @@ public abstract class MecanumAutonomousHeader extends LinearOpMode {
             motorBackLeft.setPower(power * Math.sin(degrees + 45));
             motorBackRight.setPower(power * Math.cos(degrees + 45));
             motorFrontLeft.setPower(power * Math.cos(degrees + 45));
-            motorFrontRight.setPower(power* Math.sin(degrees + 45));
+            motorFrontRight.setPower(power * Math.sin(degrees + 45));
         }
     }
 
