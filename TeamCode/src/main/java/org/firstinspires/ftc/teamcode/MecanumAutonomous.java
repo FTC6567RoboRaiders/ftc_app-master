@@ -22,7 +22,7 @@ public class MecanumAutonomous extends MecanumAutonomousHeader {
         pause();
         Thread.sleep(500);
 
-        strafe(150, 1.0);
+        /*strafe(150, 1.0);
         Thread.sleep(1000);
         pause();
         Thread.sleep(500);
@@ -55,6 +55,6 @@ public class MecanumAutonomous extends MecanumAutonomousHeader {
         strafe(330, 0.5);
         Thread.sleep(1000);
         pause();
-        Thread.sleep(500);
+        Thread.sleep(500);*/
     }
 }
