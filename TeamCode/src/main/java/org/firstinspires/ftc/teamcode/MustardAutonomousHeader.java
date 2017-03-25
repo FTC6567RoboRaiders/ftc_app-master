@@ -9,27 +9,22 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public abstract class MustardAutonomousHeader extends LinearOpMode {
 
-    DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight;
+    DcMotor motorLeft, motorRight;
 
     public void initialize() {
 
-        motorBackLeft = hardwareMap.dcMotor.get("motorBackLeft");
-        motorBackRight = hardwareMap.dcMotor.get("motorBackRight");
-        motorFrontLeft = hardwareMap.dcMotor.get("motorFrontLeft");
-        motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
+        motorLeft = hardwareMap.dcMotor.get("motorLeft");
+        motorRight = hardwareMap.dcMotor.get("motorRight");
 
-        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
+        motorLeft.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void setMotorPower (double left, double right) {
 
         if (opModeIsActive()) {
 
-            motorBackLeft.setPower(left);
-            motorBackRight.setPower(right);
-            motorFrontLeft.setPower(left);
-            motorFrontRight.setPower(right);
+            motorLeft.setPower(left);
+            motorRight.setPower(right);
         }
     }
 }
