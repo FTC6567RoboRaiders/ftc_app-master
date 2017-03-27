@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Created by Katelin Zichittella on 11/20/2016.
  */
 
-public abstract class TalosAutonomousHeader extends LinearOpMode {
+public abstract class AutonomousHeader extends LinearOpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLiftLeft, motorLiftRight;

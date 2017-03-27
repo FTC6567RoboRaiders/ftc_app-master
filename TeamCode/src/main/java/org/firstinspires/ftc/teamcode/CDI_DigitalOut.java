@@ -8,13 +8,15 @@ Core Device Interface with the default name "Device Interface Module 1"
 */
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "CDI Digital Out", group = "MRI")  // @Autonomous(...) is the other common choice
-//@Disabled
+@Disabled
+
 public class CDI_DigitalOut extends OpMode {
 
     private ElapsedTime runtime = new ElapsedTime();

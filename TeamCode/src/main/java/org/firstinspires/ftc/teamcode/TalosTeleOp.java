@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
@@ -22,14 +21,12 @@ public class TalosTeleOp extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLiftLeft, motorLiftRight;
-    Servo servoBeacon, servoGate;
-    CRServo servoLiftLeft, servoLiftRight;
+    Servo servoBeacon, servoGate, servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
     double motorFactor = 1.0;
-    boolean xPressedOnce = false;
     double sweeperMode;
-    double liftMode;
+    int armCount = 0;
 
     byte[] rangeSensorLeftCache;
     byte[] rangeSensorRightCache;
@@ -69,8 +66,8 @@ public class TalosTeleOp extends OpMode {
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
         servoBeacon = hardwareMap.servo.get("servoBeacon");
         servoGate = hardwareMap.servo.get("servoGate");
-        servoLiftLeft = hardwareMap.crservo.get("servoLiftLeft");
-        servoLiftRight = hardwareMap.crservo.get("servoLiftRight");
+        servoLiftLeft = hardwareMap.servo.get("servoLiftLeft");
+        servoLiftRight = hardwareMap.servo.get("servoLiftRight");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
@@ -93,8 +90,8 @@ public class TalosTeleOp extends OpMode {
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPower(0.0);
-        servoLiftRight.setPower(0.0);
+        servoLiftLeft.setPosition(1.0);
+        servoLiftRight.setPosition(0.0);
     }
 
     @Override
@@ -121,17 +118,7 @@ public class TalosTeleOp extends OpMode {
         lift = (float) scaleInput(lift);
 
         setMotorPower(left * motorFactor, right * motorFactor);
-        setAttachmentPower(sweeperMode, shoot, liftMode, lift);
-
-        if (gamepad2.x) {
-
-            xPressedOnce = true;
-        }
-
-        if (gamepad2.y) {
-
-            xPressedOnce = false;
-        }
+        setAttachmentPower(sweeperMode, shoot, lift);
 
         if (gamepad1.x) {
 
@@ -163,6 +150,30 @@ public class TalosTeleOp extends OpMode {
             servoBeacon.setPosition(0);
         }
 
+        if (gamepad2.a) {
+
+            servoLiftLeft.setPosition(1.0);
+            servoLiftRight.setPosition(0.0);
+
+            armCount = 0; // Resets number of button presses
+        }
+
+        if (gamepad2.b) {
+
+            armCount++;
+
+            if ((armCount % 2) == 1) { // Odd number of button presses
+
+                servoLiftLeft.setPosition(0.4);
+                servoLiftRight.setPosition(0.6);
+            }
+            else { // Even number of button presses
+
+                servoLiftLeft.setPosition(0.2);
+                servoLiftRight.setPosition(0.8);
+            }
+        }
+
         if (gamepad2.right_bumper) {
 
             sweeperMode = 1.0;
@@ -184,57 +195,6 @@ public class TalosTeleOp extends OpMode {
 
             servoGate.setPosition(0.0);
         }
-
-        if (gamepad2.a) { // Closes arms
-
-            liftMode = 1.0;
-        }
-        else if (gamepad2.b) { // Opens arms
-
-            liftMode = -1.0;
-        }
-        else if (gamepad2.dpad_left) { // Dabs left
-
-            servoLiftLeft.setPower(-1.0);
-            servoLiftRight.setPower(-1.0);
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            servoLiftLeft.setPower(-1.0);
-            servoLiftRight.setPower(1.0);
-            try {
-                Thread.sleep(300);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        else if (gamepad2.dpad_right) { // Dabs right
-
-            servoLiftLeft.setPower(-1.0);
-            servoLiftRight.setPower(-1.0);
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            servoLiftLeft.setPower(1.0);
-            servoLiftRight.setPower(-1.0);
-            try {
-                Thread.sleep(300);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        else if (xPressedOnce) { // Holds down
-
-            liftMode = 1.0;
-        }
-        else { // Neutral
-
-            liftMode = 0.0;
-        }
     }
 
     @Override
@@ -251,12 +211,10 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight.setPower(right);
     }
 
-    public void setAttachmentPower (double sweeperMode, double shoot, double liftMode, double lift) {
+    public void setAttachmentPower (double sweeperMode, double shoot, double lift) {
 
         motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
-        servoLiftLeft.setPower(liftMode);
-        servoLiftRight.setPower(liftMode);
         motorLiftLeft.setPower(lift);
         motorLiftRight.setPower(lift);
     }
