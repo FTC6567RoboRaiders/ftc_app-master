@@ -26,6 +26,17 @@ public abstract class MecanumAutonomousHeader extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+            motorBackLeft.setPower((Math.sin(degrees) * power) - (Math.cos(degrees) * power));
+            motorBackRight.setPower((Math.sin(degrees) * power) + (Math.cos(degrees) * power));
+            motorFrontLeft.setPower((Math.sin(degrees) * power) + (Math.cos(degrees) * power));
+            motorFrontRight.setPower((Math.sin(degrees) * power) - (Math.cos(degrees) * power));
+        }
+    }
+
+    public void strafe2(double degrees, double power) {
+
+        if (opModeIsActive()) {
+
             motorBackLeft.setPower(power * Math.sin(degrees + 45));
             motorBackRight.setPower(power * Math.cos(degrees + 45));
             motorFrontLeft.setPower(power * Math.cos(degrees + 45));
