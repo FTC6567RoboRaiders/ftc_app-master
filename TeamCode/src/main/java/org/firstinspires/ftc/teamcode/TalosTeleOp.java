@@ -20,7 +20,7 @@ import com.qualcomm.robotcore.util.Range;
 public class TalosTeleOp extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
-            motorShooter, motorSweeper, motorLiftLeft, motorLiftRight;
+            motorShooter, motorSweeper, motorLift;
     Servo servoBeacon, servoGate, servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
@@ -56,8 +56,7 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
         motorShooter = hardwareMap.dcMotor.get("motorShooter");
         motorSweeper = hardwareMap.dcMotor.get("motorSweeper");
-        motorLiftLeft = hardwareMap.dcMotor.get("motorLiftLeft");
-        motorLiftRight = hardwareMap.dcMotor.get("motorLiftRight");
+        motorLift = hardwareMap.dcMotor.get("motorLift");
         rangeSensorLeft = hardwareMap.i2cDevice.get("rangeSensorLeft");
         rangeSensorRight = hardwareMap.i2cDevice.get("rangeSensorRight");
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
@@ -88,10 +87,11 @@ public class TalosTeleOp extends OpMode {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
+        motorLift.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPosition(1.0);
-        servoLiftRight.setPosition(0.0);
+        servoLiftLeft.setPosition(1.00);
+        servoLiftRight.setPosition(1.00);
     }
 
     @Override
@@ -152,8 +152,8 @@ public class TalosTeleOp extends OpMode {
 
         if (gamepad2.a) {
 
-            servoLiftLeft.setPosition(1.0);
-            servoLiftRight.setPosition(0.0);
+            servoLiftLeft.setPosition(1.00);
+            servoLiftRight.setPosition(1.00);
 
             armCount = 0; // Resets number of button presses
         }
@@ -164,13 +164,13 @@ public class TalosTeleOp extends OpMode {
 
             if ((armCount % 2) == 1) { // Odd number of button presses
 
-                servoLiftLeft.setPosition(0.4);
-                servoLiftRight.setPosition(0.6);
+                servoLiftLeft.setPosition(0.35);
+                servoLiftRight.setPosition(0.35);
             }
             else { // Even number of button presses
 
-                servoLiftLeft.setPosition(0.2);
-                servoLiftRight.setPosition(0.8);
+                servoLiftLeft.setPosition(0.20);
+                servoLiftRight.setPosition(0.20);
             }
         }
 
@@ -215,8 +215,7 @@ public class TalosTeleOp extends OpMode {
 
         motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
-        motorLiftLeft.setPower(lift);
-        motorLiftRight.setPower(lift);
+        motorLift.setPower(lift);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values

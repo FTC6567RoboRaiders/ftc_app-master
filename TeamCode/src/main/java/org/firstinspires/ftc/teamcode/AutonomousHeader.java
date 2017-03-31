@@ -18,7 +18,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public abstract class AutonomousHeader extends LinearOpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
-            motorShooter, motorSweeper, motorLiftLeft, motorLiftRight;
+            motorShooter, motorSweeper, motorLift;
     Servo servoBeacon, servoGate;
     CRServo servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
@@ -50,8 +50,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
         motorShooter = hardwareMap.dcMotor.get("motorShooter");
         motorSweeper = hardwareMap.dcMotor.get("motorSweeper");
-        motorLiftLeft = hardwareMap.dcMotor.get("motorLiftLeft");
-        motorLiftRight = hardwareMap.dcMotor.get("motorLiftRight");
+        motorLift = hardwareMap.dcMotor.get("motorLift");
         rangeSensorLeft = hardwareMap.i2cDevice.get("rangeSensorLeft");
         rangeSensorRight = hardwareMap.i2cDevice.get("rangeSensorRight");
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
