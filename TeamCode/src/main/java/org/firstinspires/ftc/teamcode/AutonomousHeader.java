@@ -19,8 +19,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLift;
-    Servo servoBeacon, servoGate;
-    CRServo servoLiftLeft, servoLiftRight;
+    Servo servoBeacon, servoGate, servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
     byte[] rangeSensorLeftCache;
@@ -59,8 +58,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
         servoBeacon = hardwareMap.servo.get("servoBeacon");
         servoGate = hardwareMap.servo.get("servoGate");
-        servoLiftLeft = hardwareMap.crservo.get("servoLiftLeft");
-        servoLiftRight = hardwareMap.crservo.get("servoLiftRight");
+        servoLiftLeft = hardwareMap.servo.get("servoLiftLeft");
+        servoLiftRight = hardwareMap.servo.get("servoLiftRight");
 
         colorSensorLeftReader = new I2cDeviceSynchImpl(colorSensorLeft, I2cAddr.create8bit(0x3c), false);
         colorSensorRightReader = new I2cDeviceSynchImpl(colorSensorRight, I2cAddr.create8bit(0x3e), false);
@@ -83,8 +82,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPower(0.0);
-        servoLiftRight.setPower(0.0);
+        servoLiftLeft.setPosition(1.00);
+        servoLiftRight.setPosition(1.00);
 
         motorShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
