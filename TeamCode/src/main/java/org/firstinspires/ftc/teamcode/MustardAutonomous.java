@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
  */
 
 @Autonomous
-@Disabled
 
 public class MustardAutonomous extends MustardAutonomousHeader {
 
