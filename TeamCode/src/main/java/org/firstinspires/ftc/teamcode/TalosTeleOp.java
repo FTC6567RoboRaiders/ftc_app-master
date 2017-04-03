@@ -26,9 +26,6 @@ public class TalosTeleOp extends OpMode {
 
     double motorFactor = 1.0;
     double sweeperMode;
-    int armCount = 0;
-    boolean bCurrState = false;
-    boolean bPrevState = false;
 
     byte[] rangeSensorLeftCache;
     byte[] rangeSensorRightCache;
@@ -93,7 +90,8 @@ public class TalosTeleOp extends OpMode {
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
         servoLiftLeft.setPosition(0.7);
-        servoLiftRight.setPosition(0.7);   }
+        servoLiftRight.setPosition(0.7);
+    }
 
     @Override
     public void init() {
@@ -155,43 +153,13 @@ public class TalosTeleOp extends OpMode {
 
             servoLiftLeft.setPosition(0.7);
             servoLiftRight.setPosition(0.7);
-
-            armCount = 0; // Resets number of button presses
         }
 
         if (gamepad2.b) {
 
-            armCount++;
-
-          /*  if ((armCount % 2) == 1) { // Odd number of button presses */
-
-                servoLiftLeft.setPosition(0.35);
-                servoLiftRight.setPosition(0.35);
-          /*  }
-            else { // Even number of button presses
-
-                servoLiftLeft.setPosition(0.20);
-                servoLiftRight.setPosition(0.20);
-            }*/
+            servoLiftLeft.setPosition(0.35);
+            servoLiftRight.setPosition(0.35);
         }
-
-        /*if (bCurrState && bCurrState != bPrevState) {
-
-            armCount++;
-
-            if ((armCount % 2) == 1) { // Odd number of button presses
-
-                servoLiftLeft.setPosition(0.35);
-                servoLiftRight.setPosition(0.35);
-            }
-            else { // Even number of button presses
-
-                servoLiftLeft.setPosition(0.20);
-                servoLiftRight.setPosition(0.20);
-            }
-
-            bCurrState = bPrevState;
-        }*/
 
         if (gamepad2.right_bumper) {
 
