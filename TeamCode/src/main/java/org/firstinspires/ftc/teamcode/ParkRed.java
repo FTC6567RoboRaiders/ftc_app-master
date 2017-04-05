@@ -1,14 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
- * Created by Simon and Derin on 11/14/16.
+ * Created by Katelin Zichittella on 11/14/16.
  */
 
 @Autonomous
+@Disabled
 
-public class ShootBallsBlue extends AutonomousHeaderWithoutBeaconServo {
+public class ParkRed extends AutonomousHeaderWithoutBeaconServo {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -21,40 +23,22 @@ public class ShootBallsBlue extends AutonomousHeaderWithoutBeaconServo {
 
         Thread.sleep(10000);
 
-        encodersForward(6, 0.5);
-        Thread.sleep(200);
-
-        gyroTurnRight(23, 0.5);
-        Thread.sleep(200);
-
         encodersForward(5, 0.5);
         Thread.sleep(200);
 
-        shoot();
+        gyroTurnLeft(22, 0.5);
         Thread.sleep(200);
 
-        servoGate.setPosition(0.3);
-        Thread.sleep(100);
-
-        shoot2();
-        Thread.sleep(600);
-
-        servoGate.setPosition(0.0);
-        Thread.sleep(100);
-
-        shoot3();
+        encodersForward(18, 0.5);
         Thread.sleep(200);
 
-        encodersForward(3, 0.5);
-        Thread.sleep(200);
-
-        gyroTurnRight(32, 0.5);
+        gyroTurnLeft(28, 0.5);
         Thread.sleep(200);
 
         encodersForward(50, 0.5);
         Thread.sleep(200);
 
-        gyroTurnRight(30, 0.5);
+        gyroTurnLeft(35, 0.5);
         Thread.sleep(200);
 
         encodersForward(15, 0.5);

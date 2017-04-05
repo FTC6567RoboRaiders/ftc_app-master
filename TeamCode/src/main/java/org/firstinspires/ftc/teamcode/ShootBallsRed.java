@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
 
-public class ShootBallsRed extends AutonomousHeader {
+public class ShootBallsRed extends AutonomousHeaderWithoutBeaconServo {
 
     @Override
     public void runOpMode() throws InterruptedException {
