@@ -17,7 +17,7 @@ import com.qualcomm.robotcore.util.Range;
 
 @TeleOp
 
-public class ShooterAdjust extends OpMode {
+public class TalosTeleOpWithoutBeaconServo extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
             motorShooter, motorSweeper, motorLift;
@@ -99,13 +99,77 @@ public class ShooterAdjust extends OpMode {
     @Override
     public void loop() {
 
-        float shoot = gamepad1.right_stick_y;
+        float left = gamepad1.left_stick_y;
+        float right = gamepad1.right_stick_y;
+        float shoot = gamepad2.right_stick_y;
+        float lift = gamepad2.left_stick_y;
 
+        left = Range.clip(left, -1, 1);
+        right = Range.clip(right, -1, 1);
         shoot = Range.clip(shoot, -1, 1);
+        lift = Range.clip(lift, -1, 1);
 
+        left = (float) scaleInput(left);
+        right = (float) scaleInput(right);
         shoot = (float) scaleInput(shoot);
+        lift = (float) scaleInput(lift);
 
-        setShooterPower(shoot);
+        setMotorPower(left * motorFactor, right * motorFactor);
+        setAttachmentPower(sweeperMode, shoot, lift);
+
+        if (gamepad1.x) {
+
+            motorFactor = 0.5;
+        }
+
+        if (gamepad1.y) {
+
+            motorFactor = 1.0;
+        }
+
+        if (gamepad1.a) {
+
+            motorFactor = -0.5;
+        }
+
+        if (gamepad1.b) {
+
+            motorFactor = -1.0;
+        }
+
+        if (gamepad2.a) {
+
+            servoLiftLeft.setPosition(0.7);
+            servoLiftRight.setPosition(0.7);
+        }
+
+        if (gamepad2.b) {
+
+            servoLiftLeft.setPosition(0.35);
+            servoLiftRight.setPosition(0.35);
+        }
+
+        if (gamepad2.right_bumper) {
+
+            sweeperMode = 1.0;
+        }
+        else if (gamepad2.left_bumper) {
+
+            sweeperMode = -1.0;
+        }
+        else {
+
+            sweeperMode = 0.0;
+        }
+
+        if (gamepad2.dpad_down) {
+
+            servoGate.setPosition(0.3);
+        }
+        else {
+
+            servoGate.setPosition(0.0);
+        }
     }
 
     @Override
@@ -114,9 +178,19 @@ public class ShooterAdjust extends OpMode {
 
     }
 
-    public void setShooterPower (double shoot) {
+    public void setMotorPower (double left, double right) {
 
+        motorBackLeft.setPower(left);
+        motorBackRight.setPower(right);
+        motorFrontLeft.setPower(left);
+        motorFrontRight.setPower(right);
+    }
+
+    public void setAttachmentPower (double sweeperMode, double shoot, double lift) {
+
+        motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
+        motorLift.setPower(lift);
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values
