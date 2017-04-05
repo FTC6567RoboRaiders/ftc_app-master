@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 @Autonomous
 @Disabled
 
-public class ParkRed extends AutonomousHeaderWithoutBeaconServo {
+public class ParkRed extends AutonomousHeader {
 
     @Override
     public void runOpMode() throws InterruptedException {
