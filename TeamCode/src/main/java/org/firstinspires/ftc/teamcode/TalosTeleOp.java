@@ -99,8 +99,8 @@ public class TalosTeleOp extends OpMode {
         motorLift2.setDirection(DcMotor.Direction.REVERSE);     /*@SK1A*/
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPosition(0.7);
-        servoLiftRight.setPosition(0.7);
+        servoLiftLeft.setPosition(0.7);                         /* Close the left arm */
+        servoLiftRight.setPosition(0.7);                        /* Close the right arm */
     }
 
     @Override
@@ -129,6 +129,7 @@ public class TalosTeleOp extends OpMode {
         setMotorPower(left * motorFactor, right * motorFactor);
         setAttachmentPower(sweeperMode, shoot, lift);
 
+        // Get and set the current state of the A and B buttons on gamepad2
         gamepad2_a_currState = gamepad2.a;
         gamepad2_b_currState = gamepad2.b;
 
@@ -162,32 +163,50 @@ public class TalosTeleOp extends OpMode {
             servoBeacon.setPosition(0);
         }
 
+        // CLOSE THE LIFT ARM LOGIC
+        // If the current state of the A button on gamepad2 is true (aka pushed) -AND-
+        // The current state of A button on gamepad2 is different from the previous state -
+        // meaning that before the A button on gamepad2 was false (aka not pushed), then
+        // close the arms.
         if (gamepad2_a_currState &&
-                gamepad2_a_currState != gamepad2_a_prevState)  {
+            gamepad2_a_currState != gamepad2_a_prevState)  {
 
-            servoLiftLeft.setPosition(0.70);
-            servoLiftRight.setPosition(0.70);
+            servoLiftLeft.setPosition(0.70);                 // Left arm closed
+            servoLiftRight.setPosition(0.70);                // Right arm closed
+                                                             // Everybody clap their hands....
 
-            gamepad2_a_currState = gamepad2_a_prevState;
+              gamepad2_a_prevState = gamepad2_a_currState;   // Remember the current state
         }
+        // If the current state of the A button on gamepad2 is false (not pushed) -AND-
+        // The current state of A button on gamepad2 is different from the previous state -
+        // meaning that before the A button on gamepad2 was true (aka pushed) then do nothing
         else if (gamepad2_a_currState == false &&
-                gamepad2_a_currState != gamepad2_a_prevState)  {
+                 gamepad2_a_currState != gamepad2_a_prevState)  {
 
-            gamepad2_a_currState = gamepad2_a_prevState;
+            gamepad2_a_prevState = gamepad2_a_currState;     // Remember the current state
         }
 
+        // OPEN THE LIFT ARM LOGIC
+        // If the current state of the B button on gamepad2 is true (aka pushed) -AND-
+        // The current state of B button on gamepad2 is different from the previous state -
+        // meaning that before the B button on gamepad2 was false (aka not pushed), then
+        // open the arms.
         if (gamepad2_b_currState &&
-                gamepad2_b_currState != gamepad2_b_prevState)  {
+            gamepad2_b_currState != gamepad2_b_prevState)  {
 
-            servoLiftLeft.setPosition(0.35);
-            servoLiftRight.setPosition(0.35);
+            servoLiftLeft.setPosition(0.35);                 // Left arm open
+            servoLiftRight.setPosition(0.35);                // Right arm open
+                                                             // Everybody clap their hands...
 
-            gamepad2_b_currState = gamepad2_b_prevState;
+            gamepad2_b_prevState = gamepad2_b_currState;     // Remember the current state
         }
+        // If the current state of the B button on gamepad2 is false (not pushed) -AND-
+        // The current state of B button on gamepad2 is different from the previous state -
+        // meaning that before the B button on gamepad2 was true (aka pushed) then do nothing
         else if (gamepad2_b_currState == false &&
-                gamepad2_b_currState != gamepad2_b_prevState)  {
+                 gamepad2_b_currState != gamepad2_b_prevState)  {
 
-            gamepad2_b_currState = gamepad2_b_prevState;
+            gamepad2_b_prevState = gamepad2_b_currState;     // Remember the current state
         }
 
         if (gamepad2.right_bumper) {
