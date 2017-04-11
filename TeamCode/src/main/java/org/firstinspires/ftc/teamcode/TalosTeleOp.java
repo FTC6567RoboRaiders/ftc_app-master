@@ -13,6 +13,10 @@ import com.qualcomm.robotcore.util.Range;
 
 /**
  * Created by Katelin Zichittella on 11/1/2016.
+ *
+ * S. Kocik - 170411 - Changed motorLift to motorLift1 and added motorLift2 since
+ *                     hardware was changed to use two motors for the lift
+ *
  */
 
 @TeleOp
@@ -20,7 +24,7 @@ import com.qualcomm.robotcore.util.Range;
 public class TalosTeleOp extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
-            motorShooter, motorSweeper, motorLift;
+            motorShooter, motorSweeper, motorLift1, motorLift2;         /*@SK1C*/
     Servo servoBeacon, servoGate, servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
@@ -59,7 +63,8 @@ public class TalosTeleOp extends OpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
         motorShooter = hardwareMap.dcMotor.get("motorShooter");
         motorSweeper = hardwareMap.dcMotor.get("motorSweeper");
-        motorLift = hardwareMap.dcMotor.get("motorLift");
+        motorLift1 = hardwareMap.dcMotor.get("motorLift1");    /*@SK1C*/
+        motorLift2 = hardwareMap.dcMotor.get("motorLift2");    /*@SK1A*/
         rangeSensorLeft = hardwareMap.i2cDevice.get("rangeSensorLeft");
         rangeSensorRight = hardwareMap.i2cDevice.get("rangeSensorRight");
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
@@ -90,7 +95,8 @@ public class TalosTeleOp extends OpMode {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
-        motorLift.setDirection(DcMotor.Direction.REVERSE);
+        motorLift1.setDirection(DcMotor.Direction.REVERSE);     /*@SK1C*/
+        motorLift2.setDirection(DcMotor.Direction.REVERSE);     /*@SK1A*/
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
         servoLiftLeft.setPosition(0.7);
@@ -225,7 +231,9 @@ public class TalosTeleOp extends OpMode {
 
         motorSweeper.setPower(sweeperMode);
         motorShooter.setPower(shoot);
-        motorLift.setPower(lift);
+        motorLift1.setPower(lift);     /*@SK1C*/
+        motorLift2.setPower(lift);     /*@SK1A*/
+
     }
 
     double scaleInput(double dVal)  { // When implemented above, this double scales the joystick input values
