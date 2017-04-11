@@ -26,6 +26,10 @@ public class TalosTeleOp extends OpMode {
 
     double motorFactor = 1.0;
     double sweeperMode;
+    boolean gamepad2_a_currState = false;
+    boolean gamepad2_a_prevState = false;
+    boolean gamepad2_b_currState = false;
+    boolean gamepad2_b_prevState = false;
 
     byte[] rangeSensorLeftCache;
     byte[] rangeSensorRightCache;
@@ -119,6 +123,9 @@ public class TalosTeleOp extends OpMode {
         setMotorPower(left * motorFactor, right * motorFactor);
         setAttachmentPower(sweeperMode, shoot, lift);
 
+        gamepad2_a_currState = gamepad2.a;
+        gamepad2_b_currState = gamepad2.b;
+
         if (gamepad1.x) {
 
             motorFactor = 0.5;
@@ -149,16 +156,32 @@ public class TalosTeleOp extends OpMode {
             servoBeacon.setPosition(0);
         }
 
-        if (gamepad2.a) {
+        if (gamepad2_a_currState &&
+                gamepad2_a_currState != gamepad2_a_prevState)  {
 
-            servoLiftLeft.setPosition(0.7);
-            servoLiftRight.setPosition(0.7);
+            servoLiftLeft.setPosition(0.70);
+            servoLiftRight.setPosition(0.70);
+
+            gamepad2_a_currState = gamepad2_a_prevState;
+        }
+        else if (gamepad2_a_currState == false &&
+                gamepad2_a_currState != gamepad2_a_prevState)  {
+
+            gamepad2_a_currState = gamepad2_a_prevState;
         }
 
-        if (gamepad2.b) {
+        if (gamepad2_b_currState &&
+                gamepad2_b_currState != gamepad2_b_prevState)  {
 
             servoLiftLeft.setPosition(0.35);
             servoLiftRight.setPosition(0.35);
+
+            gamepad2_b_currState = gamepad2_b_prevState;
+        }
+        else if (gamepad2_b_currState == false &&
+                gamepad2_b_currState != gamepad2_b_prevState)  {
+
+            gamepad2_b_currState = gamepad2_b_prevState;
         }
 
         if (gamepad2.right_bumper) {
