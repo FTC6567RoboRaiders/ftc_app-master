@@ -133,8 +133,9 @@ public class TalosTeleOp extends OpMode {
 
         // Now take that clipped number and scale it appropriately.  This is done
         // since using the joysticks it is sometime very difficult to push the
-        // the joystick 100 in any given direction.  So scaling the input takes
-        // this into consideration and scales the input properly.
+        // the joystick 100% in any given direction.  So scaling the input takes
+        // this into consideration and scales the input properly.  This will give
+        // more control to the driver and believe me s/he needs it.
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
         shoot = (float) scaleInput(shoot);
@@ -151,6 +152,7 @@ public class TalosTeleOp extends OpMode {
         gamepad2_a_currState = gamepad2.a;
         gamepad2_b_currState = gamepad2.b;
 
+        // HALF THRUSTER SCOTTY
         // When the X button on gamepad1 is pushed, all motor calculations are at
         // half speed.
         if (gamepad1.x) {
@@ -158,6 +160,7 @@ public class TalosTeleOp extends OpMode {
             motorFactor = 0.5;
         }
 
+        // FULL THRUSTERS SCOTTY
         // When the Y button on gamepad1 is pushed, all motor calculations are at
         // full speed (aka ludicrous speed)
         if (gamepad1.y) {
@@ -187,7 +190,7 @@ public class TalosTeleOp extends OpMode {
             motorFactor = -1.0;
         }
 
-        // BEACON PUSHER LOGIC - PUSH IT PUSH IT REAL GOOD...
+        // BEACON PUSHER LOGIC - PUSH IT, PUSH IT REAL GOOD...
         // When the left bumper on gamepad1 is pushed, the beacon pusher will
         // rotate to the left.
         if (gamepad1.left_bumper) {
@@ -324,7 +327,8 @@ public class TalosTeleOp extends OpMode {
      * scaleInput - scales the joystick input appropriately  This is done
      * since using the joysticks it is sometime very difficult to push the
      * the joystick 100% in any given direction.  So scaling the input takes
-     * this into consideration and scales the input properly.
+     * this into consideration and scales the input properly and gives the
+     * driver more control
      *
      * @param dVal - the joystick value to scale
      * @return dScale - the scaled joystick value
@@ -336,9 +340,9 @@ public class TalosTeleOp extends OpMode {
                 0.30, 0.36, 0.43, 0.50, 0.60, 0.72, 0.85, 1.00, 1.00 };
 
         // get the corresponding index for the scaleInput array.
-        // So the wa this works is through integer magic.  The calculation
+        // So the way this works is through integer magic.  The calculation
         // of dval*16.0 is float, that is decimal points will be around, but then
-        // casting it as an integer (int), the number right of the decimal point
+        // casting it as an integer (int), the numbers right of the decimal point
         // are stripped off and presto chango you have an index into the scaleArray
         int index = (int) (dVal * 16.0);
 
@@ -358,8 +362,8 @@ public class TalosTeleOp extends OpMode {
         }
 
         // get value from the array.  So using the index that was calculated above return the
-        // power setting from the scaleArray.  So index of 8 is 0.30 (scaleArray[8])...see
-        // above for why.
+        // power setting from the scaleArray.  So an index of 8 is 0.30 (scaleArray[8])...see
+        // above for why).
         double dScale = 0.0;
         if (dVal < 0) {
             dScale = -scaleArray[index];
