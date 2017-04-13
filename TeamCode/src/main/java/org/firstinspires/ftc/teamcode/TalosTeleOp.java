@@ -298,9 +298,16 @@ public class TalosTeleOp extends OpMode {
         }
     }
 
+    /**
+     * stop - stops Talos, this will run when the STOP button on the driver
+     *        station is pressed
+     */
     @Override
     public void stop() {
 
+        // Turn all motors off
+        setMotorPower(0,0);                     /* Turn off drive train - left and right */
+        setAttachmentPower(0,0,0);              /* Turn off attachments, sweeper, shooter, and lift */
 
     }
 
