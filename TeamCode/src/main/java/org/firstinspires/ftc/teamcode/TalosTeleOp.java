@@ -14,9 +14,6 @@ import com.qualcomm.robotcore.util.Range;
 /**
  * Created by Katelin Zichittella on 11/1/2016.
  *
- * S. Kocik - 170411 - Changed motorLift to motorLift1 and added motorLift2 since
- *                     hardware was changed to use two motors for the lift
- *
  */
 
 @TeleOp
@@ -106,6 +103,20 @@ public class TalosTeleOp extends OpMode {
         servoGate.setPosition(0.0);                             /* Gate is up */
         servoLiftLeft.setPosition(0.7);                         /* Close the left arm */
         servoLiftRight.setPosition(0.7);                        /* Close the right arm */
+
+        // So the drivers were complaining that sometimes Talos runs in reverse
+        // and sometimes it doesn't and the only way they can fix resolve from this
+        // goofy state is to power Talos down...so to help them out
+        // (cause we know they need all of the help they can get) we will assume
+        // that they want to run the robot with full thrusters....
+        //
+        // Now we did set this up properly above, that is motorFactor was
+        // initialized to 1.0 at declaration.  So not sure how this is happening,
+        // but we will be safe here
+        motorFactor = 1.0;                                      /* Scotty I need full thrusters */
+
+        // Do the same for the sweeper
+        sweeperMode = 0.0;                                      /* Sweeper no sweeping */
     }
 
     @Override
@@ -124,7 +135,7 @@ public class TalosTeleOp extends OpMode {
         float lift = gamepad2.left_stick_y;
 
         // Sometimes the numbers get all out of whack, don't ask it just happens
-        // so make the numbers fit between -1 and 1 which are the mininum and
+        // so make the numbers fit between -1 and 1 which are the minimum and
         // maximum that a motor can be given.
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
@@ -152,7 +163,7 @@ public class TalosTeleOp extends OpMode {
         gamepad2_a_currState = gamepad2.a;
         gamepad2_b_currState = gamepad2.b;
 
-        // HALF THRUSTER SCOTTY
+        // HALF THRUSTERS SCOTTY
         // When the X button on gamepad1 is pushed, all motor calculations are at
         // half speed.
         if (gamepad1.x) {
