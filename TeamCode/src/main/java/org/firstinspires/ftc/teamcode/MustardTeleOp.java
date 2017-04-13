@@ -76,5 +76,4 @@ public class MustardTeleOp extends OpMode {
         // return scaled value.
         return dScale;
     }
-
 }
