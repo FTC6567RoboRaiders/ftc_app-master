@@ -20,12 +20,16 @@ import com.qualcomm.robotcore.util.Range;
 public class ShooterAdjust extends OpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
-            motorShooter, motorSweeper, motorLift;
-    Servo servoGate, servoLiftLeft, servoLiftRight;
+            motorShooter, motorSweeper, motorLift1, motorLift2;
+    Servo servoBeacon, servoGate, servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
     double motorFactor = 1.0;
     double sweeperMode;
+    boolean gamepad2_a_currState = false;
+    boolean gamepad2_a_prevState = false;
+    boolean gamepad2_b_currState = false;
+    boolean gamepad2_b_prevState = false;
 
     byte[] rangeSensorLeftCache;
     byte[] rangeSensorRightCache;
@@ -55,13 +59,15 @@ public class ShooterAdjust extends OpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
         motorShooter = hardwareMap.dcMotor.get("motorShooter");
         motorSweeper = hardwareMap.dcMotor.get("motorSweeper");
-        motorLift = hardwareMap.dcMotor.get("motorLift");
+        motorLift1 = hardwareMap.dcMotor.get("motorLift1");
+        motorLift2 = hardwareMap.dcMotor.get("motorLift2");
         rangeSensorLeft = hardwareMap.i2cDevice.get("rangeSensorLeft");
         rangeSensorRight = hardwareMap.i2cDevice.get("rangeSensorRight");
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
         colorSensorRight = hardwareMap.i2cDevice.get("colorSensorRight");
         colorSensorFront = hardwareMap.i2cDevice.get("colorSensorFront");
         sensorGyro = hardwareMap.gyroSensor.get("sensorGyro");
+        servoBeacon = hardwareMap.servo.get("servoBeacon");
         servoGate = hardwareMap.servo.get("servoGate");
         servoLiftLeft = hardwareMap.servo.get("servoLiftLeft");
         servoLiftRight = hardwareMap.servo.get("servoLiftRight");
@@ -85,10 +91,12 @@ public class ShooterAdjust extends OpMode {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
-        motorLift.setDirection(DcMotor.Direction.REVERSE);
+        servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
         servoLiftLeft.setPosition(0.7);
         servoLiftRight.setPosition(0.7);
+        motorFactor = 1.0;
+        sweeperMode = 0.0;
     }
 
     @Override

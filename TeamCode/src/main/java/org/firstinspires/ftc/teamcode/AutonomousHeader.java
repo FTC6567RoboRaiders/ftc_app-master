@@ -18,7 +18,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public abstract class AutonomousHeader extends LinearOpMode {
 
     DcMotor motorBackLeft, motorBackRight, motorFrontLeft, motorFrontRight,
-            motorShooter, motorSweeper, motorLift;
+            motorShooter, motorSweeper, motorLift1, motorLift2;
     Servo servoBeacon, servoGate, servoLiftLeft, servoLiftRight;
     GyroSensor sensorGyro;
 
@@ -41,7 +41,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
     I2cDeviceSynch colorSensorRightReader;
     I2cDeviceSynch colorSensorFrontReader;
 
-    public void initialize () {
+    public void initialize() {
 
         motorBackLeft = hardwareMap.dcMotor.get("motorBackLeft");
         motorBackRight = hardwareMap.dcMotor.get("motorBackRight");
@@ -49,7 +49,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
         motorShooter = hardwareMap.dcMotor.get("motorShooter");
         motorSweeper = hardwareMap.dcMotor.get("motorSweeper");
-        motorLift = hardwareMap.dcMotor.get("motorLift");
+        motorLift1 = hardwareMap.dcMotor.get("motorLift1");
+        motorLift2 = hardwareMap.dcMotor.get("motorLift2");
         rangeSensorLeft = hardwareMap.i2cDevice.get("rangeSensorLeft");
         rangeSensorRight = hardwareMap.i2cDevice.get("rangeSensorRight");
         colorSensorLeft = hardwareMap.i2cDevice.get("colorSensorLeft");
@@ -82,10 +83,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPosition(1.00);
-        servoLiftRight.setPosition(1.00);
-
-        motorShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        servoLiftLeft.setPosition(0.7);
+        servoLiftRight.setPosition(0.7);
     }
 
     public void calibrateGyro () throws InterruptedException {
@@ -129,17 +128,17 @@ public abstract class AutonomousHeader extends LinearOpMode {
                 telemetry.addData("RightColor", colorSensorRightCache[0] & 0xFF);
                 telemetry.update();*/
 
-                if ((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) { // black
+                if ((colorSensorLeftCache[0] & 0xFF) < 45 && (colorSensorRightCache[0] & 0xFF) < 45) { // black
 
                     setMotorPower(0.24, 0.24);
                 }
 
-                else if ((colorSensorLeftCache[0] & 0xFF) >= 80) { // white
+                else if ((colorSensorLeftCache[0] & 0xFF) >= 45) { // white
 
                     setMotorPower(0, 0.2);
                 }
 
-                else if ((colorSensorRightCache[0] & 0xFF) >= 80) { // white
+                else if ((colorSensorRightCache[0] & 0xFF) >= 45) { // white
 
                     setMotorPower(0.2, 0);
                 }
@@ -163,7 +162,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
             colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
             colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
 
-            while (((colorSensorLeftCache[0] & 0xFF) < 80 && (colorSensorRightCache[0] & 0xFF) < 80) && opModeIsActive()) { // black
+            while (((colorSensorLeftCache[0] & 0xFF) < 45 && (colorSensorRightCache[0] & 0xFF) < 45) && opModeIsActive()) { // black
 
                 colorSensorLeftCache = colorSensorLeftReader.read(0x08, 1);
                 colorSensorRightCache = colorSensorRightReader.read(0x08, 1);
