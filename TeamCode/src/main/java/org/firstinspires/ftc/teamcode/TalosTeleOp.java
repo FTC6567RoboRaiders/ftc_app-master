@@ -186,6 +186,18 @@ public class TalosTeleOp extends OpMode {
             gamepad2_b_prevState = gamepad2_b_currState;
         }
 
+        if (gamepad2.dpad_left) {
+
+            servoLiftLeft.setPosition(0.35);
+            servoLiftRight.setPosition(0.70);
+        }
+
+        if (gamepad2.dpad_right) {
+
+            servoLiftLeft.setPosition(0.70);
+            servoLiftRight.setPosition(0.35);
+        }
+
         if (gamepad2.right_bumper) {
 
             sweeperMode = 1.0;

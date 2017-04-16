@@ -83,8 +83,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPosition(0.7);
-        servoLiftRight.setPosition(0.7);
+        servoLiftLeft.setPosition(0.72);
+        servoLiftRight.setPosition(0.72);
     }
 
     public void calibrateGyro () throws InterruptedException {
@@ -192,11 +192,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
             double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
             double COUNTS = PULSES * ROTATIONS;
 
-            COUNTS = COUNTS + Math.abs((double)motorBackLeft.getCurrentPosition());
+            COUNTS = COUNTS + Math.abs((double)motorBackRight.getCurrentPosition());
 
             setMotorPower(power, power);
 
-            while ((double)motorBackLeft.getCurrentPosition() < COUNTS && opModeIsActive()) {
+            while ((double)motorBackRight.getCurrentPosition() < COUNTS && opModeIsActive()) {
 
             }
 
@@ -220,11 +220,11 @@ public abstract class AutonomousHeader extends LinearOpMode {
             double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO;
             double COUNTS = PULSES * ROTATIONS;
 
-            COUNTS = Math.abs((double)motorBackLeft.getCurrentPosition()) - COUNTS;
+            COUNTS = Math.abs((double)motorBackRight.getCurrentPosition()) - COUNTS;
 
             setMotorPower(-power, -power);
 
-            while ((double)motorBackLeft.getCurrentPosition() > COUNTS && opModeIsActive()) {
+            while ((double)motorBackRight.getCurrentPosition() > COUNTS && opModeIsActive()) {
 
             }
 
