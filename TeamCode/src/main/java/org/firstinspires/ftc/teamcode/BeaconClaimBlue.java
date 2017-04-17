@@ -68,15 +68,15 @@ public class BeaconClaimBlue extends AutonomousHeader {
         telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
         telemetry.update();
 
-        if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue*/
+        if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
             encodersBackward(2, 0.5);
             Thread.sleep(200);
-            /*servoBeacon.setPosition(1.0);
-            Thread.sleep(500);*/
+            servoBeacon.setPosition(1.0);
+            Thread.sleep(500);
             encodersForward(4, 0.4);
             Thread.sleep(500);
-        /*}
+        }
         else {
 
             encodersBackward(2, 0.5);
@@ -87,7 +87,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
             Thread.sleep(500);
         }*/
 
-        encodersBackward(1, 0.4);
+        encodersBackward(1.5, 0.4);
         Thread.sleep(100);
 
         /*servoBeacon.setPosition(0.5);
@@ -143,15 +143,15 @@ public class BeaconClaimBlue extends AutonomousHeader {
         telemetry.addData("Front", colorSensorFrontCache[0] & 0xFF);
         telemetry.update();
 
-        if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue*/
+        if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
             encodersBackward(2, 0.5);
             Thread.sleep(200);
-            /*servoBeacon.setPosition(1.0);
-            Thread.sleep(500);*/
+            servoBeacon.setPosition(1.0);
+            Thread.sleep(500);
             encodersForward(4, 0.4);
             Thread.sleep(500);
-        /*}
+        }
         else {
 
             encodersBackward(2, 0.5);
@@ -162,7 +162,7 @@ public class BeaconClaimBlue extends AutonomousHeader {
             Thread.sleep(500);
         }*/
 
-        encodersBackward(1, 0.4);
+        encodersBackward(1.5, 0.4);
         Thread.sleep(100);
 
         /*servoBeacon.setPosition(0.5);
