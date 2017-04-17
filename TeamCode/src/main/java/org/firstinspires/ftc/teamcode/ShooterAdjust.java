@@ -93,8 +93,8 @@ public class ShooterAdjust extends OpMode {
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPosition(0.7);
-        servoLiftRight.setPosition(0.7);
+        servoLiftLeft.setPosition(0.71);
+        servoLiftRight.setPosition(0.67);
         motorFactor = 1.0;
         sweeperMode = 0.0;
     }

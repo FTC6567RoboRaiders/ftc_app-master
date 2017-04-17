@@ -83,8 +83,8 @@ public abstract class AutonomousHeader extends LinearOpMode {
         motorShooter.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPosition(0.7);
-        servoLiftRight.setPosition(0.7);
+        servoLiftLeft.setPosition(0.71);
+        servoLiftRight.setPosition(0.67);
     }
 
     public void calibrateGyro () throws InterruptedException {

@@ -93,8 +93,8 @@ public class TalosTeleOp extends OpMode {
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPosition(0.7);
-        servoLiftRight.setPosition(0.7);
+        servoLiftLeft.setPosition(0.71);
+        servoLiftRight.setPosition(0.67);
         motorFactor = 1.0;
         sweeperMode = 0.0;
     }
@@ -161,8 +161,8 @@ public class TalosTeleOp extends OpMode {
         if (gamepad2_a_currState &&
             gamepad2_a_currState != gamepad2_a_prevState)  {
 
-            servoLiftLeft.setPosition(0.70);
-            servoLiftRight.setPosition(0.70);
+            servoLiftLeft.setPosition(0.71);
+            servoLiftRight.setPosition(0.67);
 
             gamepad2_a_prevState = gamepad2_a_currState;
         }
@@ -175,8 +175,8 @@ public class TalosTeleOp extends OpMode {
         if (gamepad2_b_currState &&
             gamepad2_b_currState != gamepad2_b_prevState)  {
 
-            servoLiftLeft.setPosition(0.35);
-            servoLiftRight.setPosition(0.35);
+            servoLiftLeft.setPosition(0.36);
+            servoLiftRight.setPosition(0.32);
 
             gamepad2_b_prevState = gamepad2_b_currState;
         }
@@ -188,14 +188,14 @@ public class TalosTeleOp extends OpMode {
 
         if (gamepad2.dpad_left) {
 
-            servoLiftLeft.setPosition(0.35);
-            servoLiftRight.setPosition(0.70);
+            servoLiftLeft.setPosition(0.30);
+            servoLiftRight.setPosition(0.67);
         }
 
         if (gamepad2.dpad_right) {
 
-            servoLiftLeft.setPosition(0.70);
-            servoLiftRight.setPosition(0.35);
+            servoLiftLeft.setPosition(0.71);
+            servoLiftRight.setPosition(0.26);
         }
 
         if (gamepad2.right_bumper) {
@@ -224,8 +224,7 @@ public class TalosTeleOp extends OpMode {
     @Override
     public void stop() {
 
-        setMotorPower(0,0);
-        setAttachmentPower(0,0,0);
+
     }
 
     public void setMotorPower (double left, double right) {
