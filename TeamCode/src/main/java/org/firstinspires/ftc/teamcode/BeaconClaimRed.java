@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
  * Created by Katelin Zichittella on 10/31/2016.
@@ -101,20 +100,28 @@ public class BeaconClaimRed extends AutonomousHeader {
         if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
             Thread.sleep(5000);
+
             encodersBackward(2, 0.5);
             Thread.sleep(200);
+
             /*servoBeacon.setPosition(0.0);
             Thread.sleep(500);*/
+
             encodersForward(4, 0.4);
             Thread.sleep(500);
+
             encodersBackward(18, 0.6);
             Thread.sleep(200);
+
             gyroTurnLeft(70, 0.5);
             Thread.sleep(200);
+
             encodersForward(26, 0.4);
             Thread.sleep(200);
-            gyroTurnRight(40, 0.5);
+
+            gyroTurnRight(36, 0.5);
             Thread.sleep(200);
+
             encodersForward(8, 0.4);
             Thread.sleep(20000);
         }
@@ -186,10 +193,13 @@ public class BeaconClaimRed extends AutonomousHeader {
         if ((colorSensorFrontCache[0] & 0xFF) <= 6) { // blue
 
             Thread.sleep(5000);
+
             /*encodersBackward(2, 0.5);
-            Thread.sleep(200);*/
-            /*servoBeacon.setPosition(1.0);
+            Thread.sleep(200);
+
+            servoBeacon.setPosition(1.0);
             Thread.sleep(500);*/
+
             encodersForward(4, 0.4);
             Thread.sleep(500);
         }
