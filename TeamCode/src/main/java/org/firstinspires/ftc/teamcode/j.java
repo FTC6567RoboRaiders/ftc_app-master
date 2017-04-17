@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
  */
 
 @Autonomous
+@Disabled
 
 public class j extends AutonomousHeader {
 
@@ -62,7 +63,7 @@ public class j extends AutonomousHeader {
         gyroTurnLeft(48, 0.5);
         Thread.sleep(200);
 
-        lineFollowerTwoSensors(14);
+        lineFollowerTwoSensors(14.5);
         Thread.sleep(200);
 
         colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
@@ -139,7 +140,7 @@ public class j extends AutonomousHeader {
         gyroTurnLeft(46, 0.5);
         Thread.sleep(200);
 
-        lineFollowerTwoSensors(14);
+        lineFollowerTwoSensors(14.5);
         Thread.sleep(200);
 
         colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);

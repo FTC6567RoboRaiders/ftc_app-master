@@ -103,7 +103,7 @@ public abstract class AutonomousHeader extends LinearOpMode {
         telemetry.update();
     }
 
-    public void lineFollowerTwoSensors (int distance) {
+    public void lineFollowerTwoSensors (double distance) {
 
         if (opModeIsActive()) {
 
