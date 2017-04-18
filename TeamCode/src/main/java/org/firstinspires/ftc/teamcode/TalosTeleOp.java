@@ -93,7 +93,7 @@ public class TalosTeleOp extends OpMode {
         motorSweeper.setDirection(DcMotor.Direction.REVERSE);
         servoBeacon.setPosition(0.0);
         servoGate.setPosition(0.0);
-        servoLiftLeft.setPosition(0.71);
+        servoLiftLeft.setPosition(0.70);
         servoLiftRight.setPosition(0.67);
         motorFactor = 1.0;
         sweeperMode = 0.0;
@@ -161,7 +161,7 @@ public class TalosTeleOp extends OpMode {
         if (gamepad2_a_currState &&
             gamepad2_a_currState != gamepad2_a_prevState)  {
 
-            servoLiftLeft.setPosition(0.71);
+            servoLiftLeft.setPosition(0.70);
             servoLiftRight.setPosition(0.67);
 
             gamepad2_a_prevState = gamepad2_a_currState;
@@ -175,7 +175,7 @@ public class TalosTeleOp extends OpMode {
         if (gamepad2_b_currState &&
             gamepad2_b_currState != gamepad2_b_prevState)  {
 
-            servoLiftLeft.setPosition(0.36);
+            servoLiftLeft.setPosition(0.35);
             servoLiftRight.setPosition(0.32);
 
             gamepad2_b_prevState = gamepad2_b_currState;
@@ -188,13 +188,13 @@ public class TalosTeleOp extends OpMode {
 
         if (gamepad2.dpad_left) {
 
-            servoLiftLeft.setPosition(0.30);
+            servoLiftLeft.setPosition(0.29);
             servoLiftRight.setPosition(0.67);
         }
 
         if (gamepad2.dpad_right) {
 
-            servoLiftLeft.setPosition(0.71);
+            servoLiftLeft.setPosition(0.70);
             servoLiftRight.setPosition(0.26);
         }
 
