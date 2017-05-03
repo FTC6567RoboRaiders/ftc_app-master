@@ -263,6 +263,10 @@ public class TalosTeleOp extends OpMode {
 
         // get value from the array.
         double dScale = 0.0;
+
+        // Now remember a negative value might have been passed to this method
+        // So return the favor and make the scaled output negative if the method
+        // originally passed a negative value
         if (dVal < 0) {
             dScale = -scaleArray[index];
         } else {

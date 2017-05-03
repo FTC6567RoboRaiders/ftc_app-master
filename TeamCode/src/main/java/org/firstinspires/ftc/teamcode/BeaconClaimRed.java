@@ -61,7 +61,7 @@ public class BeaconClaimRed extends AutonomousHeader {
         gyroTurnLeft(48, 0.5);
         Thread.sleep(200);
 
-        lineFollowerTwoSensors(9);
+        lineFollowerTwoSensors(6); //* was 9, changed to 11
         Thread.sleep(200);
 
         /*colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
@@ -154,7 +154,7 @@ public class BeaconClaimRed extends AutonomousHeader {
         gyroTurnLeft(46, 0.5);
         Thread.sleep(200);
 
-        lineFollowerTwoSensors(9);
+        lineFollowerTwoSensors(6);
         Thread.sleep(200);
 
         /*colorSensorFrontCache = colorSensorFrontReader.read(0x04, 1);
